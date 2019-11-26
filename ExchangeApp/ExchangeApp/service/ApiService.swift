@@ -9,9 +9,9 @@
 import Foundation
 
 public protocol ApiService {
-    func getPairs()
-    func getChart(pairName: String, start: String, end: String, period: String)
-    func getWallet()
-    func buyOrder(currencyPair:String, rate:String, amount: String)
-    func sellOrder(currencyPair: String, rate: String, amount: String)
+    func getPairs(completion: @escaping ([EntryList.Pair], Error?) -> Void)
+    func getChart(pairName: String, start: String, end: String, period: String, completion: @escaping ([Chart], Error?) -> Void)
+    func getWallet(completion: @escaping ([EntryList.Currency], Error?) -> Void)
+//    func buyOrder(currencyPair:String, rate:String, amount: String)
+//    func sellOrder(currencyPair: String, rate: String, amount: String)
 }

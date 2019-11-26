@@ -18,25 +18,26 @@ public struct EntryList: Decodable {
         init?(intValue: Int) {return nil}
     }
     
-    struct Pair: Decodable {
+    public struct Pair: Decodable {
         struct Content: Decodable {
             let id:String
             let last:String
-            let lowestAsk:String
-            let highestBid:String
-            let percentChange:String
-            let baseVolume:String
-            let quoteVolume:String
-            let isFrozen:String
-            let high24hr:String
-            let low24hr:String
+            let isFrozen: String
+            //            let lowestAsk:String
+            //            let highestBid:String
+            //            let percentChange:String
+            //            let baseVolume:String
+            //            let quoteVolume:String
+            //            let isFrozen:String
+            //            let high24hr:String
+            //            let low24hr:String
             
         }
         let pairName: String
         let content: Content
     }
     
-    struct Currency: Decodable {
+    public struct Currency: Decodable {
         struct Content: Decodable {
             let available: String
             let onOrders: String

@@ -12,49 +12,70 @@ import XCTest
 class ExchangeAppTests: XCTestCase {
     
     var poloniexService = PoloniexApiService()
-    let api = "8MJW176X-0DIR51FU-WCPMI4DW-XLBDPCJO"
-    let secret = "53f1c8b8776a3e9efe1a10c2f1cb8a4bc1139639709600c72cc5498e20ee216d66c97ec8a4d4d847be21bfa729eb1b9f4b5fbfcc480e83a498e37da0a1bc1b3e"
-
+    let api = "T9CYPRUC-P2PSC9K7-4GC1FO7C-RO21CJGV"
+    let secret = "fad124c771764881bead667a2b4a7eb0912a4f8ed58fd23025d115446c589bca904c11f4cee0fbad624200749781c61606e5470a8b304e8100ebe8f5b4f6fa32"
+    
     override func setUp() {
         UserDefaults.standard.set(api, forKey: "key")
         UserDefaults.standard.set(secret, forKey: "secret")
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-
+    
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
+    
     func testPairs() {
-        poloniexService.getPairs()
-        sleep(1)
+        let group = DispatchGroup()
+        group.enter()
+        var pairs:[EntryList.Pair] = []
+        poloniexService.getPairs { (data, error) in
+            pairs = data
+            group.leave()
+        }
+        group.wait()
+        XCTAssert(pairs.count>0)
     }
     
     func testChart() {
-        poloniexService.getChart(pairName: "USDT_ETH", start: String(Int(NSDate().timeIntervalSince1970)-1000), end: String(Int(NSDate().timeIntervalSince1970)), period: String(300))
-        sleep(1)
+        let group = DispatchGroup()
+        group.enter()
+        var charts:[Chart] = []
+        poloniexService.getChart(pairName: "USDT_ETH", start: String(Int(NSDate().timeIntervalSince1970)-1000), end: String(Int(NSDate().timeIntervalSince1970)), period: String(300)){(data, error) in
+            charts = data
+            group.leave()
+        }
+        group.wait()
+        XCTAssert(charts.count>0)
     }
     
     func testBalance() {
-        poloniexService.getWallet()
-        sleep(1)
+        let group = DispatchGroup()
+        group.enter()
+        var wallet:[EntryList.Currency] = []
+        poloniexService.getWallet { (data, error) in
+            wallet = data
+            group.leave()
+        }
+        group.wait()
+        XCTAssert(wallet.count>0)
     }
     
-    func testBuy() {
-        poloniexService.buyOrder(currencyPair: "USDT_ETH", rate: "0.0001", amount: "100")
-        sleep(1)
-    }
+    //    func testBuy() {
+    //        poloniexService.buyOrder(currencyPair: "USDT_ETH", rate: "0.0001", amount: "100")
+    //        sleep(1)
+    //    }
+    //
+    //    func testSell() {
+    //        poloniexService.sellOrder(currencyPair: "USDT_ETH", rate: "0.0001", amount: "100")
+    //        sleep(1)
+    //    }
     
-    func testSell() {
-        poloniexService.sellOrder(currencyPair: "USDT_ETH", rate: "0.0001", amount: "100")
-        sleep(1)
-    }
-
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
             // Put the code you want to measure the time of here.
         }
     }
-
+    
 }
