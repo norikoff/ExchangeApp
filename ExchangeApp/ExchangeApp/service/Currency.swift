@@ -20,17 +20,16 @@ public struct EntryList: Decodable {
     
     public struct Pair: Decodable {
         struct Content: Decodable {
-            let id:String
+            let id:Int
             let last:String
-            let isFrozen: String
-            //            let lowestAsk:String
-            //            let highestBid:String
-            //            let percentChange:String
-            //            let baseVolume:String
-            //            let quoteVolume:String
-            //            let isFrozen:String
-            //            let high24hr:String
-            //            let low24hr:String
+            let lowestAsk:String
+            let highestBid:String
+            let percentChange:String
+            let baseVolume:String
+            let quoteVolume:String
+            let isFrozen:String
+            let high24hr:String
+            let low24hr:String
             
         }
         let pairName: String

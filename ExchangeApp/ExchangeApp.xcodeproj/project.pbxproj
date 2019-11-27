@@ -8,7 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		5958DC36238DA03800B75625 /* WalletDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC35238DA03800B75625 /* WalletDao.swift */; };
-		5958DC37238DA03800B75625 /* WalletDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC35238DA03800B75625 /* WalletDao.swift */; };
+		5958DC39238DBF5200B75625 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC38238DBF5200B75625 /* CoreDataStack.swift */; };
+		5958DC3C238ED7C000B75625 /* ChartDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC3B238ED7C000B75625 /* ChartDao.swift */; };
+		5958DC3D238ED7C000B75625 /* ChartDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC3B238ED7C000B75625 /* ChartDao.swift */; };
+		5958DC3F238ED7D500B75625 /* BaseDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC3E238ED7D500B75625 /* BaseDao.swift */; };
+		5958DC40238ED7D500B75625 /* BaseDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC3E238ED7D500B75625 /* BaseDao.swift */; };
 		59A374B0238A95CC00C873A5 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374AF238A95CC00C873A5 /* ApiService.swift */; };
 		59A374B1238A95CC00C873A5 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374AF238A95CC00C873A5 /* ApiService.swift */; };
 		59A374B5238A95FE00C873A5 /* PoloniexApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374B3238A95FE00C873A5 /* PoloniexApiService.swift */; };
@@ -54,6 +58,9 @@
 
 /* Begin PBXFileReference section */
 		5958DC35238DA03800B75625 /* WalletDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDao.swift; sourceTree = "<group>"; };
+		5958DC38238DBF5200B75625 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		5958DC3B238ED7C000B75625 /* ChartDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDao.swift; sourceTree = "<group>"; };
+		5958DC3E238ED7D500B75625 /* BaseDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDao.swift; sourceTree = "<group>"; };
 		59A374AF238A95CC00C873A5 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		59A374B3238A95FE00C873A5 /* PoloniexApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoloniexApiService.swift; sourceTree = "<group>"; };
 		59A374B6238A96A600C873A5 /* UtilsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsService.swift; sourceTree = "<group>"; };
@@ -110,6 +117,8 @@
 			isa = PBXGroup;
 			children = (
 				5958DC35238DA03800B75625 /* WalletDao.swift */,
+				5958DC3B238ED7C000B75625 /* ChartDao.swift */,
+				5958DC3E238ED7D500B75625 /* BaseDao.swift */,
 			);
 			name = repository;
 			sourceTree = "<group>";
@@ -127,6 +136,7 @@
 		59A374B9238A970D00C873A5 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				5958DC38238DBF5200B75625 /* CoreDataStack.swift */,
 				59A374BA238A971A00C873A5 /* ApiCrypto.swift */,
 				59A374B6238A96A600C873A5 /* UtilsService.swift */,
 			);
@@ -341,10 +351,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				59E47B53238151D100EC7618 /* ExchangeApp.xcdatamodeld in Sources */,
+				5958DC3C238ED7C000B75625 /* ChartDao.swift in Sources */,
 				59E47B912381549200EC7618 /* ExchangeViewController.swift in Sources */,
 				59E47B8B2381549200EC7618 /* ExchangeRouter.swift in Sources */,
 				59A374B7238A96A600C873A5 /* UtilsService.swift in Sources */,
 				59A374C2238A9FC800C873A5 /* PoloniexApiService.swift in Sources */,
+				5958DC3F238ED7D500B75625 /* BaseDao.swift in Sources */,
 				59E47B942381549200EC7618 /* ExchangeInteractor.swift in Sources */,
 				59A374C1238A97B300C873A5 /* Chart.swift in Sources */,
 				5958DC36238DA03800B75625 /* WalletDao.swift in Sources */,
@@ -352,6 +364,7 @@
 				59E47B4D238151D100EC7618 /* ViewController.swift in Sources */,
 				59A374B0238A95CC00C873A5 /* ApiService.swift in Sources */,
 				59E47B882381549200EC7618 /* ExchangeWorker.swift in Sources */,
+				5958DC39238DBF5200B75625 /* CoreDataStack.swift in Sources */,
 				59E47B4B238151D100EC7618 /* AppDelegate.swift in Sources */,
 				59A374BF238A979100C873A5 /* Currency.swift in Sources */,
 				59A374C3238A9FFA00C873A5 /* ApiCrypto.swift in Sources */,
@@ -364,12 +377,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				59A374B1238A95CC00C873A5 /* ApiService.swift in Sources */,
-				5958DC37238DA03800B75625 /* WalletDao.swift in Sources */,
 				59A374C6238AA16600C873A5 /* Currency.swift in Sources */,
 				59A374C7238AA17000C873A5 /* Chart.swift in Sources */,
 				59A374B5238A95FE00C873A5 /* PoloniexApiService.swift in Sources */,
 				59E47B63238151D100EC7618 /* ExchangeAppTests.swift in Sources */,
+				5958DC3D238ED7C000B75625 /* ChartDao.swift in Sources */,
 				59A374B8238A96A600C873A5 /* UtilsService.swift in Sources */,
+				5958DC40238ED7D500B75625 /* BaseDao.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

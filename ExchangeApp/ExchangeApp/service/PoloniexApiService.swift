@@ -46,15 +46,8 @@ public class PoloniexApiService: ApiService {
         group.enter()
         var pairs: [EntryList.Pair] = []
         utilsService.getRequest(url: components.url!) { (data, error) in
-            let dataString = String(data: data!, encoding: .utf8)
-            print(dataString!)
-            let entryList = try! JSONDecoder().decode(EntryList.self, from: dataString!.data(using: .utf8)!)
-            for pair in entryList.pairs{
-                print("\(pair.pairName)-\(pair.content.id)-\(pair.content.isFrozen)")
-            }
+            let entryList = try! JSONDecoder().decode(EntryList.self, from: data!)
             pairs = entryList.pairs
-            //            print(dataString!)
-            print(pairs.count)
             group.leave()
         }
         group.wait()
@@ -102,6 +95,8 @@ public class PoloniexApiService: ApiService {
             let headers = ["key" : key, "sign" : hmacSign]
             group.enter()
             utilsService.postRequest(url: components.url!, header: headers, body: sign) { (data, error) in
+                let dataString = String(data: data!, encoding: .utf8)
+                print(dataString!)
                 let entryList = try! JSONDecoder().decode(EntryList.self, from: data!)
                 wallet = entryList.wallet
                 group.leave()
@@ -111,43 +106,43 @@ public class PoloniexApiService: ApiService {
         completion(wallet, nil)
     }
     
-//    public func buyOrder(currencyPair: String, rate: String, amount: String) {
-//        var components = URLComponents()
-//        components.scheme = baseScheme
-//        components.host = baseHost
-//        components.path = "/tradingApi"
-//        
-//        let timeNowInt = Int((NSDate().timeIntervalSince1970)*500000)
-//        let timeNow = String(timeNowInt)
-//        
-//        if key != "" && secret != "" {
-//            let sign = "command=buy&currencyPair=\(currencyPair)&rate=\(rate)&amount=\(amount)&nonce=\(timeNow)"
-//            let hmacSign = sign.hmac(algorithm: .SHA512, key: secret)
-//            let headers = ["key" : key, "sign" : hmacSign]
-//            utilsService.postRequest(url: components.url!, header: headers, body: sign) { (data, error) in
-//                let dataString = String(data: data!, encoding: .utf8)
-//                print(dataString!)
-//            }
-//        }
-//    }
-//    
-//    public func sellOrder(currencyPair: String, rate: String, amount: String) {
-//        var components = URLComponents()
-//        components.scheme = baseScheme
-//        components.host = baseHost
-//        components.path = "/tradingApi"
-//        
-//        let timeNowInt = Int((NSDate().timeIntervalSince1970)*500000)
-//        let timeNow = String(timeNowInt)
-//        
-//        if key != "" && secret != "" {
-//            let sign = "command=sell&currencyPair=\(currencyPair)&rate=\(rate)&amount=\(amount)&nonce=\(timeNow)"
-//            let hmacSign = sign.hmac(algorithm: .SHA512, key: secret)
-//            let headers = ["key" : key, "sign" : hmacSign]
-//            utilsService.postRequest(url: components.url!, header: headers, body: sign) { (data, error) in
-//                let dataString = String(data: data!, encoding: .utf8)
-//                print(dataString!)
-//            }
-//        }
-//    }
+    public func buyOrder(currencyPair: String, rate: String, amount: String) {
+        var components = URLComponents()
+        components.scheme = baseScheme
+        components.host = baseHost
+        components.path = "/tradingApi"
+        
+        let timeNowInt = Int((NSDate().timeIntervalSince1970)*500000)
+        let timeNow = String(timeNowInt)
+        
+        if key != "" && secret != "" {
+            let sign = "command=buy&currencyPair=\(currencyPair)&rate=\(rate)&amount=\(amount)&nonce=\(timeNow)"
+            let hmacSign = sign.hmac(algorithm: .SHA512, key: secret)
+            let headers = ["key" : key, "sign" : hmacSign]
+            utilsService.postRequest(url: components.url!, header: headers, body: sign) { (data, error) in
+                let dataString = String(data: data!, encoding: .utf8)
+                print(dataString!)
+            }
+        }
+    }
+    
+    public func sellOrder(currencyPair: String, rate: String, amount: String) {
+        var components = URLComponents()
+        components.scheme = baseScheme
+        components.host = baseHost
+        components.path = "/tradingApi"
+        
+        let timeNowInt = Int((NSDate().timeIntervalSince1970)*500000)
+        let timeNow = String(timeNowInt)
+        
+        if key != "" && secret != "" {
+            let sign = "command=sell&currencyPair=\(currencyPair)&rate=\(rate)&amount=\(amount)&nonce=\(timeNow)"
+            let hmacSign = sign.hmac(algorithm: .SHA512, key: secret)
+            let headers = ["key" : key, "sign" : hmacSign]
+            utilsService.postRequest(url: components.url!, header: headers, body: sign) { (data, error) in
+                let dataString = String(data: data!, encoding: .utf8)
+                print(dataString!)
+            }
+        }
+    }
 }

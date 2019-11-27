@@ -12,8 +12,8 @@ import XCTest
 class ExchangeAppTests: XCTestCase {
     
     var poloniexService = PoloniexApiService()
-    let api = "T9CYPRUC-P2PSC9K7-4GC1FO7C-RO21CJGV"
-    let secret = "fad124c771764881bead667a2b4a7eb0912a4f8ed58fd23025d115446c589bca904c11f4cee0fbad624200749781c61606e5470a8b304e8100ebe8f5b4f6fa32"
+    let api = ""
+    let secret = ""
     
     override func setUp() {
         UserDefaults.standard.set(api, forKey: "key")
@@ -61,15 +61,13 @@ class ExchangeAppTests: XCTestCase {
         XCTAssert(wallet.count>0)
     }
     
-    //    func testBuy() {
-    //        poloniexService.buyOrder(currencyPair: "USDT_ETH", rate: "0.0001", amount: "100")
-    //        sleep(1)
-    //    }
-    //
-    //    func testSell() {
-    //        poloniexService.sellOrder(currencyPair: "USDT_ETH", rate: "0.0001", amount: "100")
-    //        sleep(1)
-    //    }
+        func testBuy() {
+            poloniexService.buyOrder(currencyPair: "USDT_ETH", rate: "0.0001", amount: "100")
+        }
+    
+        func testSell() {
+            poloniexService.sellOrder(currencyPair: "USDT_ETH", rate: "0.0001", amount: "100")
+        }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
