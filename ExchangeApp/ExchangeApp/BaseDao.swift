@@ -7,7 +7,3 @@
 //
 
 import Foundation
-
-protocol BaseDao<ID,T> {
-    func save(model: T) -> Bool
-}
