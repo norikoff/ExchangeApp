@@ -3,36 +3,60 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5958DC36238DA03800B75625 /* WalletDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC35238DA03800B75625 /* WalletDao.swift */; };
 		5958DC39238DBF5200B75625 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC38238DBF5200B75625 /* CoreDataStack.swift */; };
 		5958DC3C238ED7C000B75625 /* ChartDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC3B238ED7C000B75625 /* ChartDao.swift */; };
-		5958DC3D238ED7C000B75625 /* ChartDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC3B238ED7C000B75625 /* ChartDao.swift */; };
 		5958DC3F238ED7D500B75625 /* BaseDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC3E238ED7D500B75625 /* BaseDao.swift */; };
-		5958DC40238ED7D500B75625 /* BaseDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC3E238ED7D500B75625 /* BaseDao.swift */; };
+		5958DC42238EE1ED00B75625 /* PairDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC41238EE1ED00B75625 /* PairDao.swift */; };
+		5958DC4E23903BCC00B75625 /* CallsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC4D23903BCC00B75625 /* CallsViewController.swift */; };
+		5958DC4F23903BCC00B75625 /* CallsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC4D23903BCC00B75625 /* CallsViewController.swift */; };
+		5958DC5123903BDE00B75625 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC5023903BDE00B75625 /* ContactsViewController.swift */; };
+		5958DC5223903BDE00B75625 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC5023903BDE00B75625 /* ContactsViewController.swift */; };
+		5958DC5423903C0B00B75625 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC5323903C0B00B75625 /* PhotosViewController.swift */; };
+		5958DC5523903C0B00B75625 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC5323903C0B00B75625 /* PhotosViewController.swift */; };
+		5958DC5723903C1D00B75625 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC5623903C1D00B75625 /* InboxViewController.swift */; };
+		5958DC5823903C1D00B75625 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC5623903C1D00B75625 /* InboxViewController.swift */; };
+		5958DC5C23903C8C00B75625 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC5B23903C8C00B75625 /* TabItem.swift */; };
+		5958DC5D23903C8C00B75625 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC5B23903C8C00B75625 /* TabItem.swift */; };
+		5958DC5F23903C9C00B75625 /* NavigationMenuBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC5E23903C9C00B75625 /* NavigationMenuBaseController.swift */; };
+		5958DC6023903C9C00B75625 /* NavigationMenuBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC5E23903C9C00B75625 /* NavigationMenuBaseController.swift */; };
+		5958DC6223903CA900B75625 /* TabNavigationMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC6123903CA900B75625 /* TabNavigationMenu.swift */; };
+		5958DC6323903CA900B75625 /* TabNavigationMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC6123903CA900B75625 /* TabNavigationMenu.swift */; };
+		5958DC65239053EA00B75625 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC64239053EA00B75625 /* Order.swift */; };
+		5958DC6823905E0E00B75625 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC6723905E0E00B75625 /* ApiError.swift */; };
+		5958DC6D2391899100B75625 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374BE238A979100C873A5 /* Currency.swift */; };
+		5958DC6F239287B700B75625 /* OrderDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC6E239287B700B75625 /* OrderDao.swift */; };
+		5958DC7123928B5C00B75625 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC64239053EA00B75625 /* Order.swift */; };
+		5958DC792393E0FF00B75625 /* WalletDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC35238DA03800B75625 /* WalletDao.swift */; };
+		5958DC7D2393E23D00B75625 /* DaoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC732393D05700B75625 /* DaoTests.swift */; };
+		5958DC7E2393E28600B75625 /* PoloniexApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374B3238A95FE00C873A5 /* PoloniexApiService.swift */; };
+		5958DC802393F24A00B75625 /* PoloniexApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374B3238A95FE00C873A5 /* PoloniexApiService.swift */; };
+		5958DC812393F25800B75625 /* PairDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC41238EE1ED00B75625 /* PairDao.swift */; };
+		5958DC822393F25B00B75625 /* ChartDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC3B238ED7C000B75625 /* ChartDao.swift */; };
+		5958DC842393F25F00B75625 /* OrderDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC6E239287B700B75625 /* OrderDao.swift */; };
+		5958DC862393F28A00B75625 /* BaseDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC3E238ED7D500B75625 /* BaseDao.swift */; };
+		5958DC872393F2DF00B75625 /* UtilsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374B6238A96A600C873A5 /* UtilsService.swift */; };
+		5958DC892393F3DC00B75625 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC6723905E0E00B75625 /* ApiError.swift */; };
+		5958DC8A2393F3E000B75625 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374AF238A95CC00C873A5 /* ApiService.swift */; };
+		5958DC8B2393F42900B75625 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC38238DBF5200B75625 /* CoreDataStack.swift */; };
+		5958DC91239416D100B75625 /* WalletDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC35238DA03800B75625 /* WalletDao.swift */; };
+		5958DC92239416D500B75625 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 59E47B51238151D100EC7618 /* Model.xcdatamodeld */; };
+		5958DC93239417B500B75625 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 59E47B51238151D100EC7618 /* Model.xcdatamodeld */; };
 		59A374B0238A95CC00C873A5 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374AF238A95CC00C873A5 /* ApiService.swift */; };
-		59A374B1238A95CC00C873A5 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374AF238A95CC00C873A5 /* ApiService.swift */; };
-		59A374B5238A95FE00C873A5 /* PoloniexApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374B3238A95FE00C873A5 /* PoloniexApiService.swift */; };
 		59A374B7238A96A600C873A5 /* UtilsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374B6238A96A600C873A5 /* UtilsService.swift */; };
-		59A374B8238A96A600C873A5 /* UtilsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374B6238A96A600C873A5 /* UtilsService.swift */; };
 		59A374BF238A979100C873A5 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374BE238A979100C873A5 /* Currency.swift */; };
 		59A374C1238A97B300C873A5 /* Chart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374C0238A97B300C873A5 /* Chart.swift */; };
-		59A374C2238A9FC800C873A5 /* PoloniexApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374B3238A95FE00C873A5 /* PoloniexApiService.swift */; };
 		59A374C3238A9FFA00C873A5 /* ApiCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374BA238A971A00C873A5 /* ApiCrypto.swift */; };
-		59A374C6238AA16600C873A5 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374BE238A979100C873A5 /* Currency.swift */; };
 		59A374C7238AA17000C873A5 /* Chart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374C0238A97B300C873A5 /* Chart.swift */; };
 		59E47B4B238151D100EC7618 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E47B4A238151D100EC7618 /* AppDelegate.swift */; };
-		59E47B4D238151D100EC7618 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E47B4C238151D100EC7618 /* ViewController.swift */; };
-		59E47B53238151D100EC7618 /* ExchangeApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 59E47B51238151D100EC7618 /* ExchangeApp.xcdatamodeld */; };
 		59E47B55238151D100EC7618 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59E47B54238151D100EC7618 /* Assets.xcassets */; };
 		59E47B58238151D100EC7618 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59E47B56238151D100EC7618 /* LaunchScreen.storyboard */; };
-		59E47B63238151D100EC7618 /* ExchangeAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E47B62238151D100EC7618 /* ExchangeAppTests.swift */; };
+		59E47B63238151D100EC7618 /* ApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E47B62238151D100EC7618 /* ApiTests.swift */; };
 		59E47B6E238151D100EC7618 /* ExchangeAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E47B6D238151D100EC7618 /* ExchangeAppUITests.swift */; };
 		59E47B852381549200EC7618 /* ExchangePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E47B7F2381549200EC7618 /* ExchangePresenter.swift */; };
-		59E47B882381549200EC7618 /* ExchangeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E47B802381549200EC7618 /* ExchangeWorker.swift */; };
 		59E47B8B2381549200EC7618 /* ExchangeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E47B812381549200EC7618 /* ExchangeRouter.swift */; };
 		59E47B8E2381549200EC7618 /* ExchangeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E47B822381549200EC7618 /* ExchangeModels.swift */; };
 		59E47B912381549200EC7618 /* ExchangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E47B832381549200EC7618 /* ExchangeViewController.swift */; };
@@ -57,31 +81,41 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5958DC35238DA03800B75625 /* WalletDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDao.swift; sourceTree = "<group>"; };
+		5958DC35238DA03800B75625 /* WalletDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WalletDao.swift; path = ExchangeApp/WalletDao.swift; sourceTree = SOURCE_ROOT; };
 		5958DC38238DBF5200B75625 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		5958DC3B238ED7C000B75625 /* ChartDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDao.swift; sourceTree = "<group>"; };
+		5958DC3B238ED7C000B75625 /* ChartDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChartDao.swift; path = ExchangeApp/ChartDao.swift; sourceTree = SOURCE_ROOT; };
 		5958DC3E238ED7D500B75625 /* BaseDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDao.swift; sourceTree = "<group>"; };
+		5958DC41238EE1ED00B75625 /* PairDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PairDao.swift; path = ExchangeApp/PairDao.swift; sourceTree = SOURCE_ROOT; };
+		5958DC4D23903BCC00B75625 /* CallsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallsViewController.swift; sourceTree = "<group>"; };
+		5958DC5023903BDE00B75625 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
+		5958DC5323903C0B00B75625 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		5958DC5623903C1D00B75625 /* InboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
+		5958DC5B23903C8C00B75625 /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
+		5958DC5E23903C9C00B75625 /* NavigationMenuBaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationMenuBaseController.swift; sourceTree = "<group>"; };
+		5958DC6123903CA900B75625 /* TabNavigationMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationMenu.swift; sourceTree = "<group>"; };
+		5958DC64239053EA00B75625 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Order.swift; path = ../Order.swift; sourceTree = "<group>"; };
+		5958DC6723905E0E00B75625 /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
+		5958DC6E239287B700B75625 /* OrderDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDao.swift; sourceTree = "<group>"; };
+		5958DC732393D05700B75625 /* DaoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DaoTests.swift; path = ExchangeAppTests/DaoTests.swift; sourceTree = SOURCE_ROOT; };
 		59A374AF238A95CC00C873A5 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		59A374B3238A95FE00C873A5 /* PoloniexApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoloniexApiService.swift; sourceTree = "<group>"; };
 		59A374B6238A96A600C873A5 /* UtilsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsService.swift; sourceTree = "<group>"; };
 		59A374BA238A971A00C873A5 /* ApiCrypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCrypto.swift; sourceTree = "<group>"; };
-		59A374BE238A979100C873A5 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		59A374BE238A979100C873A5 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Currency.swift; path = ExchangeApp/service/Currency.swift; sourceTree = SOURCE_ROOT; };
 		59A374C0238A97B300C873A5 /* Chart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chart.swift; sourceTree = "<group>"; };
 		59E47B47238151D100EC7618 /* ExchangeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExchangeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59E47B4A238151D100EC7618 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		59E47B4C238151D100EC7618 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		59E47B52238151D100EC7618 /* ExchangeApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ExchangeApp.xcdatamodel; sourceTree = "<group>"; };
 		59E47B54238151D100EC7618 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		59E47B57238151D100EC7618 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		59E47B59238151D100EC7618 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59E47B5E238151D100EC7618 /* ExchangeAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExchangeAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		59E47B62238151D100EC7618 /* ExchangeAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeAppTests.swift; sourceTree = "<group>"; };
+		59E47B62238151D100EC7618 /* ApiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiTests.swift; sourceTree = "<group>"; };
 		59E47B64238151D100EC7618 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59E47B69238151D100EC7618 /* ExchangeAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExchangeAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		59E47B6D238151D100EC7618 /* ExchangeAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeAppUITests.swift; sourceTree = "<group>"; };
 		59E47B6F238151D100EC7618 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59E47B7F2381549200EC7618 /* ExchangePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangePresenter.swift; sourceTree = "<group>"; };
-		59E47B802381549200EC7618 /* ExchangeWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeWorker.swift; sourceTree = "<group>"; };
 		59E47B812381549200EC7618 /* ExchangeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRouter.swift; sourceTree = "<group>"; };
 		59E47B822381549200EC7618 /* ExchangeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeModels.swift; sourceTree = "<group>"; };
 		59E47B832381549200EC7618 /* ExchangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewController.swift; sourceTree = "<group>"; };
@@ -116,11 +150,52 @@
 		5958DC34238DA00200B75625 /* repository */ = {
 			isa = PBXGroup;
 			children = (
-				5958DC35238DA03800B75625 /* WalletDao.swift */,
-				5958DC3B238ED7C000B75625 /* ChartDao.swift */,
+				5958DC44238EE2D500B75625 /* impl */,
 				5958DC3E238ED7D500B75625 /* BaseDao.swift */,
 			);
 			name = repository;
+			path = ExchangeApp;
+			sourceTree = SOURCE_ROOT;
+		};
+		5958DC44238EE2D500B75625 /* impl */ = {
+			isa = PBXGroup;
+			children = (
+				5958DC35238DA03800B75625 /* WalletDao.swift */,
+				5958DC3B238ED7C000B75625 /* ChartDao.swift */,
+				5958DC41238EE1ED00B75625 /* PairDao.swift */,
+				5958DC6E239287B700B75625 /* OrderDao.swift */,
+			);
+			name = impl;
+			sourceTree = "<group>";
+		};
+		5958DC4C23903B8F00B75625 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				59E47B832381549200EC7618 /* ExchangeViewController.swift */,
+				5958DC8D2394027500B75625 /* navigation */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		5958DC5A23903C7500B75625 /* navigation */ = {
+			isa = PBXGroup;
+			children = (
+				5958DC5B23903C8C00B75625 /* TabItem.swift */,
+				5958DC5E23903C9C00B75625 /* NavigationMenuBaseController.swift */,
+				5958DC6123903CA900B75625 /* TabNavigationMenu.swift */,
+			);
+			name = navigation;
+			sourceTree = "<group>";
+		};
+		5958DC8D2394027500B75625 /* navigation */ = {
+			isa = PBXGroup;
+			children = (
+				5958DC5323903C0B00B75625 /* PhotosViewController.swift */,
+				5958DC5623903C1D00B75625 /* InboxViewController.swift */,
+				5958DC4D23903BCC00B75625 /* CallsViewController.swift */,
+				5958DC5023903BDE00B75625 /* ContactsViewController.swift */,
+			);
+			name = navigation;
 			sourceTree = "<group>";
 		};
 		59A374AD238A958900C873A5 /* service */ = {
@@ -146,8 +221,9 @@
 		59A374C8238AA56A00C873A5 /* dto */ = {
 			isa = PBXGroup;
 			children = (
-				59A374BE238A979100C873A5 /* Currency.swift */,
 				59A374C0238A97B300C873A5 /* Chart.swift */,
+				5958DC64239053EA00B75625 /* Order.swift */,
+				59A374BE238A979100C873A5 /* Currency.swift */,
 			);
 			name = dto;
 			sourceTree = "<group>";
@@ -156,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				59A374B3238A95FE00C873A5 /* PoloniexApiService.swift */,
+				5958DC6723905E0E00B75625 /* ApiError.swift */,
 			);
 			name = impl;
 			sourceTree = "<group>";
@@ -183,30 +260,30 @@
 		59E47B49238151D100EC7618 /* ExchangeApp */ = {
 			isa = PBXGroup;
 			children = (
+				5958DC5A23903C7500B75625 /* navigation */,
+				5958DC4C23903B8F00B75625 /* controller */,
 				5958DC34238DA00200B75625 /* repository */,
 				59A374B9238A970D00C873A5 /* utils */,
 				59A374AD238A958900C873A5 /* service */,
 				59E47B7F2381549200EC7618 /* ExchangePresenter.swift */,
-				59E47B802381549200EC7618 /* ExchangeWorker.swift */,
 				59E47B812381549200EC7618 /* ExchangeRouter.swift */,
 				59E47B822381549200EC7618 /* ExchangeModels.swift */,
-				59E47B832381549200EC7618 /* ExchangeViewController.swift */,
 				59E47B842381549200EC7618 /* ExchangeInteractor.swift */,
 				59E47B4A238151D100EC7618 /* AppDelegate.swift */,
-				59E47B4C238151D100EC7618 /* ViewController.swift */,
 				59E47B54238151D100EC7618 /* Assets.xcassets */,
 				59E47B56238151D100EC7618 /* LaunchScreen.storyboard */,
 				59E47B59238151D100EC7618 /* Info.plist */,
-				59E47B51238151D100EC7618 /* ExchangeApp.xcdatamodeld */,
+				59E47B51238151D100EC7618 /* Model.xcdatamodeld */,
 			);
 			path = ExchangeApp;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		59E47B61238151D100EC7618 /* ExchangeAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				59E47B62238151D100EC7618 /* ExchangeAppTests.swift */,
+				59E47B62238151D100EC7618 /* ApiTests.swift */,
 				59E47B64238151D100EC7618 /* Info.plist */,
+				5958DC732393D05700B75625 /* DaoTests.swift */,
 			);
 			path = ExchangeAppTests;
 			sourceTree = "<group>";
@@ -300,7 +377,7 @@
 				};
 			};
 			buildConfigurationList = 59E47B42238151D100EC7618 /* Build configuration list for PBXProject "ExchangeApp" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -350,25 +427,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				59E47B53238151D100EC7618 /* ExchangeApp.xcdatamodeld in Sources */,
+				5958DC5123903BDE00B75625 /* ContactsViewController.swift in Sources */,
 				5958DC3C238ED7C000B75625 /* ChartDao.swift in Sources */,
 				59E47B912381549200EC7618 /* ExchangeViewController.swift in Sources */,
+				5958DC93239417B500B75625 /* Model.xcdatamodeld in Sources */,
 				59E47B8B2381549200EC7618 /* ExchangeRouter.swift in Sources */,
+				5958DC5C23903C8C00B75625 /* TabItem.swift in Sources */,
 				59A374B7238A96A600C873A5 /* UtilsService.swift in Sources */,
-				59A374C2238A9FC800C873A5 /* PoloniexApiService.swift in Sources */,
+				5958DC6823905E0E00B75625 /* ApiError.swift in Sources */,
 				5958DC3F238ED7D500B75625 /* BaseDao.swift in Sources */,
+				5958DC5423903C0B00B75625 /* PhotosViewController.swift in Sources */,
+				5958DC7E2393E28600B75625 /* PoloniexApiService.swift in Sources */,
 				59E47B942381549200EC7618 /* ExchangeInteractor.swift in Sources */,
 				59A374C1238A97B300C873A5 /* Chart.swift in Sources */,
-				5958DC36238DA03800B75625 /* WalletDao.swift in Sources */,
+				5958DC5F23903C9C00B75625 /* NavigationMenuBaseController.swift in Sources */,
+				5958DC6223903CA900B75625 /* TabNavigationMenu.swift in Sources */,
 				59E47B852381549200EC7618 /* ExchangePresenter.swift in Sources */,
-				59E47B4D238151D100EC7618 /* ViewController.swift in Sources */,
+				5958DC5723903C1D00B75625 /* InboxViewController.swift in Sources */,
+				5958DC6F239287B700B75625 /* OrderDao.swift in Sources */,
 				59A374B0238A95CC00C873A5 /* ApiService.swift in Sources */,
-				59E47B882381549200EC7618 /* ExchangeWorker.swift in Sources */,
 				5958DC39238DBF5200B75625 /* CoreDataStack.swift in Sources */,
 				59E47B4B238151D100EC7618 /* AppDelegate.swift in Sources */,
+				5958DC4E23903BCC00B75625 /* CallsViewController.swift in Sources */,
+				5958DC42238EE1ED00B75625 /* PairDao.swift in Sources */,
 				59A374BF238A979100C873A5 /* Currency.swift in Sources */,
 				59A374C3238A9FFA00C873A5 /* ApiCrypto.swift in Sources */,
 				59E47B8E2381549200EC7618 /* ExchangeModels.swift in Sources */,
+				5958DC792393E0FF00B75625 /* WalletDao.swift in Sources */,
+				5958DC65239053EA00B75625 /* Order.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,14 +462,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				59A374B1238A95CC00C873A5 /* ApiService.swift in Sources */,
-				59A374C6238AA16600C873A5 /* Currency.swift in Sources */,
+				5958DC5223903BDE00B75625 /* ContactsViewController.swift in Sources */,
+				5958DC92239416D500B75625 /* Model.xcdatamodeld in Sources */,
 				59A374C7238AA17000C873A5 /* Chart.swift in Sources */,
-				59A374B5238A95FE00C873A5 /* PoloniexApiService.swift in Sources */,
-				59E47B63238151D100EC7618 /* ExchangeAppTests.swift in Sources */,
-				5958DC3D238ED7C000B75625 /* ChartDao.swift in Sources */,
-				59A374B8238A96A600C873A5 /* UtilsService.swift in Sources */,
-				5958DC40238ED7D500B75625 /* BaseDao.swift in Sources */,
+				5958DC4F23903BCC00B75625 /* CallsViewController.swift in Sources */,
+				5958DC802393F24A00B75625 /* PoloniexApiService.swift in Sources */,
+				5958DC6D2391899100B75625 /* Currency.swift in Sources */,
+				5958DC8A2393F3E000B75625 /* ApiService.swift in Sources */,
+				5958DC862393F28A00B75625 /* BaseDao.swift in Sources */,
+				5958DC91239416D100B75625 /* WalletDao.swift in Sources */,
+				5958DC7123928B5C00B75625 /* Order.swift in Sources */,
+				5958DC5823903C1D00B75625 /* InboxViewController.swift in Sources */,
+				59E47B63238151D100EC7618 /* ApiTests.swift in Sources */,
+				5958DC872393F2DF00B75625 /* UtilsService.swift in Sources */,
+				5958DC812393F25800B75625 /* PairDao.swift in Sources */,
+				5958DC6023903C9C00B75625 /* NavigationMenuBaseController.swift in Sources */,
+				5958DC892393F3DC00B75625 /* ApiError.swift in Sources */,
+				5958DC5D23903C8C00B75625 /* TabItem.swift in Sources */,
+				5958DC5523903C0B00B75625 /* PhotosViewController.swift in Sources */,
+				5958DC8B2393F42900B75625 /* CoreDataStack.swift in Sources */,
+				5958DC7D2393E23D00B75625 /* DaoTests.swift in Sources */,
+				5958DC822393F25B00B75625 /* ChartDao.swift in Sources */,
+				5958DC6323903CA900B75625 /* TabNavigationMenu.swift in Sources */,
+				5958DC842393F25F00B75625 /* OrderDao.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -698,13 +799,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		59E47B51238151D100EC7618 /* ExchangeApp.xcdatamodeld */ = {
+		59E47B51238151D100EC7618 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				59E47B52238151D100EC7618 /* ExchangeApp.xcdatamodel */,
 			);
 			currentVersion = 59E47B52238151D100EC7618 /* ExchangeApp.xcdatamodel */;
-			path = ExchangeApp.xcdatamodeld;
+			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

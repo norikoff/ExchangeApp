@@ -15,6 +15,8 @@ import UIKit
 @objc protocol ExchangeRoutingLogic
 {
   //func routeToSomewhere(segue: UIStoryboardSegue?)
+    
+    func showPalonixModule()
 }
 
 protocol ExchangeDataPassing
@@ -28,6 +30,12 @@ class ExchangeRouter: NSObject, ExchangeRoutingLogic, ExchangeDataPassing
   var dataStore: ExchangeDataStore?
   
   // MARK: Routing
+    
+    func showPalonixModule() {
+//        let palonix = PalonixVC()
+        
+//        viewController?.present(palonix, animated: true)
+    }
   
   //func routeToSomewhere(segue: UIStoryboardSegue?)
   //{

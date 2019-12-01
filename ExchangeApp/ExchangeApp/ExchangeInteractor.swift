@@ -14,28 +14,27 @@ import UIKit
 
 protocol ExchangeBusinessLogic
 {
-  func doSomething(request: Exchange.Something.Request)
+    func doSomething(request: Exchange.Something.Request)
 }
 
 protocol ExchangeDataStore
 {
-  //var name: String { get set }
+    //var name: String { get set }
 }
 
 class ExchangeInteractor: ExchangeBusinessLogic, ExchangeDataStore
 {
-  var presenter: ExchangePresentationLogic?
-  var worker: ExchangeWorker?
-  //var name: String = ""
-  
-  // MARK: Do something
-  
-  func doSomething(request: Exchange.Something.Request)
-  {
-    worker = ExchangeWorker()
-    worker?.doSomeWork()
+    var presenter: ExchangePresentationLogic?
+    //var name: String = ""
     
-    let response = Exchange.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
+    // MARK: Do something
+    
+    func doSomething(request: Exchange.Something.Request)
+    {
+//        worker = PoloniexApiService()
+//        worker?.doSomeWork()
+        
+        let response = Exchange.Something.Response()
+        presenter?.presentSomething(response: response)
+    }
 }

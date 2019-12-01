@@ -20,7 +20,6 @@ internal final class CoreDataStack {
     
     private init() {
         let group = DispatchGroup()
-        
         persistentContainer = NSPersistentContainer(name: "Model")
         group.enter()
         persistentContainer.loadPersistentStores { storeDescription, error in

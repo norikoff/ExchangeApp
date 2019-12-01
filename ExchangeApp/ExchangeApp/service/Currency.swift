@@ -36,6 +36,12 @@ public struct EntryList: Decodable {
         let content: Content
     }
     
+    public struct Address: Decodable {
+        let name: String
+        let address: String
+    }
+    
+    
     public struct Currency: Decodable {
         struct Content: Decodable {
             let available: String
@@ -44,10 +50,12 @@ public struct EntryList: Decodable {
         }
         let name: String
         let content: Content
+        var address: String?
     }
     
     let pairs: [Pair]
-    let wallet: [Currency]
+    var wallet: [Currency]
+    let addresses: [Address]
     
     public init(from decoder: Decoder) throws {
         let entriesContainer = try decoder.container(keyedBy: DynamicCodingKey.self)
@@ -62,10 +70,18 @@ public struct EntryList: Decodable {
         do{
             wallet = try entriesContainer.allKeys.map { key in
                 let content = try entriesContainer.decode(Currency.Content.self, forKey: key)
-                return Currency(name: key.stringValue, content: content)
+                return Currency(name: key.stringValue, content: content, address: nil)
             }
         }catch{
             wallet = []
+        }
+        do{
+            addresses = try entriesContainer.allKeys.map { key in
+                let content = try entriesContainer.decode(String.self, forKey: key)
+                return Address(name: key.stringValue, address: content)
+            }
+        }catch{
+            addresses = []
         }
     }
     

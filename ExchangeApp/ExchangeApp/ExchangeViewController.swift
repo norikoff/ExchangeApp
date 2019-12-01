@@ -86,4 +86,13 @@ class ExchangeViewController: UIViewController, ExchangeDisplayLogic
   {
     //nameTextField.text = viewModel.name
   }
+    
+    
+    func didTap(index: Int) {
+        if index == 0 {
+            router?.showPalonixModule()
+        } else {
+            
+        }
+    }
 }
