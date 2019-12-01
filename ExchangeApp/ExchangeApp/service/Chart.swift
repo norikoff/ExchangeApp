@@ -9,7 +9,7 @@
 import Foundation
 
 public struct Chart: Codable {
-    let date: Int
+    let date: Int64
     let high: Double
     let low: Double
     let open: Double

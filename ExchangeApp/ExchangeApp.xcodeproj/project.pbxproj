@@ -81,11 +81,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5958DC35238DA03800B75625 /* WalletDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WalletDao.swift; path = ExchangeApp/WalletDao.swift; sourceTree = SOURCE_ROOT; };
+		5958DC35238DA03800B75625 /* WalletDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDao.swift; sourceTree = "<group>"; };
 		5958DC38238DBF5200B75625 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		5958DC3B238ED7C000B75625 /* ChartDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChartDao.swift; path = ExchangeApp/ChartDao.swift; sourceTree = SOURCE_ROOT; };
+		5958DC3B238ED7C000B75625 /* ChartDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDao.swift; sourceTree = "<group>"; };
 		5958DC3E238ED7D500B75625 /* BaseDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDao.swift; sourceTree = "<group>"; };
-		5958DC41238EE1ED00B75625 /* PairDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PairDao.swift; path = ExchangeApp/PairDao.swift; sourceTree = SOURCE_ROOT; };
+		5958DC41238EE1ED00B75625 /* PairDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairDao.swift; sourceTree = "<group>"; };
 		5958DC4D23903BCC00B75625 /* CallsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallsViewController.swift; sourceTree = "<group>"; };
 		5958DC5023903BDE00B75625 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		5958DC5323903C0B00B75625 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 		5958DC64239053EA00B75625 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Order.swift; path = ../Order.swift; sourceTree = "<group>"; };
 		5958DC6723905E0E00B75625 /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		5958DC6E239287B700B75625 /* OrderDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDao.swift; sourceTree = "<group>"; };
-		5958DC732393D05700B75625 /* DaoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DaoTests.swift; path = ExchangeAppTests/DaoTests.swift; sourceTree = SOURCE_ROOT; };
+		5958DC732393D05700B75625 /* DaoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaoTests.swift; sourceTree = "<group>"; };
 		59A374AF238A95CC00C873A5 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		59A374B3238A95FE00C873A5 /* PoloniexApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoloniexApiService.swift; sourceTree = "<group>"; };
 		59A374B6238A96A600C873A5 /* UtilsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsService.swift; sourceTree = "<group>"; };

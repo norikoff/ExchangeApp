@@ -22,10 +22,10 @@ public class WalletDao: BaseDao {
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "WalletCurrency")
             fetchRequest.returnsObjectsAsFaults = false
             do{
-                let results = try context.fetch(fetchRequest) as! [WalletCurrency]
-                var dtos: [EntryList.Currency]?
+                var dtos: [EntryList.Currency]? = []
+                let results = try context.fetch(fetchRequest) as! [NSManagedObject]
                 for dto in results{
-                    dtos?.append(EntryList.Currency(name: dto.name!, content: EntryList.Currency.Content(available: dto.available!, onOrders: dto.onOrders!, btcValue: dto.btcValue!), address: dto.address!))
+                    dtos?.append(EntryList.Currency(name: dto.value(forKey: "name") as! String, content: EntryList.Currency.Content(available: dto.value(forKey: "available") as! String, onOrders: dto.value(forKey: "onOrders") as! String, btcValue: dto.value(forKey: "btcValue") as! String), address: dto.value(forKey: "address") as! String))
                 }
                 completion(.success(dtos))
             }catch(let error){
@@ -35,7 +35,7 @@ public class WalletDao: BaseDao {
         }
     }
     
-    func get(identifier: ID, completion: @escaping (Result<[T]?, ErrorMessage>) -> Void){
+    func get(identifier: ID, completion: @escaping (Result<T?, ErrorMessage>) -> Void){
         let stack = CoreDataStack.shared
         
         stack.persistentContainer.performBackgroundTask { (context) in
@@ -44,8 +44,12 @@ public class WalletDao: BaseDao {
             fetchRequest.predicate = predicate
             fetchRequest.returnsObjectsAsFaults = false
             do{
-                let results = try context.fetch(fetchRequest) as! [EntryList.Currency]
-                completion(.success(results))
+                let results = try context.fetch(fetchRequest) as! [NSManagedObject]
+                guard let dto = results.first else {
+                    completion(.failure(ErrorMessage(error: "can't get")))
+                    return
+                }
+                completion(.success(EntryList.Currency(name: dto.value(forKey: "name") as! String, content: EntryList.Currency.Content(available: dto.value(forKey: "available") as! String, onOrders: dto.value(forKey: "onOrders") as! String, btcValue: dto.value(forKey: "btcValue") as! String), address: dto.value(forKey: "address") as? String)))
             }catch(let error){
                 print(error.localizedDescription)
                 completion(.failure(ErrorMessage(error: error.localizedDescription)))

@@ -25,7 +25,7 @@ protocol BaseDao {
     ///   - identifier: fetch id
     ///   - completion: return array of data or error
     /// - Returns: error
-    func get(identifier: ID, completion: @escaping (Result<[T]?, ErrorMessage>) -> Void )
+    func get(identifier: ID, completion: @escaping (Result<T?, ErrorMessage>) -> Void )
     
     
     /// Create table row
