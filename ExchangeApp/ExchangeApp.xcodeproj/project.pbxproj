@@ -154,8 +154,7 @@
 				5958DC3E238ED7D500B75625 /* BaseDao.swift */,
 			);
 			name = repository;
-			path = ExchangeApp;
-			sourceTree = SOURCE_ROOT;
+			sourceTree = "<group>";
 		};
 		5958DC44238EE2D500B75625 /* impl */ = {
 			isa = PBXGroup;

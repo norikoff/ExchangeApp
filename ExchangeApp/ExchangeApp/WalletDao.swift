@@ -25,7 +25,7 @@ public class WalletDao: BaseDao {
                 var dtos: [EntryList.Currency]? = []
                 let results = try context.fetch(fetchRequest) as! [NSManagedObject]
                 for dto in results{
-                    dtos?.append(EntryList.Currency(name: dto.value(forKey: "name") as! String, content: EntryList.Currency.Content(available: dto.value(forKey: "available") as! String, onOrders: dto.value(forKey: "onOrders") as! String, btcValue: dto.value(forKey: "btcValue") as! String), address: dto.value(forKey: "address") as! String))
+                    dtos?.append(EntryList.Currency(name: dto.value(forKey: "name") as! String, content: EntryList.Currency.Content(available: dto.value(forKey: "available") as! String, onOrders: dto.value(forKey: "onOrders") as! String, btcValue: dto.value(forKey: "btcValue") as! String), address: dto.value(forKey: "address") as? String))
                 }
                 completion(.success(dtos))
             }catch(let error){

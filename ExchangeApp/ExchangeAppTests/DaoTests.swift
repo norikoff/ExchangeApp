@@ -150,6 +150,47 @@ class DaoTest: XCTestCase {
         XCTAssert(pairs.pairs.first!.pairName.elementsEqual(testWallet?.pairName ?? "wrong"))
     }
     
+    func testOrderDao() {
+        let testDao = OrderDao()
+        let orderData = """
+{ "orderNumber": "514845991795",
+  "resultingTrades":
+   [ { "amount": "3.0",
+       "date": "2018-10-25 23:03:21",
+       "rate": "0.0002",
+       "total": "0.0006",
+       "tradeID": "251834",
+       "type": "buy" } ],
+  "fee": "0.01000000",
+  "clientOrderId": "12345",
+  "currencyPair": "BTC_ETH" }
+"""
+        let order = try! JSONDecoder().decode(Order.self, from: orderData.data(using: .utf8)!)
+        var testWallet: Order?
+        let group = DispatchGroup()
+        group.enter()
+        testDao.save(model: order){ result in
+            switch result {
+            case .success:
+                testDao.get(identifier: order.orderNumber){ result in
+                    switch result {
+                    case .success(let data):
+                        testWallet = data
+                        group.leave()
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                        group.leave()
+                    }
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+                group.leave()
+            }
+        }
+        group.wait()
+        XCTAssert(order.resultingTrades!.first!.tradeID.elementsEqual(testWallet?.resultingTrades?.first?.tradeID ?? "wrong"))
+    }
+    
     
     
     //    let order = try JSONDecoder().decode(Order.self, from: data)
