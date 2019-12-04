@@ -12,13 +12,14 @@ import XCTest
 class ExchangeAppTests: XCTestCase {
     
     var poloniexService: ApiService?
-    
+    let api = ""
+    let secret = ""
     
     override func setUp() {
         let utilsService = UtilsService()
         poloniexService = PoloniexApiService(utilService: utilsService)
-//        UserDefaults.standard.set(api, forKey: "key")
-//        UserDefaults.standard.set(secret, forKey: "secret")
+        UserDefaults.standard.set(api, forKey: "key")
+        UserDefaults.standard.set(secret, forKey: "secret")
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     

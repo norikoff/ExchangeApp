@@ -11,6 +11,7 @@
 //
 
 import UIKit
+import Charts
 
 protocol WalletDisplayLogic: class
 {
@@ -57,6 +58,8 @@ class WalletViewController: UIViewController, WalletDisplayLogic
     var wallet: [EntryList.Currency]?
     var currentwallet: [EntryList.Currency]?
     
+    var pieChartView = PieChartView()
+    
     // MARK: Object lifecycle
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
@@ -101,10 +104,14 @@ class WalletViewController: UIViewController, WalletDisplayLogic
     
     // MARK: View lifecycle
     
+    var players: [String] = []
+    var goals: [Int] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Wallet"
         interactor!.getWallet()
+        
         self.view.backgroundColor = UIColor.black
         tableView.dataSource = self
         tableView.delegate = self
@@ -137,14 +144,25 @@ class WalletViewController: UIViewController, WalletDisplayLogic
         priceLable.textColor = .orange
         priceLable.textAlignment = .right
         
+        pieChartView.frame = CGRect(x: 0.0, y: (self.navigationController?.navigationBar.frame.height)!*2, width: view.frame.width, height: view.frame.height/3)
+        pieChartView.legend.textColor = .white
+        
+        
         self.view.addSubview(label)
         self.view.addSubview(priceLable)
         self.view.addSubview(amountLable)
         self.view.addSubview(tableView)
         self.view.addSubview(searchField)
+        self.view.addSubview(pieChartView)
         
         NSLayoutConstraint.activate([
-            searchField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.frame.height/3),
+            pieChartView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: (self.navigationController?.navigationBar.frame.height)!*2),
+            pieChartView.bottomAnchor.constraint(equalTo: searchField.topAnchor),
+            pieChartView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            pieChartView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            
+            
+            searchField.topAnchor.constraint(equalTo: pieChartView.bottomAnchor, constant: 16),
             searchField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8),
             searchField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -8),
             searchField.heightAnchor.constraint(equalToConstant: 40),
@@ -188,13 +206,13 @@ class WalletViewController: UIViewController, WalletDisplayLogic
     }
     
     private func search(by searchText: String) {
-//        guard !searchText.isEmpty  else { currentwallet = wallet; return }
-//        currentwallet = wallet?.filter({ wal -> Bool in
-//            return wal.name.lowercased().contains(searchText.lowercased())
-//        })
-//        DispatchQueue.main.async {
-//            self.tableView.reloadData()
-//        }
+        guard !searchText.isEmpty  else { currentwallet = wallet; return }
+        currentwallet = wallet?.filter({ wal -> Bool in
+            return wal.name.lowercased().contains(searchText.lowercased())
+        })
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     @objc func refreshWalletData(_ sender: Any){
@@ -213,8 +231,49 @@ class WalletViewController: UIViewController, WalletDisplayLogic
             self.wallet = self.wallet!.sorted()
             self.currentwallet = self.wallet
             self.refreshControl.endRefreshing()
+            self.customizeChart(dataPoints: viewModel.wallet)
             self.tableView.reloadData()
         }
+    }
+    
+    func customizeChart(dataPoints: [EntryList.Currency]) {
+        
+        var dataEntries: [ChartDataEntry] = []
+        let sortData = dataPoints.filter { cur -> Bool in
+            let val = Double(cur.content.btcValue) ?? 0.00000000
+             return val > 0.00000000
+        }
+        
+        for data in sortData {
+            let dataEntry = PieChartDataEntry(value: Double(data.content.btcValue) ?? 0, label: data.name, data:  data.name as AnyObject)
+            dataEntries.append(dataEntry)
+        }
+        // 2. Set ChartDataSet
+        let pieChartDataSet = PieChartDataSet(entries: dataEntries, label: nil)
+        pieChartDataSet.colors = colorsOfCharts(numbersOfColor: dataPoints.count)
+        
+        // 3. Set ChartData
+        let pieChartData = PieChartData(dataSet: pieChartDataSet)
+        let format = NumberFormatter()
+        format.numberStyle = .none
+        let formatter = DefaultValueFormatter(formatter: format)
+        pieChartData.setValueFormatter(formatter)
+        
+        // 4. Assign it to the chart's data
+        pieChartView.data = pieChartData
+        
+    }
+    
+    private func colorsOfCharts(numbersOfColor: Int) -> [UIColor] {
+        var colors: [UIColor] = []
+        for _ in 0..<numbersOfColor {
+            let red = Double(arc4random_uniform(256))
+            let green = Double(arc4random_uniform(256))
+            let blue = Double(arc4random_uniform(256))
+            let color = UIColor(red: CGFloat(red/255), green: CGFloat(green/255), blue: CGFloat(blue/255), alpha: 1)
+            colors.append(color)
+        }
+        return colors
     }
     
     
@@ -237,18 +296,21 @@ extension WalletViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseId, for: indexPath) as! WalletCell
-        let model = currentwallet![indexPath.row]
-        cell.wallet = model
-        if model.content.available == "0" {
-            tableView.allowsSelection = false
+        if indexPath.row < currentwallet!.count {
+            let model = currentwallet![indexPath.row]
+            cell.wallet = model
+            if model.content.available == "0" {
+                tableView.allowsSelection = false
+            }
+            cell.layer.borderWidth = 1.0
+            cell.layer.borderColor = UIColor.black.cgColor
+            cell.backgroundColor = .black
+            let bgColorView = UIView()
+            bgColorView.backgroundColor = UIColor.orange
+            cell.selectedBackgroundView = bgColorView
+            cell.textLabel?.textColor = .white
+            
         }
-        cell.layer.borderWidth = 1.0
-        cell.layer.borderColor = UIColor.black.cgColor
-        cell.backgroundColor = .black
-        let bgColorView = UIView()
-        bgColorView.backgroundColor = UIColor.orange
-        cell.selectedBackgroundView = bgColorView
-        cell.textLabel?.textColor = .white
         return cell
     }
 }

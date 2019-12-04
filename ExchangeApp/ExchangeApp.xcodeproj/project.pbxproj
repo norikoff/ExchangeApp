@@ -20,6 +20,7 @@
 		594C899C23978B150022B225 /* TradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C899623978B150022B225 /* TradeViewController.swift */; };
 		594C899D23978B150022B225 /* TradeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C899723978B150022B225 /* TradeInteractor.swift */; };
 		594C899F2397E0740022B225 /* WalletCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C899E2397E0740022B225 /* WalletCell.swift */; };
+		594C89AA239811560022B225 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 594C89A9239811560022B225 /* Charts.framework */; };
 		5958DC39238DBF5200B75625 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC38238DBF5200B75625 /* CoreDataStack.swift */; };
 		5958DC3C238ED7C000B75625 /* ChartDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC3B238ED7C000B75625 /* ChartDao.swift */; };
 		5958DC3F238ED7D500B75625 /* BaseDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC3E238ED7D500B75625 /* BaseDao.swift */; };
@@ -107,6 +108,7 @@
 		594C899623978B150022B225 /* TradeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeViewController.swift; sourceTree = "<group>"; };
 		594C899723978B150022B225 /* TradeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeInteractor.swift; sourceTree = "<group>"; };
 		594C899E2397E0740022B225 /* WalletCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCell.swift; sourceTree = "<group>"; };
+		594C89A9239811560022B225 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = Carthage/Build/iOS/Charts.framework; sourceTree = "<group>"; };
 		5958DC35238DA03800B75625 /* WalletDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDao.swift; sourceTree = "<group>"; };
 		5958DC38238DBF5200B75625 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		5958DC3B238ED7C000B75625 /* ChartDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDao.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				594C89AA239811560022B225 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,6 +181,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		594C89A023980BB50022B225 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				594C89A9239811560022B225 /* Charts.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5958DC34238DA00200B75625 /* repository */ = {
 			isa = PBXGroup;
 			children = (
@@ -320,6 +331,7 @@
 				59E47B61238151D100EC7618 /* ExchangeAppTests */,
 				59E47B6C238151D100EC7618 /* ExchangeAppUITests */,
 				59E47B48238151D100EC7618 /* Products */,
+				594C89A023980BB50022B225 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -379,6 +391,7 @@
 				59E47B43238151D100EC7618 /* Sources */,
 				59E47B44238151D100EC7618 /* Frameworks */,
 				59E47B45238151D100EC7618 /* Resources */,
+				594C89A323980C440022B225 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -493,6 +506,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		594C89A323980C440022B225 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		59E47B43238151D100EC7618 /* Sources */ = {
@@ -730,6 +764,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CAQJKHMVUJ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ExchangeApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -749,6 +787,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CAQJKHMVUJ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ExchangeApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
