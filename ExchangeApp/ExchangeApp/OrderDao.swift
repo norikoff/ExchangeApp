@@ -15,11 +15,28 @@ class OrderDao: BaseDao {
     typealias T = Order
     typealias ID = String
     
+    func clear(completion: @escaping (Result<Bool, ErrorMessage>) -> Void){
+        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "SimpleOrderModel")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+        let stack = CoreDataStack.shared
+        stack.persistentContainer.performBackgroundTask { (context) in
+            do
+            {
+                try context.execute(deleteRequest)
+                try context.save()
+            }
+            catch
+            {
+                print ("There was an error")
+            }
+        }
+    }
+    
     func getAll(completion: @escaping (Result<[T]?, ErrorMessage>) -> Void) {
         let stack = CoreDataStack.shared
         
         stack.persistentContainer.performBackgroundTask { (context) in
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Pair")
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "OrderData")
             fetchRequest.returnsObjectsAsFaults = false
             do{
                 var dtos: [Order]? = []

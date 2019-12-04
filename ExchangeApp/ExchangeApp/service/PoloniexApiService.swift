@@ -142,6 +142,7 @@ public class PoloniexApiService: ApiService {
                 }
             }
         }
+        completion(.failure(ErrorMessage(error: "noKeys")))
     }
     
     public func getWalletAddress(completion: @escaping (Result<[EntryList.Address], ErrorMessage>) -> Void) {
@@ -176,6 +177,42 @@ public class PoloniexApiService: ApiService {
                 }
             }
         }
+        completion(.failure(ErrorMessage(error: "noKeys")))
+    }
+    
+    public func getOrders(completion: @escaping (Result<[SimpleOrder], ErrorMessage>) -> Void) {
+        var components = URLComponents()
+        components.scheme = baseScheme
+        components.host = baseHost
+        components.path = "/tradingApi"
+        
+        let timeNowInt = Int((NSDate().timeIntervalSince1970)*500000)
+        let timeNow = String(timeNowInt)
+        if key != "" && secret != "" {
+            let sign = "command=returnTradeHistory&currencyPair=all&nonce=\(timeNow)"
+            let hmacSign = sign.hmac(algorithm: .SHA512, key: secret)
+            let headers = ["key" : key, "sign" : hmacSign]
+            utilsService.postRequest(url: components.url!, header: headers, body: sign) { result in
+                switch result {
+                case .success(let data):
+                    do {
+                        let entryList = try JSONDecoder().decode([SimpleOrder].self, from: data)
+                        completion(.success(entryList))
+                    } catch {
+                        do {
+                            let error = try JSONDecoder().decode(ErrorMessage.self, from: data)
+                            completion(.failure(error))
+                        } catch {
+                            completion(.failure(ErrorMessage(error: "decodeError")))
+                        }
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    completion(.failure(ErrorMessage(error: error.localizedDescription)))
+                }
+            }
+        }
+        completion(.failure(ErrorMessage(error: "noKeys")))
     }
     
     public func buyOrder(currencyPair: String, rate: String, amount: String, completion: @escaping (Result<Order, ErrorMessage>) -> Void) {
@@ -211,6 +248,7 @@ public class PoloniexApiService: ApiService {
                 }
             }
         }
+        completion(.failure(ErrorMessage(error: "noKeys")))
     }
     
     public func sellOrder(currencyPair: String, rate: String, amount: String, completion: @escaping (Result<Order,ErrorMessage>) -> Void) {
@@ -246,5 +284,6 @@ public class PoloniexApiService: ApiService {
                 }
             }
         }
+        completion(.failure(ErrorMessage(error: "noKeys")))
     }
 }

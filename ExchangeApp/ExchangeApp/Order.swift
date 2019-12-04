@@ -9,6 +9,7 @@
 import Foundation
 
 public struct Order: Codable {
+    
     let orderNumber: String
     let resultingTrades: [TradeResult]?
     let fee: String

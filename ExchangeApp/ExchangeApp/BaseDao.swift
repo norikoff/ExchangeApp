@@ -36,8 +36,16 @@ protocol BaseDao {
     /// - Returns: error
     func save(model:T, completion: @escaping (Result<Bool, ErrorMessage>) -> Void)
     
+    
+    /// Create table rows from array
+    ///
+    /// - Parameters:
+    ///   - model: array of objects
+    ///   - completion: return bool or error
+    /// - Returns: return bool or error
     func saveAll(model: [T], completion: @escaping (Result<Bool, ErrorMessage>) -> Void)
     
+    func clear(completion: @escaping (Result<Bool, ErrorMessage>) -> Void)
     //    func update( model:T ) -> Bool
     //    func delete( model:T ) -> Bool
 }

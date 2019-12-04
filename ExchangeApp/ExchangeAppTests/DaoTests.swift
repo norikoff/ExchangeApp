@@ -21,7 +21,7 @@ class DaoTest: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func testWalletDao() {
+    func testWalletDaoSaveGet() {
         let testDao = WalletDao()
         let wallet = """
 { "1CR":
@@ -63,7 +63,7 @@ class DaoTest: XCTestCase {
         XCTAssert(wall.wallet.first!.name.elementsEqual(testWallet?.name ?? "wrong"))
     }
     
-    func testChartDao() {
+    func testChartDaoSaveGet() {
         let testDao = ChartDao()
         let chart = """
 [ { "date": 1539864000,
@@ -109,7 +109,7 @@ class DaoTest: XCTestCase {
         XCTAssert(char.first!.close == testWallet?.close)
     }
     
-    func testPairDao() {
+    func testPairDaoSaveGet() {
         let testDao = PairDao()
         let pair = """
 { "BTC_BCN":
@@ -150,7 +150,7 @@ class DaoTest: XCTestCase {
         XCTAssert(pairs.pairs.first!.pairName.elementsEqual(testWallet?.pairName ?? "wrong"))
     }
     
-    func testOrderDao() {
+    func testOrderDaoSaveGet() {
         let testDao = OrderDao()
         let orderData = """
 { "orderNumber": "514845991795",

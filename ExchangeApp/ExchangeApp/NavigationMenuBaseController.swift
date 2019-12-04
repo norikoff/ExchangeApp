@@ -19,7 +19,7 @@ class NavigationMenuBaseController: UITabBarController {
     }
     
     private func loadTabBar() {
-        let tabItems: [TabItem] = [.messages, .calls, .contacts, .photos]
+        let tabItems: [TabItem] = [.trade, .wallet, .history, .profile]
         self.setupCustomTabBar(tabItems) { (controllers) in
             self.viewControllers = controllers
         }
@@ -39,7 +39,6 @@ class NavigationMenuBaseController: UITabBarController {
         self.customTabBar.translatesAutoresizingMaskIntoConstraints = false
         self.customTabBar.clipsToBounds = true
         self.customTabBar.itemTapped = self.changeTab
-        
         // Add it to the view
         self.view.addSubview(customTabBar)
         
@@ -48,12 +47,15 @@ class NavigationMenuBaseController: UITabBarController {
             self.customTabBar.leadingAnchor.constraint(equalTo: tabBar.leadingAnchor),
             self.customTabBar.trailingAnchor.constraint(equalTo: tabBar.trailingAnchor),
             self.customTabBar.widthAnchor.constraint(equalToConstant: tabBar.frame.width),
-            self.customTabBar.heightAnchor.constraint(equalToConstant: tabBarHeight), // Fixed height for nav menu
-            self.customTabBar.bottomAnchor.constraint(equalTo: tabBar.bottomAnchor)
+            self.customTabBar.heightAnchor.constraint(equalToConstant: tabBar.frame.height), // Fixed height for nav menu
+            self.customTabBar.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
             ])
         
         for i in 0 ..< items.count {
-            controllers.append(items[i].viewController) // we fetch the matching view controller and append here
+            let navigationController = UINavigationController(rootViewController: items[i].viewController)
+            navigationController.navigationBar.topItem?.title = items[i].viewController.title
+            navigationController.navigationBar.barTintColor = UIColor.orange
+            controllers.append(navigationController) // we fetch the matching view controller and append here
         }
         
         self.view.layoutIfNeeded() // important step

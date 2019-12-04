@@ -15,6 +15,23 @@ class ChartDao: BaseDao {
     typealias T = Chart
     typealias ID = Int64
     
+    func clear(completion: @escaping (Result<Bool, ErrorMessage>) -> Void){
+        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "ChartModel")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+        let stack = CoreDataStack.shared
+        stack.persistentContainer.performBackgroundTask { (context) in
+            do
+            {
+                try context.execute(deleteRequest)
+                try context.save()
+            }
+            catch
+            {
+                print ("There was an error")
+            }
+        }
+    }
+    
     func getAll(completion: @escaping (Result<[T]?, ErrorMessage>) -> Void) {
         let stack = CoreDataStack.shared
         

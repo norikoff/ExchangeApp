@@ -34,7 +34,19 @@ public struct EntryList: Decodable {
     }
     
     
-    public struct Currency: Decodable {
+    public struct Currency: Decodable, Comparable {
+        public static func < (lhs: EntryList.Currency, rhs: EntryList.Currency) -> Bool {
+            if Unicode.CanonicalCombiningClass(rawValue: UInt8(Double(lhs.content.btcValue)!)) < Unicode.CanonicalCombiningClass(rawValue: UInt8(Double(rhs.content.btcValue)!)) {
+                return Unicode.CanonicalCombiningClass(rawValue: UInt8(Double(lhs.content.btcValue)!)) < Unicode.CanonicalCombiningClass(rawValue: UInt8(Double(rhs.content.btcValue)!))
+            }
+            return lhs.name < rhs.name
+            
+        }
+        
+        public static func == (lhs: EntryList.Currency, rhs: EntryList.Currency) -> Bool {
+            return lhs.name == rhs.name
+        }
+        
         struct Content: Decodable {
             let available: String
             let onOrders: String

@@ -23,7 +23,7 @@ class TabNavigationMenu: UIView {
     
     convenience init(menuItems: [TabItem], frame: CGRect) {
         self.init(frame: frame)
-        self.layer.backgroundColor = UIColor.white.cgColor
+        self.layer.backgroundColor = UIColor.black.cgColor
         
         for i in 0 ..< menuItems.count {
             let itemWidth = self.frame.width / CGFloat(menuItems.count)
@@ -58,6 +58,7 @@ class TabNavigationMenu: UIView {
         itemTitleLabel.textAlignment = .center
         itemTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         itemTitleLabel.clipsToBounds = true
+        itemTitleLabel.textColor = .white
         
         itemIconView.image = item.icon!.withRenderingMode(.automatic)
         itemIconView.translatesAutoresizingMaskIntoConstraints = false
@@ -67,6 +68,7 @@ class TabNavigationMenu: UIView {
         tabBarItem.addSubview(itemTitleLabel)
         tabBarItem.translatesAutoresizingMaskIntoConstraints = false
         tabBarItem.clipsToBounds = true
+        tabBarItem.backgroundColor = .black
         NSLayoutConstraint.activate([
             itemIconView.heightAnchor.constraint(equalToConstant: 25), // Fixed height for our tab item(25pts)
             itemIconView.widthAnchor.constraint(equalToConstant: 25), // Fixed width for our tab item icon
@@ -95,7 +97,7 @@ class TabNavigationMenu: UIView {
         let tabToActivate = self.subviews[tab]
         let borderWidth = tabToActivate.frame.size.width - 20
         let borderLayer = CALayer()
-        borderLayer.backgroundColor = UIColor.green.cgColor
+        borderLayer.backgroundColor = UIColor.orange.cgColor
         borderLayer.name = "active border"
         borderLayer.frame = CGRect(x: 10, y: 0, width: borderWidth, height: 2)
         DispatchQueue.main.async {

@@ -9,35 +9,35 @@
 import UIKit
 
 enum TabItem: String, CaseIterable {
-    case calls = "calls"
-    case photos = "photos"
-    case contacts = "friends"
-    case messages = "messages"
+    case trade = "trade"
+    case wallet = "wallet"
+    case history = "history"
+    case profile = "profile"
     
     
     var viewController: UIViewController {
         switch self {
-        case .calls:
-            return CallsViewController()
-        case .contacts:
-            return ContactsViewController()
-        case .photos:
-            return PhotosViewController()
-        case .messages:
-            return InboxViewController()
+        case .trade:
+            return TradeViewController()
+        case .wallet:
+            return WalletViewController()
+        case .history:
+            return HistoryViewController()
+        case .profile:
+            return ProfileViewController()
         }
     }
     
     var icon: UIImage? {
         switch self {
-        case .calls:
-            return UIImage(named: "ic_phone")!
-        case .photos:
-            return UIImage(named: "ic_camera")!
-        case .contacts:
-            return UIImage(named: "ic_contacts")!
-        case .messages:
-            return UIImage(named: "ic_message")!
+        case .trade:
+            return UIImage(named: "ic_trade")!
+        case .wallet:
+            return UIImage(named: "ic_wallet")!
+        case .history:
+            return UIImage(named: "ic_history")!
+        case .profile:
+            return UIImage(named: "ic_profile")!
         }
     }
     

@@ -40,6 +40,8 @@ public protocol ApiService {
     
     func getWalletAddress(completion: @escaping (Result<[EntryList.Address],ErrorMessage>) -> Void)
     
+    func getOrders(completion: @escaping (Result<[SimpleOrder], ErrorMessage>) -> Void)
+    
     /// Get info about trade orders
     ///
     /// - Parameters:
