@@ -14,28 +14,59 @@ import UIKit
 
 protocol ProfileBusinessLogic
 {
-  func doSomething(request: Profile.Something.Request)
+    func checkKeys(request: Profile.Something.Request)
+    func clearKeys()
+    func checkApi()
 }
 
 protocol ProfileDataStore
 {
-  //var name: String { get set }
+    //var name: String { get set }
 }
 
 class ProfileInteractor: ProfileBusinessLogic, ProfileDataStore
 {
-  var presenter: ProfilePresentationLogic?
-  var worker: ProfileWorker?
-  //var name: String = ""
-  
-  // MARK: Do something
-  
-  func doSomething(request: Profile.Something.Request)
-  {
-    worker = ProfileWorker()
-    worker?.doSomeWork()
+    var presenter: ProfilePresentationLogic?
+    //var name: String = ""
     
-    let response = Profile.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
+    // MARK: Do something
+    
+    func checkApi(){
+        if UserDefaults.standard.value(forKey: "key") != nil && UserDefaults.standard.value(forKey: "secret") != nil {
+            let apikey = UserDefaults.standard.value(forKey: "key") as! String
+            let secret = UserDefaults.standard.value(forKey: "secret") as! String
+            if !apikey.isEmpty || !secret.isEmpty{
+                let response = Profile.Something.Response(errorMessage: nil, message: "Avalible keys")
+                self.presenter?.presentMessage(response: response)
+            }
+        } else {
+            
+        }
+    }
+    
+    func clearKeys(){
+        UserDefaults.standard.set("", forKey: "key")
+        UserDefaults.standard.set("", forKey: "secret")
+        self.presenter?.presentClear()
+    }
+    
+    
+    func checkKeys(request: Profile.Something.Request){
+        let utils = UtilsService()
+        let worker = PoloniexApiService(utilService: utils)
+        UserDefaults.standard.set(request.apiKey, forKey: "key")
+        UserDefaults.standard.set(request.secretKey, forKey: "secret")
+        worker.getWallet(){ result in
+            switch result {
+            case .success:
+                let response = Profile.Something.Response(errorMessage: nil, message: "Avalible keys")
+                self.presenter?.presentMessage(response: response)
+            case .failure:
+                UserDefaults.standard.set("", forKey: "key")
+                UserDefaults.standard.set("", forKey: "secret")
+                let response = Profile.Something.Response(errorMessage: "Bad keys", message: nil)
+                self.presenter?.presentError(response: response)
+            }
+        }
+    }
 }

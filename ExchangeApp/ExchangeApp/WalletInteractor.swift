@@ -14,7 +14,6 @@ import UIKit
 
 protocol WalletBusinessLogic
 {
-  func doSomething(request: Wallet.Something.Request)
     func getWallet()
 }
 
@@ -28,29 +27,63 @@ class WalletInteractor: WalletBusinessLogic, WalletDataStore
     
   var presenter: WalletPresentationLogic?
   var worker: WalletWorker?
+    let utils: NetworkService?
+    let service: ApiService?
+    let dataBase = WalletDao()
   //var name: String = ""
   
-  // MARK: Do something
-  
-  func doSomething(request: Wallet.Something.Request)
-  {
-    worker = WalletWorker()
-    worker?.doSomeWork()
+    init() {
+        utils = UtilsService()
+        service = PoloniexApiService(utilService: utils!)
+    }
     
-//    let response = Wallet.Something.Response()
-//    presenter?.presentSomething(response: response)
-  }
+  // MARK: Do something
     
     func getWallet() {
-        let utils = UtilsService()
-        let service = PoloniexApiService(utilService: utils)
-        service.getWallet { result in
-            switch result {
-            case .success(let data):
-                let response = Wallet.Something.Response.init(wallet: data)
-                self.presenter?.presentWallet(response: response)
-            case .failure(let error):
-                print(error.localizedDescription)
+        if Reachability.isConnectedToNetwork(){
+            service!.getWallet { result in
+                switch result {
+                case .success(let dataW):
+                    var wallet = dataW
+                    self.service!.getWalletAddress(){ result in
+                        switch result {
+                        case .success(let data):
+                            print(Thread.current)
+                            for i in 0..<(wallet.count) {
+                                wallet[i].address = data.filter{ $0.name.lowercased().elementsEqual(wallet[i].name.lowercased()) }.first?.address
+                                }
+                            let response = Wallet.Something.Response.init(wallet: wallet, errorMessage: nil)
+                            self.dataBase.clear(){_ in}
+                            self.dataBase.saveAll(model: wallet){_ in}
+                            self.presenter?.presentWallet(response: response)
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                            let response = Wallet.Something.Response(wallet: nil, errorMessage: error.error)
+                            self.presenter?.presentError(response: response)
+                        }
+                    }
+                case .failure(let error):
+                    let response = Wallet.Something.Response(wallet: nil, errorMessage: error.error)
+                    self.presenter?.presentError(response: response)
+                }
+            }
+        }else{
+            dataBase.getAll(){
+                result in
+                switch result {
+                case .success(let data):
+                    if let unData = data, unData.count != 0 {
+                        let response = Wallet.Something.Response.init(wallet: unData, errorMessage: nil)
+                        self.presenter?.presentWallet(response: response)
+                    }else{
+                        let response = Wallet.Something.Response(wallet: nil, errorMessage: "Empty wallet")
+                        self.presenter?.presentError(response: response)
+                    }
+                case .failure(let error):
+                    let response = Wallet.Something.Response(wallet: nil, errorMessage: error.error)
+                    self.presenter?.presentError(response: response)
+                }
+                
             }
         }
     }

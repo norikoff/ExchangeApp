@@ -16,6 +16,7 @@ import Charts
 protocol WalletDisplayLogic: class
 {
     func displayWallet(viewModel: Wallet.Something.ViewModel)
+    func displayAllert(viewModel: Wallet.Something.ViewModel)
 }
 
 class WalletViewController: UIViewController, WalletDisplayLogic
@@ -28,10 +29,13 @@ class WalletViewController: UIViewController, WalletDisplayLogic
     let searchField: UITextField = {
         let textField = UITextField()
         
-        textField.backgroundColor = .white
-        textField.textColor = .black
+        textField.backgroundColor = .black
+        textField.textColor = .white
         textField.textAlignment = .center
-        textField.placeholder = "Enter currency name"
+        textField.attributedPlaceholder =
+            NSAttributedString(string: "Enter currency name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        textField.layer.borderWidth = 1.0
+        textField.layer.borderColor = UIColor.orange.cgColor
         textField.layer.cornerRadius = 20
         textField.translatesAutoresizingMaskIntoConstraints = false
         
@@ -44,7 +48,7 @@ class WalletViewController: UIViewController, WalletDisplayLogic
         let  tableView = UITableView()
         tableView.backgroundColor = .black
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        
+        tableView.separatorStyle = .none
         return tableView
     }()
     
@@ -58,7 +62,12 @@ class WalletViewController: UIViewController, WalletDisplayLogic
     var wallet: [EntryList.Currency]?
     var currentwallet: [EntryList.Currency]?
     
-    var pieChartView = PieChartView()
+    var pieChartView: PieChartView = {
+        let pieChartView = PieChartView(frame: CGRect.zero)
+        pieChartView.translatesAutoresizingMaskIntoConstraints = false
+        pieChartView.sizeToFit()
+        return pieChartView
+    }()
     
     // MARK: Object lifecycle
     
@@ -110,8 +119,6 @@ class WalletViewController: UIViewController, WalletDisplayLogic
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Wallet"
-        interactor!.getWallet()
-        
         self.view.backgroundColor = UIColor.black
         tableView.dataSource = self
         tableView.delegate = self
@@ -144,7 +151,7 @@ class WalletViewController: UIViewController, WalletDisplayLogic
         priceLable.textColor = .orange
         priceLable.textAlignment = .right
         
-        pieChartView.frame = CGRect(x: 0.0, y: (self.navigationController?.navigationBar.frame.height)!*2, width: view.frame.width, height: view.frame.height/3)
+//        pieChartView.frame = CGRect(x: 0.0, y: (self.navigationController?.navigationBar.frame.height)!*2, width: view.frame.width, height: view.frame.height/3)
         pieChartView.legend.textColor = .white
         
         
@@ -156,13 +163,13 @@ class WalletViewController: UIViewController, WalletDisplayLogic
         self.view.addSubview(pieChartView)
         
         NSLayoutConstraint.activate([
-            pieChartView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: (self.navigationController?.navigationBar.frame.height)!*2),
+            pieChartView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             pieChartView.bottomAnchor.constraint(equalTo: searchField.topAnchor),
-            pieChartView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            pieChartView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            pieChartView.leadingAnchor.constraint(equalTo:view.leadingAnchor, constant: 15),
+            pieChartView.trailingAnchor.constraint(equalTo:view.trailingAnchor, constant: -15),
             
             
-            searchField.topAnchor.constraint(equalTo: pieChartView.bottomAnchor, constant: 16),
+            searchField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.frame.height/3),
             searchField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8),
             searchField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -8),
             searchField.heightAnchor.constraint(equalToConstant: 40),
@@ -182,47 +189,52 @@ class WalletViewController: UIViewController, WalletDisplayLogic
             tableView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 8),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -self.tabBarController!.tabBar.frame.size.height)])
+            tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -self.tabBarController!.tabBar.frame.size.height/2)])
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.showSpinner(onView: self.view)
+        interactor!.getWallet()
     }
     
     // MARK: Do something
     
-    //@IBOutlet weak var nameTextField: UITextField!
-    
     @objc func textFieldDidChange(_ textField: UITextField) {
         
-        searchDelayQueue.isSuspended = true
-        searchDelayQueue.cancelAllOperations()
+//        searchDelayQueue.isSuspended = true
+//        searchDelayQueue.cancelAllOperations()
         
         if let text = textField.text {
-            searchDelayQueue.addOperation {
+//            searchDelayQueue.addOperation {
                 self.search(by: text)
-            }
+//            }
         }
         
-        DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
-            self.searchDelayQueue.isSuspended = false
-        }
+//        DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
+//            self.searchDelayQueue.isSuspended = false
+//        }
     }
     
     private func search(by searchText: String) {
-        guard !searchText.isEmpty  else { currentwallet = wallet; return }
-        currentwallet = wallet?.filter({ wal -> Bool in
-            return wal.name.lowercased().contains(searchText.lowercased())
-        })
+        currentwallet?.removeAll()
+        if !searchText.isEmpty{
+            currentwallet = wallet?.filter({ wal -> Bool in
+                return wal.name.lowercased().contains(searchText.lowercased())
+            })
+        }else {
+            currentwallet = wallet
+            
+        }
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
     
     @objc func refreshWalletData(_ sender: Any){
+        searchField.text?.removeAll()
         interactor!.getWallet()
     }
-    func doSomething()
-    {
-        let request = Wallet.Something.Request()
-        interactor?.doSomething(request: request)
-    }
+   
     
     func displayWallet(viewModel: Wallet.Something.ViewModel)
     {
@@ -231,8 +243,9 @@ class WalletViewController: UIViewController, WalletDisplayLogic
             self.wallet = self.wallet!.sorted()
             self.currentwallet = self.wallet
             self.refreshControl.endRefreshing()
-            self.customizeChart(dataPoints: viewModel.wallet)
+            self.customizeChart(dataPoints: viewModel.wallet!)
             self.tableView.reloadData()
+            self.removeSpinner()
         }
     }
     
@@ -255,7 +268,7 @@ class WalletViewController: UIViewController, WalletDisplayLogic
         // 3. Set ChartData
         let pieChartData = PieChartData(dataSet: pieChartDataSet)
         let format = NumberFormatter()
-        format.numberStyle = .none
+        format.numberStyle = .decimal
         let formatter = DefaultValueFormatter(formatter: format)
         pieChartData.setValueFormatter(formatter)
         
@@ -276,18 +289,44 @@ class WalletViewController: UIViewController, WalletDisplayLogic
         return colors
     }
     
+    func displayAllert(viewModel: Wallet.Something.ViewModel){
+        DispatchQueue.main.async {
+            self.refreshControl.endRefreshing()
+            let alert = UIAlertController(title: "Error", message: viewModel.errorMessage!, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            self.removeSpinner()
+        }
+    }
     
+    func displayAddress(viewModel: String){
+        let alert = UIAlertController(title: "Address", message: viewModel, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Copy", style: .default, handler: { action in
+            UIPasteboard.general.string = viewModel
+        }))
+        alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
 }
 
 
 extension WalletViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let addr = currentwallet![indexPath.row].address {
+            displayAddress(viewModel: addr)
+        }else{
+            displayAllert(viewModel: Wallet.Something.ViewModel(wallet: nil, errorMessage: "Generate address on site"))
+        }
+        
+    }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let count = self.wallet{
+        if let count = self.currentwallet{
             return count.count
         }
         return 0
@@ -296,20 +335,16 @@ extension WalletViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseId, for: indexPath) as! WalletCell
+        cell.layer.borderWidth = 1.0
+        cell.layer.borderColor = UIColor.black.cgColor
+        cell.backgroundColor = .black
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = UIColor.orange
+        cell.selectedBackgroundView = bgColorView
+        cell.textLabel?.textColor = .white
         if indexPath.row < currentwallet!.count {
             let model = currentwallet![indexPath.row]
             cell.wallet = model
-            if model.content.available == "0" {
-                tableView.allowsSelection = false
-            }
-            cell.layer.borderWidth = 1.0
-            cell.layer.borderColor = UIColor.black.cgColor
-            cell.backgroundColor = .black
-            let bgColorView = UIView()
-            bgColorView.backgroundColor = UIColor.orange
-            cell.selectedBackgroundView = bgColorView
-            cell.textLabel?.textColor = .white
-            
         }
         return cell
     }

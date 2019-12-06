@@ -14,92 +14,211 @@ import UIKit
 
 protocol ProfileDisplayLogic: class
 {
-  func displaySomething(viewModel: Profile.Something.ViewModel)
+    //  func displaySomething(viewModel: Profile.Something.ViewModel)
+    func displaySuccessAlert(viewModel: Profile.Something.ViewModel)
+    func displayError(viewModel: Profile.Something.ViewModel)
+    func displayClear()
 }
 
 class ProfileViewController: UIViewController, ProfileDisplayLogic
 {
-  var interactor: ProfileBusinessLogic?
-  var router: (NSObjectProtocol & ProfileRoutingLogic & ProfileDataPassing)?
-
-  // MARK: Object lifecycle
-  
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-  {
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    setup()
-  }
-  
-  required init?(coder aDecoder: NSCoder)
-  {
-    super.init(coder: aDecoder)
-    setup()
-  }
-  
-  // MARK: Setup
-  
-  private func setup()
-  {
-    let viewController = self
-    let interactor = ProfileInteractor()
-    let presenter = ProfilePresenter()
-    let router = ProfileRouter()
-    viewController.interactor = interactor
-    viewController.router = router
-    interactor.presenter = presenter
-    presenter.viewController = viewController
-    router.viewController = viewController
-    router.dataStore = interactor
-  }
-  
-  // MARK: Routing
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-  {
-    if let scene = segue.identifier {
-      let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-      if let router = router, router.responds(to: selector) {
-        router.perform(selector, with: segue)
-      }
+    var interactor: ProfileBusinessLogic?
+    var router: (NSObjectProtocol & ProfileRoutingLogic & ProfileDataPassing)?
+    
+    let apiKey: UITextField = {
+        let sampleTextField =  UITextField(frame: CGRect.zero)
+        sampleTextField.backgroundColor = .black
+        sampleTextField.textColor = .white
+        sampleTextField.textAlignment = .center
+        sampleTextField.attributedPlaceholder =
+            NSAttributedString(string: "Enter api key", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        sampleTextField.layer.borderWidth = 1.0
+        sampleTextField.layer.borderColor = UIColor.orange.cgColor
+        sampleTextField.layer.cornerRadius = 20
+        sampleTextField.font = UIFont.systemFont(ofSize: 16)
+        sampleTextField.borderStyle = UITextField.BorderStyle.roundedRect
+        sampleTextField.autocorrectionType = UITextAutocorrectionType.no
+        sampleTextField.keyboardType = UIKeyboardType.default
+        sampleTextField.returnKeyType = UIReturnKeyType.done
+        sampleTextField.isSecureTextEntry = true
+        sampleTextField.clearButtonMode = UITextField.ViewMode.whileEditing
+        sampleTextField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        sampleTextField.translatesAutoresizingMaskIntoConstraints = false
+        sampleTextField.clipsToBounds = true
+        sampleTextField.sizeToFit()
+        return sampleTextField
+    }()
+    
+    let secretKey: UITextField = {
+        let sampleTextField =  UITextField(frame: CGRect.zero)
+        sampleTextField.backgroundColor = .black
+        sampleTextField.textColor = .white
+        sampleTextField.textAlignment = .center
+        sampleTextField.attributedPlaceholder =
+            NSAttributedString(string: "Enter secret key", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        sampleTextField.layer.borderWidth = 1.0
+        sampleTextField.layer.borderColor = UIColor.orange.cgColor
+        sampleTextField.layer.cornerRadius = 20
+        sampleTextField.font = UIFont.systemFont(ofSize: 16)
+        sampleTextField.borderStyle = UITextField.BorderStyle.roundedRect
+        sampleTextField.autocorrectionType = UITextAutocorrectionType.no
+        sampleTextField.keyboardType = UIKeyboardType.default
+        sampleTextField.returnKeyType = UIReturnKeyType.done
+        sampleTextField.isSecureTextEntry = true
+        sampleTextField.clearButtonMode = UITextField.ViewMode.whileEditing
+        sampleTextField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        sampleTextField.translatesAutoresizingMaskIntoConstraints = false
+        sampleTextField.clipsToBounds = true
+        sampleTextField.sizeToFit()
+        return sampleTextField
+    }()
+    
+    let acceptButton: UIButton = {
+        let button = UIButton(frame: CGRect.zero)
+        button.backgroundColor = .black
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Accept", for: .normal)
+        button.layer.borderWidth = 1.0
+        button.layer.borderColor = UIColor.orange.cgColor
+        button.clipsToBounds = true
+        button.sizeToFit()
+        return button
+    }()
+    
+    // MARK: Object lifecycle
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
+    {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setup()
     }
-  }
-  
-  // MARK: View lifecycle
-  
-  override func viewDidLoad()
-  {
-    super.viewDidLoad()
-    doSomething()
-    self.title = "Profile"
-    self.view.backgroundColor = UIColor.black
-    let label = UILabel(frame: CGRect.zero)
-    label.text = "Contacts View Controller"
-    label.font = UIFont.systemFont(ofSize: 16)
-    label.translatesAutoresizingMaskIntoConstraints = false
-    label.clipsToBounds = true
-    label.sizeToFit()
-    label.textColor = .white
     
-    self.view.addSubview(label)
+    required init?(coder aDecoder: NSCoder)
+    {
+        super.init(coder: aDecoder)
+        setup()
+    }
     
-    NSLayoutConstraint.activate([
-        label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-        label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
-        ])
-  }
-  
-  // MARK: Do something
-  
-  //@IBOutlet weak var nameTextField: UITextField!
-  
-  func doSomething()
-  {
-    let request = Profile.Something.Request()
-    interactor?.doSomething(request: request)
-  }
-  
-  func displaySomething(viewModel: Profile.Something.ViewModel)
-  {
-    //nameTextField.text = viewModel.name
-  }
+    // MARK: Setup
+    
+    private func setup()
+    {
+        let viewController = self
+        let interactor = ProfileInteractor()
+        let presenter = ProfilePresenter()
+        let router = ProfileRouter()
+        viewController.interactor = interactor
+        viewController.router = router
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        router.viewController = viewController
+        router.dataStore = interactor
+    }
+    
+    // MARK: View lifecycle
+    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        self.title = "Profile"
+        self.view.backgroundColor = UIColor.black
+        let label = UILabel(frame: CGRect.zero)
+        label.text = "Contacts View Controller"
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.clipsToBounds = true
+        label.sizeToFit()
+        label.textColor = .white
+        apiKey.delegate = self
+        secretKey.delegate = self
+        view.addSubview(apiKey)
+        view.addSubview(secretKey)
+        view.addSubview(acceptButton)
+        acceptButton.addTarget(self, action: #selector(acceptKeys), for: .touchUpInside)
+        NSLayoutConstraint.activate([
+            apiKey.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
+            apiKey.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            apiKey.leadingAnchor.constraint(equalTo:view.leadingAnchor, constant: 15),
+            apiKey.trailingAnchor.constraint(equalTo:view.trailingAnchor, constant: -15),
+            
+            
+            secretKey.topAnchor.constraint(equalTo: apiKey.bottomAnchor, constant: 15),
+            secretKey.leadingAnchor.constraint(equalTo:view.leadingAnchor, constant: 15),
+            secretKey.trailingAnchor.constraint(equalTo:view.trailingAnchor, constant: -15),
+            
+            acceptButton.topAnchor.constraint(equalTo: secretKey.bottomAnchor, constant: 15),
+            acceptButton.leadingAnchor.constraint(equalTo:view.leadingAnchor, constant: view.frame.width/8),
+            acceptButton.trailingAnchor.constraint(equalTo:view.trailingAnchor, constant: -view.frame.width/8),
+            
+            ])
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        interactor?.checkApi()
+    }
+    
+    // MARK: Do something
+    
+    //@IBOutlet weak var nameTextField: UITextField!
+    
+    
+    @objc func acceptKeys(){
+        self.showSpinner(onView: self.view)
+        interactor?.checkKeys(request: Profile.Something.Request(apiKey: apiKey.text ?? "", secretKey: secretKey.text ?? ""))
+    }
+    
+    @objc func clearKeys(){
+        self.showSpinner(onView: self.view)
+        interactor?.clearKeys()
+    }
+    
+    func displayClear(){
+        DispatchQueue.main.async {
+            self.acceptButton.setTitle("Accept", for: .normal)
+            self.acceptButton.removeTarget(self, action: #selector(self.clearKeys), for: .touchUpInside)
+            self.acceptButton.addTarget(self, action: #selector(self.acceptKeys), for: .touchUpInside)
+            self.apiKey.text = ""
+            self.secretKey.text = ""
+            self.apiKey.isUserInteractionEnabled = true
+            self.secretKey.isUserInteractionEnabled = true
+            self.removeSpinner()
+        }
+    }
+    
+    
+    func displayError(viewModel: Profile.Something.ViewModel){
+        DispatchQueue.main.async {
+            self.removeSpinner()
+            let alert = UIAlertController(title: "Error", message: viewModel.errorMessage!, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        }
+    }
+    
+    func displaySuccessAlert(viewModel: Profile.Something.ViewModel){
+        DispatchQueue.main.async {
+            self.acceptButton.setTitle("Clear", for: .normal)
+            self.acceptButton.removeTarget(self, action: #selector(self.acceptKeys), for: .touchUpInside)
+            self.acceptButton.addTarget(self, action: #selector(self.clearKeys), for: .touchUpInside)
+            self.apiKey.isUserInteractionEnabled = false
+            self.secretKey.isUserInteractionEnabled = false
+            self.removeSpinner()
+            self.displayAllert(viewModel: viewModel)
+        }
+    }
+    
+    func displayAllert(viewModel: Profile.Something.ViewModel){
+        self.removeSpinner()
+        let alert = UIAlertController(title: "Success", message: viewModel.message!, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+}
+
+
+
+
+
+extension ProfileViewController: UITextFieldDelegate{
+    
 }

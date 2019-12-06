@@ -20,12 +20,18 @@ enum Profile
   {
     struct Request
     {
+        let apiKey: String
+        let secretKey: String
     }
     struct Response
     {
+        let errorMessage: String?
+        let message: String?
     }
     struct ViewModel
     {
+        let errorMessage: String?
+        let message: String?
     }
   }
 }

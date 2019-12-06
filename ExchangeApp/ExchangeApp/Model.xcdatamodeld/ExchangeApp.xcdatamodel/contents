@@ -50,11 +50,11 @@
         <attribute name="onOrders" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="WalletCurrency" positionX="-174.83984375" positionY="28.34765625" width="128" height="118"/>
         <element name="ChartModel" positionX="-230.49609375" positionY="-215.26171875" width="128" height="163"/>
-        <element name="Pair" positionX="48.72265625" positionY="-189.41796875" width="128" height="103"/>
         <element name="OrderData" positionX="126.87109375" positionY="35.0859375" width="128" height="120"/>
-        <element name="TradeResult" positionX="349.078125" positionY="90" width="128" height="148"/>
+        <element name="Pair" positionX="48.72265625" positionY="-189.41796875" width="128" height="103"/>
         <element name="SimpleOrderModel" positionX="18" positionY="-18" width="128" height="165"/>
+        <element name="TradeResult" positionX="349.078125" positionY="90" width="128" height="148"/>
+        <element name="WalletCurrency" positionX="-174.83984375" positionY="28.34765625" width="128" height="118"/>
     </elements>
 </model>

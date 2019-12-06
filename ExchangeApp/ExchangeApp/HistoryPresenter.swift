@@ -16,6 +16,7 @@ protocol HistoryPresentationLogic
 {
     func presentSomething(response: History.Something.Response)
     func presentOrders(response: History.Something.Response)
+    func presentError(response: History.Something.Response)
 }
 
 class HistoryPresenter: HistoryPresentationLogic
@@ -33,7 +34,12 @@ class HistoryPresenter: HistoryPresentationLogic
     }
     
     func presentOrders(response: History.Something.Response) {
-        let viewModel = History.Something.ViewModel(orders: response.orders)
+        let viewModel = History.Something.ViewModel(orders: response.orders, errorMessage: nil)
         viewController?.displayOrders(viewModel: viewModel)
+    }
+    
+    func presentError(response: History.Something.Response) {
+        let viewModel = History.Something.ViewModel(orders: nil, errorMessage: response.errorMessage)
+        viewController?.displayAllert(viewModel: viewModel)
     }
 }

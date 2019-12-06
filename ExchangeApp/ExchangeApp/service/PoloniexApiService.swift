@@ -31,9 +31,9 @@ public class PoloniexApiService: ApiService {
     //https://poloniex.com/public?command=returnTicker
     let baseScheme = "https"
     let baseHost = "poloniex.com"
-    let utilsService:UtilsService
+    let utilsService:NetworkService
     
-    init(utilService: UtilsService) {
+    init(utilService: NetworkService) {
         self.utilsService = utilService
     }
     
@@ -58,8 +58,7 @@ public class PoloniexApiService: ApiService {
                         let error = try JSONDecoder().decode(ErrorMessage.self, from: data)
                         completion(.failure(error))
                     } catch {
-                        completion(.failure(ErrorMessage(error: "decodeError")))
-                    }
+                        completion(.failure(ErrorMessage(error: "Decode Error")))                    }
                 }
             case .failure(let error):
                 print(error.localizedDescription)
@@ -92,7 +91,7 @@ public class PoloniexApiService: ApiService {
                         let error = try JSONDecoder().decode(ErrorMessage.self, from: data)
                         completion(.failure(error))
                     } catch {
-                        completion(.failure(ErrorMessage(error: "decodeError")))
+                        completion(.failure(ErrorMessage(error: "Decode Error")))
                     }
                 }
             case .failure(let error):
@@ -119,21 +118,13 @@ public class PoloniexApiService: ApiService {
                 case .success(let data):
                     do {
                         let entryList = try JSONDecoder().decode(EntryList.self, from: data)
-//                        currencies: [EntryList.Address],
-//                        for wal in entryList.wallet.enumerated(){
-//                            for cur in currencies{
-//                                if wal.element.name == cur.name{
-//                                    entryList.wallet[wal.offset].address = cur.address
-//                                }
-//                            }
-//                        }
                         completion(.success(entryList.wallet))
                     } catch {
                         do {
                             let error = try JSONDecoder().decode(ErrorMessage.self, from: data)
                             completion(.failure(error))
                         } catch {
-                            completion(.failure(ErrorMessage(error: "decodeError")))
+                            completion(.failure(ErrorMessage(error: "Decode Error")))
                         }
                     }
                 case .failure(let error):
@@ -141,8 +132,9 @@ public class PoloniexApiService: ApiService {
                     completion(.failure(ErrorMessage(error: error.localizedDescription)))
                 }
             }
+        }else{
+            completion(.failure(ErrorMessage(error: "No api keys")))
         }
-        completion(.failure(ErrorMessage(error: "noKeys")))
     }
     
     public func getWalletAddress(completion: @escaping (Result<[EntryList.Address], ErrorMessage>) -> Void) {
@@ -168,16 +160,15 @@ public class PoloniexApiService: ApiService {
                             let error = try JSONDecoder().decode(ErrorMessage.self, from: data)
                             completion(.failure(error))
                         } catch {
-                            completion(.failure(ErrorMessage(error: "decodeError")))
-                        }
+                            completion(.failure(ErrorMessage(error: "Decode Error")))                        }
                     }
                 case .failure(let error):
                     print(error.localizedDescription)
                     completion(.failure(ErrorMessage(error: error.localizedDescription)))
                 }
             }
-        }
-        completion(.failure(ErrorMessage(error: "noKeys")))
+        }else{
+            completion(.failure(ErrorMessage(error: "No api keys")))        }
     }
     
     public func getOrders(completion: @escaping (Result<[SimpleOrder], ErrorMessage>) -> Void) {
@@ -203,16 +194,15 @@ public class PoloniexApiService: ApiService {
                             let error = try JSONDecoder().decode(ErrorMessage.self, from: data)
                             completion(.failure(error))
                         } catch {
-                            completion(.failure(ErrorMessage(error: "decodeError")))
-                        }
+                            completion(.failure(ErrorMessage(error: "Decode Error")))                        }
                     }
                 case .failure(let error):
                     print(error.localizedDescription)
                     completion(.failure(ErrorMessage(error: error.localizedDescription)))
                 }
             }
-        }
-        completion(.failure(ErrorMessage(error: "noKeys")))
+        }else{
+            completion(.failure(ErrorMessage(error: "No api keys")))        }
     }
     
     public func buyOrder(currencyPair: String, rate: String, amount: String, completion: @escaping (Result<Order, ErrorMessage>) -> Void) {
@@ -239,16 +229,15 @@ public class PoloniexApiService: ApiService {
                             let error = try JSONDecoder().decode(ErrorMessage.self, from: data)
                             completion(.failure(error))
                         } catch {
-                            completion(.failure(ErrorMessage(error: "decodeError")))
-                        }
+                            completion(.failure(ErrorMessage(error: "Decode Error")))                        }
                     }
                 case .failure(let error):
                     print(error.localizedDescription)
                     completion(.failure(ErrorMessage(error: error.localizedDescription)))
                 }
             }
-        }
-        completion(.failure(ErrorMessage(error: "noKeys")))
+        }else{
+            completion(.failure(ErrorMessage(error: "No api keys")))        }
     }
     
     public func sellOrder(currencyPair: String, rate: String, amount: String, completion: @escaping (Result<Order,ErrorMessage>) -> Void) {
@@ -275,15 +264,14 @@ public class PoloniexApiService: ApiService {
                             let error = try JSONDecoder().decode(ErrorMessage.self, from: data)
                             completion(.failure(error))
                         } catch {
-                            completion(.failure(ErrorMessage(error: "decodeError")))
-                        }
+                            completion(.failure(ErrorMessage(error: "Decode Error")))                        }
                     }
                 case .failure(let error):
                     print(error.localizedDescription)
                     completion(.failure(ErrorMessage(error: error.localizedDescription)))
                 }
             }
-        }
-        completion(.failure(ErrorMessage(error: "noKeys")))
+        }else{
+            completion(.failure(ErrorMessage(error: "No api keys")))        }
     }
 }

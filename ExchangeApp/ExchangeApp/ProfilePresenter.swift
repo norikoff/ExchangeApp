@@ -14,18 +14,28 @@ import UIKit
 
 protocol ProfilePresentationLogic
 {
-  func presentSomething(response: Profile.Something.Response)
+    func presentError(response: Profile.Something.Response)
+    func presentMessage(response: Profile.Something.Response)
+    func presentClear()
 }
 
 class ProfilePresenter: ProfilePresentationLogic
 {
+    
+    
   weak var viewController: ProfileDisplayLogic?
   
   // MARK: Do something
   
-  func presentSomething(response: Profile.Something.Response)
-  {
-    let viewModel = Profile.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+    func presentError(response: Profile.Something.Response){
+        viewController?.displayError(viewModel: Profile.Something.ViewModel(errorMessage: response.errorMessage, message: response.message))
+    }
+    
+    func presentMessage(response: Profile.Something.Response) {
+        viewController?.displaySuccessAlert(viewModel: Profile.Something.ViewModel(errorMessage: nil, message: response.message))
+    }
+    
+    func presentClear(){
+        viewController?.displayClear()
+    }
 }

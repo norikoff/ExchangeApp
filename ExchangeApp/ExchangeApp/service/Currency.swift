@@ -30,7 +30,7 @@ public struct EntryList: Decodable {
     
     public struct Address: Decodable {
         let name: String
-        let address: String
+        var address: String
     }
     
     
@@ -57,7 +57,7 @@ public struct EntryList: Decodable {
     
     let pairs: [Pair]
     var wallet: [Currency]
-    let addresses: [Address]
+    var addresses: [Address]
     
     public init(from decoder: Decoder) throws {
         let entriesContainer = try decoder.container(keyedBy: DynamicCodingKey.self)
@@ -85,6 +85,10 @@ public struct EntryList: Decodable {
         }catch{
             addresses = []
         }
+        if wallet.count > 0 || (addresses.count > 0 && addresses.first?.name != "error") || pairs.count > 0{
+            return
+        }
+        throw ErrorMessage(error: "Bad decode")
     }
     
     //    init(from decoder: Decoder, flag:String) throws {

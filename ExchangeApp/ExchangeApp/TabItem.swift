@@ -18,7 +18,7 @@ enum TabItem: String, CaseIterable {
     var viewController: UIViewController {
         switch self {
         case .trade:
-            return TradeViewController()
+            return PairsViewController()
         case .wallet:
             return WalletViewController()
         case .history:

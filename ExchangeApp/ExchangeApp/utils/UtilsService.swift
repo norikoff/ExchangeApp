@@ -8,7 +8,13 @@
 
 import Foundation
 
-class UtilsService {
+protocol NetworkService {
+    func postRequest(url:URL,header:[String:String], body:String, completion: @escaping (Result<Data, NetworkError>) -> Void)
+    func getRequest(url:URL,completion: @escaping (Result<Data, NetworkError>) -> Void)
+}
+
+
+class UtilsService : NetworkService  {
     
     func postRequest(url:URL,header:[String:String], body:String, completion: @escaping (Result<Data, NetworkError>) -> Void){
         var request = URLRequest(url: url)

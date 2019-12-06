@@ -23,11 +23,13 @@ enum History
     }
     struct Response
     {
-        let orders: [SimpleOrder]
+        let orders: [SimpleOrder]?
+        let errorMessage: String?
     }
     struct ViewModel
     {
         let orders: [SimpleOrder]?
+        let errorMessage: String?
     }
   }
 }

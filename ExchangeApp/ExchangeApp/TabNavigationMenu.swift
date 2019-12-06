@@ -70,7 +70,7 @@ class TabNavigationMenu: UIView {
         tabBarItem.clipsToBounds = true
         tabBarItem.backgroundColor = .black
         NSLayoutConstraint.activate([
-            itemIconView.heightAnchor.constraint(equalToConstant: 25), // Fixed height for our tab item(25pts)
+            itemIconView.heightAnchor.constraint(equalToConstant: 20), // Fixed height for our tab item(25pts)
             itemIconView.widthAnchor.constraint(equalToConstant: 25), // Fixed width for our tab item icon
             itemIconView.centerXAnchor.constraint(equalTo: tabBarItem.centerXAnchor),
             itemIconView.topAnchor.constraint(equalTo: tabBarItem.topAnchor, constant: 8), // Position menu item icon 8pts from the top of it's parent view
@@ -78,6 +78,7 @@ class TabNavigationMenu: UIView {
             itemTitleLabel.heightAnchor.constraint(equalToConstant: 13), // Fixed height for title label
             itemTitleLabel.widthAnchor.constraint(equalTo: tabBarItem.widthAnchor), // Position label full width across tab bar item
             itemTitleLabel.topAnchor.constraint(equalTo: itemIconView.bottomAnchor, constant: 4), // Position title label 4pts below item icon
+            itemTitleLabel.bottomAnchor.constraint(equalTo: tabBarItem.bottomAnchor, constant: -2)
             ])
         tabBarItem.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.handleTap))) // Each item should be able to trigger and action on tap
         return tabBarItem

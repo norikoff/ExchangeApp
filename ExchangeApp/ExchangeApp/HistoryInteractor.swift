@@ -46,10 +46,11 @@ class HistoryInteractor: HistoryBusinessLogic, HistoryDataStore
         worker.getOrders { result in
             switch result {
             case .success(let data):
-                let response = History.Something.Response.init(orders: data)
+                let response = History.Something.Response.init(orders: data, errorMessage: nil)
                 self.presenter?.presentOrders(response: response)
             case .failure(let error):
-                print(error.localizedDescription)
+                let response = History.Something.Response.init(orders: nil, errorMessage: error.error)
+                self.presenter?.presentError(response: response)
             }
         }
     }

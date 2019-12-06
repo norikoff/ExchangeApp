@@ -14,8 +14,8 @@ import UIKit
 
 protocol WalletPresentationLogic
 {
-    func presentSomething(response: Wallet.Something.Response)
     func presentWallet(response: Wallet.Something.Response)
+    func presentError(response: Wallet.Something.Response)
 }
 
 class WalletPresenter: WalletPresentationLogic
@@ -25,14 +25,15 @@ class WalletPresenter: WalletPresentationLogic
     
     // MARK: Do something
     
-    func presentSomething(response: Wallet.Something.Response)
-    {
-//        let viewModel = Wallet.Something.ViewModel()
-//        viewController?.displaySomething(viewModel: viewModel)
-    }
-    
     func presentWallet(response: Wallet.Something.Response) {
-        let viewModel = Wallet.Something.ViewModel(wallet: response.wallet)
+        let viewModel = Wallet.Something.ViewModel(wallet: response.wallet, errorMessage: nil)
         viewController?.displayWallet(viewModel: viewModel)
     }
+    
+    func presentError(response: Wallet.Something.Response) {
+        print("error")
+        let viewModel = Wallet.Something.ViewModel(wallet: nil, errorMessage: response.errorMessage)
+        viewController?.displayAllert(viewModel: viewModel)
+    }
+    
 }
