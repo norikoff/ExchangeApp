@@ -18,25 +18,33 @@ public struct EntryList: Decodable {
         init?(intValue: Int) {return nil}
     }
     
-    struct Pair: Decodable {
+    public struct Pair: Decodable {
         struct Content: Decodable {
-            let id:String
-            let last:String
-            let lowestAsk:String
-            let highestBid:String
+            let id:Int64
             let percentChange:String
-            let baseVolume:String
-            let quoteVolume:String
             let isFrozen:String
-            let high24hr:String
-            let low24hr:String
-            
         }
         let pairName: String
         let content: Content
     }
     
-    struct Currency: Decodable {
+    public struct Address: Decodable {
+        let name: String
+        var address: String
+    }
+    
+    
+    public struct Currency: Decodable, Comparable {
+        public static func < (lhs: EntryList.Currency, rhs: EntryList.Currency) -> Bool {
+            let a = (Double(lhs.content.btcValue) ?? 0.00000000) - (Double(rhs.content.btcValue) ?? 0.00000000)
+            return a > 0.00000001
+            
+        }
+        
+        public static func == (lhs: EntryList.Currency, rhs: EntryList.Currency) -> Bool {
+            return lhs.name == rhs.name
+        }
+        
         struct Content: Decodable {
             let available: String
             let onOrders: String
@@ -44,10 +52,12 @@ public struct EntryList: Decodable {
         }
         let name: String
         let content: Content
+        var address: String?
     }
     
     let pairs: [Pair]
-    let wallet: [Currency]
+    var wallet: [Currency]
+    var addresses: [Address]
     
     public init(from decoder: Decoder) throws {
         let entriesContainer = try decoder.container(keyedBy: DynamicCodingKey.self)
@@ -62,11 +72,23 @@ public struct EntryList: Decodable {
         do{
             wallet = try entriesContainer.allKeys.map { key in
                 let content = try entriesContainer.decode(Currency.Content.self, forKey: key)
-                return Currency(name: key.stringValue, content: content)
+                return Currency(name: key.stringValue, content: content, address: nil)
             }
         }catch{
             wallet = []
         }
+        do{
+            addresses = try entriesContainer.allKeys.map { key in
+                let content = try entriesContainer.decode(String.self, forKey: key)
+                return Address(name: key.stringValue, address: content)
+            }
+        }catch{
+            addresses = []
+        }
+        if wallet.count > 0 || (addresses.count > 0 && addresses.first?.name != "error") || pairs.count > 0{
+            return
+        }
+        throw ErrorMessage(error: "Bad decode")
     }
     
     //    init(from decoder: Decoder, flag:String) throws {

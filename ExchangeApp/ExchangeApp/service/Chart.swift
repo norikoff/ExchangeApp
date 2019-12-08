@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct Chart: Codable {
-    let date: Int
+public struct Chart: Codable {
+    let date: Int64
     let high: Double
     let low: Double
     let open: Double

@@ -3,34 +3,93 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		594C898C23978AD90022B225 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C898623978AD90022B225 /* ProfilePresenter.swift */; };
+		594C898D23978AD90022B225 /* ProfileWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C898723978AD90022B225 /* ProfileWorker.swift */; };
+		594C898E23978AD90022B225 /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C898823978AD90022B225 /* ProfileRouter.swift */; };
+		594C898F23978AD90022B225 /* ProfileModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C898923978AD90022B225 /* ProfileModels.swift */; };
+		594C899023978AD90022B225 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C898A23978AD90022B225 /* ProfileViewController.swift */; };
+		594C899123978AD90022B225 /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C898B23978AD90022B225 /* ProfileInteractor.swift */; };
+		594C899823978B150022B225 /* TradePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C899223978B150022B225 /* TradePresenter.swift */; };
+		594C899923978B150022B225 /* TradeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C899323978B150022B225 /* TradeWorker.swift */; };
+		594C899A23978B150022B225 /* TradeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C899423978B150022B225 /* TradeRouter.swift */; };
+		594C899B23978B150022B225 /* TradeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C899523978B150022B225 /* TradeModels.swift */; };
+		594C899C23978B150022B225 /* TradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C899623978B150022B225 /* TradeViewController.swift */; };
+		594C899D23978B150022B225 /* TradeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C899723978B150022B225 /* TradeInteractor.swift */; };
+		594C899F2397E0740022B225 /* WalletCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C899E2397E0740022B225 /* WalletCell.swift */; };
+		594C89AA239811560022B225 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 594C89A9239811560022B225 /* Charts.framework */; };
+		594C89B02398F9810022B225 /* MockNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C89AF2398F9810022B225 /* MockNetworkService.swift */; };
+		594C89B12398F9810022B225 /* MockNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C89AF2398F9810022B225 /* MockNetworkService.swift */; };
+		594C89B3239939940022B225 /* NetworkChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C89B2239939940022B225 /* NetworkChecker.swift */; };
+		594C89B52399409F0022B225 /* WaitSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C89B42399409F0022B225 /* WaitSpinner.swift */; };
+		594C89B723995C820022B225 /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C89B623995C820022B225 /* HistoryCell.swift */; };
+		594C89BF239A87E50022B225 /* PairsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C89B9239A87E50022B225 /* PairsPresenter.swift */; };
+		594C89C0239A87E50022B225 /* PairsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C89BA239A87E50022B225 /* PairsWorker.swift */; };
+		594C89C1239A87E50022B225 /* PairsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C89BB239A87E50022B225 /* PairsRouter.swift */; };
+		594C89C2239A87E50022B225 /* PairsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C89BC239A87E50022B225 /* PairsModels.swift */; };
+		594C89C3239A87E50022B225 /* PairsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C89BD239A87E50022B225 /* PairsViewController.swift */; };
+		594C89C4239A87E50022B225 /* PairsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C89BE239A87E50022B225 /* PairsInteractor.swift */; };
+		594C89C7239AAD6A0022B225 /* PairCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C89C6239AAD6A0022B225 /* PairCell.swift */; };
+		594C89C9239BA09E0022B225 /* CancelOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C89C8239BA09E0022B225 /* CancelOrder.swift */; };
+		594C89CA239BA1CB0022B225 /* CancelOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C89C8239BA09E0022B225 /* CancelOrder.swift */; };
+		594C89CE239CFDE20022B225 /* TextFieldFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C89CD239CFDE20022B225 /* TextFieldFactory.swift */; };
+		5958DC39238DBF5200B75625 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC38238DBF5200B75625 /* CoreDataStack.swift */; };
+		5958DC3C238ED7C000B75625 /* ChartDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC3B238ED7C000B75625 /* ChartDao.swift */; };
+		5958DC3F238ED7D500B75625 /* BaseDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC3E238ED7D500B75625 /* BaseDao.swift */; };
+		5958DC42238EE1ED00B75625 /* PairDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC41238EE1ED00B75625 /* PairDao.swift */; };
+		5958DC4E23903BCC00B75625 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC4D23903BCC00B75625 /* HistoryViewController.swift */; };
+		5958DC5C23903C8C00B75625 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC5B23903C8C00B75625 /* TabItem.swift */; };
+		5958DC5F23903C9C00B75625 /* NavigationMenuBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC5E23903C9C00B75625 /* NavigationMenuBaseController.swift */; };
+		5958DC6223903CA900B75625 /* TabNavigationMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC6123903CA900B75625 /* TabNavigationMenu.swift */; };
+		5958DC65239053EA00B75625 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC64239053EA00B75625 /* Order.swift */; };
+		5958DC6823905E0E00B75625 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC6723905E0E00B75625 /* ApiError.swift */; };
+		5958DC6D2391899100B75625 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374BE238A979100C873A5 /* Currency.swift */; };
+		5958DC6F239287B700B75625 /* OrderDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC6E239287B700B75625 /* OrderDao.swift */; };
+		5958DC7123928B5C00B75625 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC64239053EA00B75625 /* Order.swift */; };
+		5958DC792393E0FF00B75625 /* WalletDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC35238DA03800B75625 /* WalletDao.swift */; };
+		5958DC7D2393E23D00B75625 /* DaoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC732393D05700B75625 /* DaoTests.swift */; };
+		5958DC7E2393E28600B75625 /* PoloniexApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374B3238A95FE00C873A5 /* PoloniexApiService.swift */; };
+		5958DC802393F24A00B75625 /* PoloniexApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374B3238A95FE00C873A5 /* PoloniexApiService.swift */; };
+		5958DC812393F25800B75625 /* PairDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC41238EE1ED00B75625 /* PairDao.swift */; };
+		5958DC822393F25B00B75625 /* ChartDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC3B238ED7C000B75625 /* ChartDao.swift */; };
+		5958DC842393F25F00B75625 /* OrderDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC6E239287B700B75625 /* OrderDao.swift */; };
+		5958DC862393F28A00B75625 /* BaseDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC3E238ED7D500B75625 /* BaseDao.swift */; };
+		5958DC872393F2DF00B75625 /* UtilsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374B6238A96A600C873A5 /* UtilsService.swift */; };
+		5958DC892393F3DC00B75625 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC6723905E0E00B75625 /* ApiError.swift */; };
+		5958DC8A2393F3E000B75625 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374AF238A95CC00C873A5 /* ApiService.swift */; };
+		5958DC8B2393F42900B75625 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC38238DBF5200B75625 /* CoreDataStack.swift */; };
+		5958DC91239416D100B75625 /* WalletDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC35238DA03800B75625 /* WalletDao.swift */; };
+		5958DC92239416D500B75625 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 59E47B51238151D100EC7618 /* Model.xcdatamodeld */; };
+		5958DC93239417B500B75625 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 59E47B51238151D100EC7618 /* Model.xcdatamodeld */; };
+		5958DCA223968C5800B75625 /* HistoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DCA123968C5800B75625 /* HistoryInteractor.swift */; };
+		5958DCA523968C6900B75625 /* HistoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DCA423968C6900B75625 /* HistoryPresenter.swift */; };
+		5958DCA823968C8600B75625 /* HistoryWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DCA723968C8600B75625 /* HistoryWorker.swift */; };
+		5958DCAB23968CC700B75625 /* HistoryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DCAA23968CC700B75625 /* HistoryRouter.swift */; };
+		5958DCAE23968CE400B75625 /* HistoryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DCAD23968CE400B75625 /* HistoryModels.swift */; };
+		5958DCC62396B7AE00B75625 /* SimpleOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DCC52396B7AE00B75625 /* SimpleOrder.swift */; };
+		5958DCC72396B8D900B75625 /* SimpleOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DCC52396B7AE00B75625 /* SimpleOrder.swift */; };
+		5958DCC92396B95800B75625 /* SimpleOrderDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DCC82396B95800B75625 /* SimpleOrderDao.swift */; };
+		5958DCCA2396BC1300B75625 /* SimpleOrderDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DCC82396B95800B75625 /* SimpleOrderDao.swift */; };
+		5958DCD22396C74D00B75625 /* WalletPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DCCC2396C74D00B75625 /* WalletPresenter.swift */; };
+		5958DCD32396C74D00B75625 /* WalletWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DCCD2396C74D00B75625 /* WalletWorker.swift */; };
+		5958DCD42396C74D00B75625 /* WalletRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DCCE2396C74D00B75625 /* WalletRouter.swift */; };
+		5958DCD52396C74D00B75625 /* WalletModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DCCF2396C74D00B75625 /* WalletModels.swift */; };
+		5958DCD62396C74D00B75625 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DCD02396C74D00B75625 /* WalletViewController.swift */; };
+		5958DCD72396C74D00B75625 /* WalletInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DCD12396C74D00B75625 /* WalletInteractor.swift */; };
 		59A374B0238A95CC00C873A5 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374AF238A95CC00C873A5 /* ApiService.swift */; };
-		59A374B1238A95CC00C873A5 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374AF238A95CC00C873A5 /* ApiService.swift */; };
-		59A374B5238A95FE00C873A5 /* PoloniexApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374B3238A95FE00C873A5 /* PoloniexApiService.swift */; };
 		59A374B7238A96A600C873A5 /* UtilsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374B6238A96A600C873A5 /* UtilsService.swift */; };
-		59A374B8238A96A600C873A5 /* UtilsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374B6238A96A600C873A5 /* UtilsService.swift */; };
 		59A374BF238A979100C873A5 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374BE238A979100C873A5 /* Currency.swift */; };
 		59A374C1238A97B300C873A5 /* Chart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374C0238A97B300C873A5 /* Chart.swift */; };
-		59A374C2238A9FC800C873A5 /* PoloniexApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374B3238A95FE00C873A5 /* PoloniexApiService.swift */; };
 		59A374C3238A9FFA00C873A5 /* ApiCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374BA238A971A00C873A5 /* ApiCrypto.swift */; };
-		59A374C6238AA16600C873A5 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374BE238A979100C873A5 /* Currency.swift */; };
 		59A374C7238AA17000C873A5 /* Chart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A374C0238A97B300C873A5 /* Chart.swift */; };
 		59E47B4B238151D100EC7618 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E47B4A238151D100EC7618 /* AppDelegate.swift */; };
-		59E47B4D238151D100EC7618 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E47B4C238151D100EC7618 /* ViewController.swift */; };
-		59E47B53238151D100EC7618 /* ExchangeApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 59E47B51238151D100EC7618 /* ExchangeApp.xcdatamodeld */; };
 		59E47B55238151D100EC7618 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59E47B54238151D100EC7618 /* Assets.xcassets */; };
 		59E47B58238151D100EC7618 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59E47B56238151D100EC7618 /* LaunchScreen.storyboard */; };
-		59E47B63238151D100EC7618 /* ExchangeAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E47B62238151D100EC7618 /* ExchangeAppTests.swift */; };
+		59E47B63238151D100EC7618 /* ApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E47B62238151D100EC7618 /* ApiTests.swift */; };
 		59E47B6E238151D100EC7618 /* ExchangeAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E47B6D238151D100EC7618 /* ExchangeAppUITests.swift */; };
-		59E47B852381549200EC7618 /* ExchangePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E47B7F2381549200EC7618 /* ExchangePresenter.swift */; };
-		59E47B882381549200EC7618 /* ExchangeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E47B802381549200EC7618 /* ExchangeWorker.swift */; };
-		59E47B8B2381549200EC7618 /* ExchangeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E47B812381549200EC7618 /* ExchangeRouter.swift */; };
-		59E47B8E2381549200EC7618 /* ExchangeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E47B822381549200EC7618 /* ExchangeModels.swift */; };
-		59E47B912381549200EC7618 /* ExchangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E47B832381549200EC7618 /* ExchangeViewController.swift */; };
-		59E47B942381549200EC7618 /* ExchangeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E47B842381549200EC7618 /* ExchangeInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,31 +110,77 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		594C898623978AD90022B225 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		594C898723978AD90022B225 /* ProfileWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileWorker.swift; sourceTree = "<group>"; };
+		594C898823978AD90022B225 /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
+		594C898923978AD90022B225 /* ProfileModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModels.swift; sourceTree = "<group>"; };
+		594C898A23978AD90022B225 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		594C898B23978AD90022B225 /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
+		594C899223978B150022B225 /* TradePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradePresenter.swift; sourceTree = "<group>"; };
+		594C899323978B150022B225 /* TradeWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeWorker.swift; sourceTree = "<group>"; };
+		594C899423978B150022B225 /* TradeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeRouter.swift; sourceTree = "<group>"; };
+		594C899523978B150022B225 /* TradeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeModels.swift; sourceTree = "<group>"; };
+		594C899623978B150022B225 /* TradeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeViewController.swift; sourceTree = "<group>"; };
+		594C899723978B150022B225 /* TradeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeInteractor.swift; sourceTree = "<group>"; };
+		594C899E2397E0740022B225 /* WalletCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCell.swift; sourceTree = "<group>"; };
+		594C89A9239811560022B225 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = Carthage/Build/iOS/Charts.framework; sourceTree = "<group>"; };
+		594C89AF2398F9810022B225 /* MockNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkService.swift; sourceTree = "<group>"; };
+		594C89B2239939940022B225 /* NetworkChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkChecker.swift; sourceTree = "<group>"; };
+		594C89B42399409F0022B225 /* WaitSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitSpinner.swift; sourceTree = "<group>"; };
+		594C89B623995C820022B225 /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
+		594C89B9239A87E50022B225 /* PairsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairsPresenter.swift; sourceTree = "<group>"; };
+		594C89BA239A87E50022B225 /* PairsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairsWorker.swift; sourceTree = "<group>"; };
+		594C89BB239A87E50022B225 /* PairsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairsRouter.swift; sourceTree = "<group>"; };
+		594C89BC239A87E50022B225 /* PairsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairsModels.swift; sourceTree = "<group>"; };
+		594C89BD239A87E50022B225 /* PairsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairsViewController.swift; sourceTree = "<group>"; };
+		594C89BE239A87E50022B225 /* PairsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairsInteractor.swift; sourceTree = "<group>"; };
+		594C89C6239AAD6A0022B225 /* PairCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairCell.swift; sourceTree = "<group>"; };
+		594C89C8239BA09E0022B225 /* CancelOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelOrder.swift; sourceTree = "<group>"; };
+		594C89CD239CFDE20022B225 /* TextFieldFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldFactory.swift; sourceTree = "<group>"; };
+		5958DC35238DA03800B75625 /* WalletDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDao.swift; sourceTree = "<group>"; };
+		5958DC38238DBF5200B75625 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		5958DC3B238ED7C000B75625 /* ChartDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDao.swift; sourceTree = "<group>"; };
+		5958DC3E238ED7D500B75625 /* BaseDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDao.swift; sourceTree = "<group>"; };
+		5958DC41238EE1ED00B75625 /* PairDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairDao.swift; sourceTree = "<group>"; };
+		5958DC4D23903BCC00B75625 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		5958DC5B23903C8C00B75625 /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
+		5958DC5E23903C9C00B75625 /* NavigationMenuBaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationMenuBaseController.swift; sourceTree = "<group>"; };
+		5958DC6123903CA900B75625 /* TabNavigationMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationMenu.swift; sourceTree = "<group>"; };
+		5958DC64239053EA00B75625 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Order.swift; path = ../Order.swift; sourceTree = "<group>"; };
+		5958DC6723905E0E00B75625 /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
+		5958DC6E239287B700B75625 /* OrderDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDao.swift; sourceTree = "<group>"; };
+		5958DC732393D05700B75625 /* DaoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaoTests.swift; sourceTree = "<group>"; };
+		5958DCA123968C5800B75625 /* HistoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryInteractor.swift; sourceTree = "<group>"; };
+		5958DCA423968C6900B75625 /* HistoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPresenter.swift; sourceTree = "<group>"; };
+		5958DCA723968C8600B75625 /* HistoryWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryWorker.swift; sourceTree = "<group>"; };
+		5958DCAA23968CC700B75625 /* HistoryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRouter.swift; sourceTree = "<group>"; };
+		5958DCAD23968CE400B75625 /* HistoryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryModels.swift; sourceTree = "<group>"; };
+		5958DCC52396B7AE00B75625 /* SimpleOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleOrder.swift; sourceTree = "<group>"; };
+		5958DCC82396B95800B75625 /* SimpleOrderDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleOrderDao.swift; sourceTree = "<group>"; };
+		5958DCCC2396C74D00B75625 /* WalletPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletPresenter.swift; sourceTree = "<group>"; };
+		5958DCCD2396C74D00B75625 /* WalletWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletWorker.swift; sourceTree = "<group>"; };
+		5958DCCE2396C74D00B75625 /* WalletRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletRouter.swift; sourceTree = "<group>"; };
+		5958DCCF2396C74D00B75625 /* WalletModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletModels.swift; sourceTree = "<group>"; };
+		5958DCD02396C74D00B75625 /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
+		5958DCD12396C74D00B75625 /* WalletInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletInteractor.swift; sourceTree = "<group>"; };
 		59A374AF238A95CC00C873A5 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		59A374B3238A95FE00C873A5 /* PoloniexApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoloniexApiService.swift; sourceTree = "<group>"; };
 		59A374B6238A96A600C873A5 /* UtilsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsService.swift; sourceTree = "<group>"; };
 		59A374BA238A971A00C873A5 /* ApiCrypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCrypto.swift; sourceTree = "<group>"; };
-		59A374BE238A979100C873A5 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		59A374BE238A979100C873A5 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Currency.swift; path = ExchangeApp/service/Currency.swift; sourceTree = SOURCE_ROOT; };
 		59A374C0238A97B300C873A5 /* Chart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chart.swift; sourceTree = "<group>"; };
 		59E47B47238151D100EC7618 /* ExchangeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExchangeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59E47B4A238151D100EC7618 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		59E47B4C238151D100EC7618 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		59E47B52238151D100EC7618 /* ExchangeApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ExchangeApp.xcdatamodel; sourceTree = "<group>"; };
 		59E47B54238151D100EC7618 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		59E47B57238151D100EC7618 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		59E47B59238151D100EC7618 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59E47B5E238151D100EC7618 /* ExchangeAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExchangeAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		59E47B62238151D100EC7618 /* ExchangeAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeAppTests.swift; sourceTree = "<group>"; };
+		59E47B62238151D100EC7618 /* ApiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiTests.swift; sourceTree = "<group>"; };
 		59E47B64238151D100EC7618 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59E47B69238151D100EC7618 /* ExchangeAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExchangeAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		59E47B6D238151D100EC7618 /* ExchangeAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeAppUITests.swift; sourceTree = "<group>"; };
 		59E47B6F238151D100EC7618 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		59E47B7F2381549200EC7618 /* ExchangePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangePresenter.swift; sourceTree = "<group>"; };
-		59E47B802381549200EC7618 /* ExchangeWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeWorker.swift; sourceTree = "<group>"; };
-		59E47B812381549200EC7618 /* ExchangeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRouter.swift; sourceTree = "<group>"; };
-		59E47B822381549200EC7618 /* ExchangeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeModels.swift; sourceTree = "<group>"; };
-		59E47B832381549200EC7618 /* ExchangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewController.swift; sourceTree = "<group>"; };
-		59E47B842381549200EC7618 /* ExchangeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +188,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				594C89AA239811560022B225 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +209,125 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		594C89A023980BB50022B225 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				594C89A9239811560022B225 /* Charts.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		594C89B8239A87250022B225 /* pairs */ = {
+			isa = PBXGroup;
+			children = (
+				594C89BD239A87E50022B225 /* PairsViewController.swift */,
+				594C89BE239A87E50022B225 /* PairsInteractor.swift */,
+				594C89B9239A87E50022B225 /* PairsPresenter.swift */,
+				594C89BA239A87E50022B225 /* PairsWorker.swift */,
+				594C89BB239A87E50022B225 /* PairsRouter.swift */,
+				594C89BC239A87E50022B225 /* PairsModels.swift */,
+				594C89C6239AAD6A0022B225 /* PairCell.swift */,
+			);
+			name = pairs;
+			sourceTree = "<group>";
+		};
+		5958DC34238DA00200B75625 /* repository */ = {
+			isa = PBXGroup;
+			children = (
+				5958DC44238EE2D500B75625 /* impl */,
+				5958DC3E238ED7D500B75625 /* BaseDao.swift */,
+			);
+			name = repository;
+			sourceTree = "<group>";
+		};
+		5958DC44238EE2D500B75625 /* impl */ = {
+			isa = PBXGroup;
+			children = (
+				5958DC35238DA03800B75625 /* WalletDao.swift */,
+				5958DC3B238ED7C000B75625 /* ChartDao.swift */,
+				5958DC41238EE1ED00B75625 /* PairDao.swift */,
+				5958DC6E239287B700B75625 /* OrderDao.swift */,
+				5958DCC82396B95800B75625 /* SimpleOrderDao.swift */,
+			);
+			name = impl;
+			sourceTree = "<group>";
+		};
+		5958DC4C23903B8F00B75625 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				5958DC942396863900B75625 /* trade */,
+				594C89B8239A87250022B225 /* pairs */,
+				5958DC972396894D00B75625 /* profile */,
+				5958DC962396893E00B75625 /* history */,
+				5958DC952396892A00B75625 /* wallet */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
+		5958DC5A23903C7500B75625 /* navigation */ = {
+			isa = PBXGroup;
+			children = (
+				5958DC5B23903C8C00B75625 /* TabItem.swift */,
+				5958DC5E23903C9C00B75625 /* NavigationMenuBaseController.swift */,
+				5958DC6123903CA900B75625 /* TabNavigationMenu.swift */,
+			);
+			name = navigation;
+			sourceTree = "<group>";
+		};
+		5958DC942396863900B75625 /* trade */ = {
+			isa = PBXGroup;
+			children = (
+				594C899623978B150022B225 /* TradeViewController.swift */,
+				594C899723978B150022B225 /* TradeInteractor.swift */,
+				594C899223978B150022B225 /* TradePresenter.swift */,
+				594C899323978B150022B225 /* TradeWorker.swift */,
+				594C899423978B150022B225 /* TradeRouter.swift */,
+				594C899523978B150022B225 /* TradeModels.swift */,
+			);
+			name = trade;
+			sourceTree = "<group>";
+		};
+		5958DC952396892A00B75625 /* wallet */ = {
+			isa = PBXGroup;
+			children = (
+				5958DCD02396C74D00B75625 /* WalletViewController.swift */,
+				5958DCD12396C74D00B75625 /* WalletInteractor.swift */,
+				5958DCCC2396C74D00B75625 /* WalletPresenter.swift */,
+				5958DCCD2396C74D00B75625 /* WalletWorker.swift */,
+				5958DCCE2396C74D00B75625 /* WalletRouter.swift */,
+				5958DCCF2396C74D00B75625 /* WalletModels.swift */,
+				594C899E2397E0740022B225 /* WalletCell.swift */,
+			);
+			name = wallet;
+			sourceTree = "<group>";
+		};
+		5958DC962396893E00B75625 /* history */ = {
+			isa = PBXGroup;
+			children = (
+				5958DC4D23903BCC00B75625 /* HistoryViewController.swift */,
+				5958DCA123968C5800B75625 /* HistoryInteractor.swift */,
+				5958DCA423968C6900B75625 /* HistoryPresenter.swift */,
+				5958DCA723968C8600B75625 /* HistoryWorker.swift */,
+				5958DCAA23968CC700B75625 /* HistoryRouter.swift */,
+				5958DCAD23968CE400B75625 /* HistoryModels.swift */,
+				594C89B623995C820022B225 /* HistoryCell.swift */,
+			);
+			name = history;
+			sourceTree = "<group>";
+		};
+		5958DC972396894D00B75625 /* profile */ = {
+			isa = PBXGroup;
+			children = (
+				594C898A23978AD90022B225 /* ProfileViewController.swift */,
+				594C898B23978AD90022B225 /* ProfileInteractor.swift */,
+				594C898623978AD90022B225 /* ProfilePresenter.swift */,
+				594C898723978AD90022B225 /* ProfileWorker.swift */,
+				594C898823978AD90022B225 /* ProfileRouter.swift */,
+				594C898923978AD90022B225 /* ProfileModels.swift */,
+			);
+			name = profile;
+			sourceTree = "<group>";
+		};
 		59A374AD238A958900C873A5 /* service */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,18 +338,16 @@
 			path = service;
 			sourceTree = "<group>";
 		};
-		59A374AE238A959600C873A5 /* repository */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = repository;
-			sourceTree = "<group>";
-		};
 		59A374B9238A970D00C873A5 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				5958DC38238DBF5200B75625 /* CoreDataStack.swift */,
 				59A374BA238A971A00C873A5 /* ApiCrypto.swift */,
 				59A374B6238A96A600C873A5 /* UtilsService.swift */,
+				594C89AF2398F9810022B225 /* MockNetworkService.swift */,
+				594C89B2239939940022B225 /* NetworkChecker.swift */,
+				594C89B42399409F0022B225 /* WaitSpinner.swift */,
+				594C89CD239CFDE20022B225 /* TextFieldFactory.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -132,8 +355,11 @@
 		59A374C8238AA56A00C873A5 /* dto */ = {
 			isa = PBXGroup;
 			children = (
-				59A374BE238A979100C873A5 /* Currency.swift */,
 				59A374C0238A97B300C873A5 /* Chart.swift */,
+				5958DC64239053EA00B75625 /* Order.swift */,
+				59A374BE238A979100C873A5 /* Currency.swift */,
+				5958DCC52396B7AE00B75625 /* SimpleOrder.swift */,
+				594C89C8239BA09E0022B225 /* CancelOrder.swift */,
 			);
 			name = dto;
 			sourceTree = "<group>";
@@ -142,6 +368,7 @@
 			isa = PBXGroup;
 			children = (
 				59A374B3238A95FE00C873A5 /* PoloniexApiService.swift */,
+				5958DC6723905E0E00B75625 /* ApiError.swift */,
 			);
 			name = impl;
 			sourceTree = "<group>";
@@ -153,6 +380,7 @@
 				59E47B61238151D100EC7618 /* ExchangeAppTests */,
 				59E47B6C238151D100EC7618 /* ExchangeAppUITests */,
 				59E47B48238151D100EC7618 /* Products */,
+				594C89A023980BB50022B225 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -169,30 +397,26 @@
 		59E47B49238151D100EC7618 /* ExchangeApp */ = {
 			isa = PBXGroup;
 			children = (
+				5958DC5A23903C7500B75625 /* navigation */,
+				5958DC4C23903B8F00B75625 /* Scenes */,
+				5958DC34238DA00200B75625 /* repository */,
 				59A374B9238A970D00C873A5 /* utils */,
-				59A374AE238A959600C873A5 /* repository */,
 				59A374AD238A958900C873A5 /* service */,
-				59E47B7F2381549200EC7618 /* ExchangePresenter.swift */,
-				59E47B802381549200EC7618 /* ExchangeWorker.swift */,
-				59E47B812381549200EC7618 /* ExchangeRouter.swift */,
-				59E47B822381549200EC7618 /* ExchangeModels.swift */,
-				59E47B832381549200EC7618 /* ExchangeViewController.swift */,
-				59E47B842381549200EC7618 /* ExchangeInteractor.swift */,
 				59E47B4A238151D100EC7618 /* AppDelegate.swift */,
-				59E47B4C238151D100EC7618 /* ViewController.swift */,
 				59E47B54238151D100EC7618 /* Assets.xcassets */,
 				59E47B56238151D100EC7618 /* LaunchScreen.storyboard */,
 				59E47B59238151D100EC7618 /* Info.plist */,
-				59E47B51238151D100EC7618 /* ExchangeApp.xcdatamodeld */,
+				59E47B51238151D100EC7618 /* Model.xcdatamodeld */,
 			);
 			path = ExchangeApp;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		59E47B61238151D100EC7618 /* ExchangeAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				59E47B62238151D100EC7618 /* ExchangeAppTests.swift */,
+				59E47B62238151D100EC7618 /* ApiTests.swift */,
 				59E47B64238151D100EC7618 /* Info.plist */,
+				5958DC732393D05700B75625 /* DaoTests.swift */,
 			);
 			path = ExchangeAppTests;
 			sourceTree = "<group>";
@@ -216,6 +440,7 @@
 				59E47B43238151D100EC7618 /* Sources */,
 				59E47B44238151D100EC7618 /* Frameworks */,
 				59E47B45238151D100EC7618 /* Resources */,
+				594C89A323980C440022B225 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -286,7 +511,7 @@
 				};
 			};
 			buildConfigurationList = 59E47B42238151D100EC7618 /* Build configuration list for PBXProject "ExchangeApp" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -331,26 +556,91 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		594C89A323980C440022B225 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		59E47B43238151D100EC7618 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				59E47B53238151D100EC7618 /* ExchangeApp.xcdatamodeld in Sources */,
-				59E47B912381549200EC7618 /* ExchangeViewController.swift in Sources */,
-				59E47B8B2381549200EC7618 /* ExchangeRouter.swift in Sources */,
+				594C898E23978AD90022B225 /* ProfileRouter.swift in Sources */,
+				5958DCC62396B7AE00B75625 /* SimpleOrder.swift in Sources */,
+				594C89C9239BA09E0022B225 /* CancelOrder.swift in Sources */,
+				594C89C7239AAD6A0022B225 /* PairCell.swift in Sources */,
+				594C899C23978B150022B225 /* TradeViewController.swift in Sources */,
+				5958DC3C238ED7C000B75625 /* ChartDao.swift in Sources */,
+				594C89B52399409F0022B225 /* WaitSpinner.swift in Sources */,
+				594C89BF239A87E50022B225 /* PairsPresenter.swift in Sources */,
+				5958DC93239417B500B75625 /* Model.xcdatamodeld in Sources */,
+				594C89C3239A87E50022B225 /* PairsViewController.swift in Sources */,
+				5958DCA523968C6900B75625 /* HistoryPresenter.swift in Sources */,
+				5958DC5C23903C8C00B75625 /* TabItem.swift in Sources */,
 				59A374B7238A96A600C873A5 /* UtilsService.swift in Sources */,
-				59A374C2238A9FC800C873A5 /* PoloniexApiService.swift in Sources */,
-				59E47B942381549200EC7618 /* ExchangeInteractor.swift in Sources */,
+				5958DCC92396B95800B75625 /* SimpleOrderDao.swift in Sources */,
+				5958DC6823905E0E00B75625 /* ApiError.swift in Sources */,
+				594C899123978AD90022B225 /* ProfileInteractor.swift in Sources */,
+				594C89C0239A87E50022B225 /* PairsWorker.swift in Sources */,
+				5958DCD62396C74D00B75625 /* WalletViewController.swift in Sources */,
+				5958DCA823968C8600B75625 /* HistoryWorker.swift in Sources */,
+				594C89CE239CFDE20022B225 /* TextFieldFactory.swift in Sources */,
+				5958DC3F238ED7D500B75625 /* BaseDao.swift in Sources */,
+				594C89B3239939940022B225 /* NetworkChecker.swift in Sources */,
+				5958DCD42396C74D00B75625 /* WalletRouter.swift in Sources */,
+				594C898C23978AD90022B225 /* ProfilePresenter.swift in Sources */,
+				5958DC7E2393E28600B75625 /* PoloniexApiService.swift in Sources */,
 				59A374C1238A97B300C873A5 /* Chart.swift in Sources */,
-				59E47B852381549200EC7618 /* ExchangePresenter.swift in Sources */,
-				59E47B4D238151D100EC7618 /* ViewController.swift in Sources */,
+				5958DC5F23903C9C00B75625 /* NavigationMenuBaseController.swift in Sources */,
+				594C899923978B150022B225 /* TradeWorker.swift in Sources */,
+				594C899F2397E0740022B225 /* WalletCell.swift in Sources */,
+				5958DCD52396C74D00B75625 /* WalletModels.swift in Sources */,
+				5958DCAB23968CC700B75625 /* HistoryRouter.swift in Sources */,
+				5958DCD32396C74D00B75625 /* WalletWorker.swift in Sources */,
+				594C899023978AD90022B225 /* ProfileViewController.swift in Sources */,
+				5958DC6223903CA900B75625 /* TabNavigationMenu.swift in Sources */,
+				5958DCD22396C74D00B75625 /* WalletPresenter.swift in Sources */,
+				594C89C1239A87E50022B225 /* PairsRouter.swift in Sources */,
+				5958DC6F239287B700B75625 /* OrderDao.swift in Sources */,
 				59A374B0238A95CC00C873A5 /* ApiService.swift in Sources */,
-				59E47B882381549200EC7618 /* ExchangeWorker.swift in Sources */,
+				594C899A23978B150022B225 /* TradeRouter.swift in Sources */,
+				5958DC39238DBF5200B75625 /* CoreDataStack.swift in Sources */,
+				594C89B02398F9810022B225 /* MockNetworkService.swift in Sources */,
+				594C899823978B150022B225 /* TradePresenter.swift in Sources */,
 				59E47B4B238151D100EC7618 /* AppDelegate.swift in Sources */,
+				5958DCA223968C5800B75625 /* HistoryInteractor.swift in Sources */,
+				5958DC4E23903BCC00B75625 /* HistoryViewController.swift in Sources */,
+				5958DCD72396C74D00B75625 /* WalletInteractor.swift in Sources */,
+				5958DC42238EE1ED00B75625 /* PairDao.swift in Sources */,
+				594C898D23978AD90022B225 /* ProfileWorker.swift in Sources */,
 				59A374BF238A979100C873A5 /* Currency.swift in Sources */,
+				594C89C2239A87E50022B225 /* PairsModels.swift in Sources */,
 				59A374C3238A9FFA00C873A5 /* ApiCrypto.swift in Sources */,
-				59E47B8E2381549200EC7618 /* ExchangeModels.swift in Sources */,
+				5958DC792393E0FF00B75625 /* WalletDao.swift in Sources */,
+				594C89B723995C820022B225 /* HistoryCell.swift in Sources */,
+				594C89C4239A87E50022B225 /* PairsInteractor.swift in Sources */,
+				594C898F23978AD90022B225 /* ProfileModels.swift in Sources */,
+				5958DC65239053EA00B75625 /* Order.swift in Sources */,
+				594C899B23978B150022B225 /* TradeModels.swift in Sources */,
+				594C899D23978B150022B225 /* TradeInteractor.swift in Sources */,
+				5958DCAE23968CE400B75625 /* HistoryModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,12 +648,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				59A374B1238A95CC00C873A5 /* ApiService.swift in Sources */,
-				59A374C6238AA16600C873A5 /* Currency.swift in Sources */,
+				5958DC92239416D500B75625 /* Model.xcdatamodeld in Sources */,
 				59A374C7238AA17000C873A5 /* Chart.swift in Sources */,
-				59A374B5238A95FE00C873A5 /* PoloniexApiService.swift in Sources */,
-				59E47B63238151D100EC7618 /* ExchangeAppTests.swift in Sources */,
-				59A374B8238A96A600C873A5 /* UtilsService.swift in Sources */,
+				5958DCC72396B8D900B75625 /* SimpleOrder.swift in Sources */,
+				5958DC802393F24A00B75625 /* PoloniexApiService.swift in Sources */,
+				5958DC6D2391899100B75625 /* Currency.swift in Sources */,
+				594C89B12398F9810022B225 /* MockNetworkService.swift in Sources */,
+				594C89CA239BA1CB0022B225 /* CancelOrder.swift in Sources */,
+				5958DC8A2393F3E000B75625 /* ApiService.swift in Sources */,
+				5958DC862393F28A00B75625 /* BaseDao.swift in Sources */,
+				5958DCCA2396BC1300B75625 /* SimpleOrderDao.swift in Sources */,
+				5958DC91239416D100B75625 /* WalletDao.swift in Sources */,
+				5958DC7123928B5C00B75625 /* Order.swift in Sources */,
+				59E47B63238151D100EC7618 /* ApiTests.swift in Sources */,
+				5958DC872393F2DF00B75625 /* UtilsService.swift in Sources */,
+				5958DC812393F25800B75625 /* PairDao.swift in Sources */,
+				5958DC892393F3DC00B75625 /* ApiError.swift in Sources */,
+				5958DC8B2393F42900B75625 /* CoreDataStack.swift in Sources */,
+				5958DC7D2393E23D00B75625 /* DaoTests.swift in Sources */,
+				5958DC822393F25B00B75625 /* ChartDao.swift in Sources */,
+				5958DC842393F25F00B75625 /* OrderDao.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,7 +828,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CAQJKHMVUJ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ExchangeApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -532,7 +841,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.norikoff.ExchangeApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -542,7 +851,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CAQJKHMVUJ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ExchangeApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -550,7 +864,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.norikoff.ExchangeApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -678,13 +992,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		59E47B51238151D100EC7618 /* ExchangeApp.xcdatamodeld */ = {
+		59E47B51238151D100EC7618 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				59E47B52238151D100EC7618 /* ExchangeApp.xcdatamodel */,
 			);
 			currentVersion = 59E47B52238151D100EC7618 /* ExchangeApp.xcdatamodel */;
-			path = ExchangeApp.xcdatamodeld;
+			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

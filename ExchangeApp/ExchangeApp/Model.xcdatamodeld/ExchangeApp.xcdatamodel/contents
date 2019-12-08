@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14492.1" systemVersion="19B88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ChartModel" representedClassName="ChartModel" syncable="YES" codeGenerationType="class">
+        <attribute name="close" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="high" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="low" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="open" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="quoteVolume" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="volume" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="weightedAverage" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="OrderData" representedClassName="OrderData" syncable="YES" codeGenerationType="class">
+        <attribute name="clientOrderId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="currencyPair" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fee" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="orderNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="tradeResults" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TradeResult" inverseName="order" inverseEntity="TradeResult" syncable="YES"/>
+    </entity>
+    <entity name="Pair" representedClassName="Pair" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isFrozen" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="percentChange" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="SimpleOrderModel" representedClassName="SimpleOrderModel" syncable="YES" codeGenerationType="class">
+        <attribute name="amount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="globalTradeID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="orderNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="total" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tradeID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="TradeResult" representedClassName="TradeResult" syncable="YES" codeGenerationType="class">
+        <attribute name="amount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="total" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tradeID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="order" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OrderData" inverseName="tradeResults" inverseEntity="OrderData" syncable="YES"/>
+    </entity>
+    <entity name="WalletCurrency" representedClassName="WalletCurrency" syncable="YES" codeGenerationType="class">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="available" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="btcValue" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="onOrders" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="ChartModel" positionX="-230.49609375" positionY="-215.26171875" width="128" height="163"/>
+        <element name="OrderData" positionX="126.87109375" positionY="35.0859375" width="128" height="120"/>
+        <element name="Pair" positionX="48.72265625" positionY="-189.41796875" width="128" height="103"/>
+        <element name="SimpleOrderModel" positionX="18" positionY="-18" width="128" height="165"/>
+        <element name="TradeResult" positionX="349.078125" positionY="90" width="128" height="148"/>
+        <element name="WalletCurrency" positionX="-174.83984375" positionY="28.34765625" width="128" height="118"/>
+    </elements>
+</model>
