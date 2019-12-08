@@ -129,6 +129,10 @@ class TradeViewController: UIViewController, TradeDisplayLogic, ChartViewDelegat
         sellAmount = TextFieldFactory.createTextField(title: "Amount")
         buyPrice = TextFieldFactory.createTextField(title: "Price")
         sellPrice = TextFieldFactory.createTextField(title: "Price")
+         buyAmount.delegate = self
+         sellAmount.delegate = self
+         buyPrice.delegate = self
+         sellPrice.delegate = self
         self.view.addSubview(buyButton)
         self.view.addSubview(sellButton)
         self.view.addSubview(candleChartView)
@@ -277,10 +281,19 @@ class TradeViewController: UIViewController, TradeDisplayLogic, ChartViewDelegat
         }
     }
     
+    
+    
 }
 
 
-extension TradeViewController {
+extension TradeViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard CharacterSet(charactersIn: "0123456789.").isSuperset(of: CharacterSet(charactersIn: string)) else {
+            return false
+        }
+        return true
+    }
     
     func createTimer() {
         // 1
