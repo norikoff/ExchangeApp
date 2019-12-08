@@ -33,6 +33,9 @@
 		594C89C3239A87E50022B225 /* PairsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C89BD239A87E50022B225 /* PairsViewController.swift */; };
 		594C89C4239A87E50022B225 /* PairsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C89BE239A87E50022B225 /* PairsInteractor.swift */; };
 		594C89C7239AAD6A0022B225 /* PairCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C89C6239AAD6A0022B225 /* PairCell.swift */; };
+		594C89C9239BA09E0022B225 /* CancelOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C89C8239BA09E0022B225 /* CancelOrder.swift */; };
+		594C89CA239BA1CB0022B225 /* CancelOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C89C8239BA09E0022B225 /* CancelOrder.swift */; };
+		594C89CE239CFDE20022B225 /* TextFieldFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C89CD239CFDE20022B225 /* TextFieldFactory.swift */; };
 		5958DC39238DBF5200B75625 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC38238DBF5200B75625 /* CoreDataStack.swift */; };
 		5958DC3C238ED7C000B75625 /* ChartDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC3B238ED7C000B75625 /* ChartDao.swift */; };
 		5958DC3F238ED7D500B75625 /* BaseDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5958DC3E238ED7D500B75625 /* BaseDao.swift */; };
@@ -132,6 +135,8 @@
 		594C89BD239A87E50022B225 /* PairsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairsViewController.swift; sourceTree = "<group>"; };
 		594C89BE239A87E50022B225 /* PairsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairsInteractor.swift; sourceTree = "<group>"; };
 		594C89C6239AAD6A0022B225 /* PairCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairCell.swift; sourceTree = "<group>"; };
+		594C89C8239BA09E0022B225 /* CancelOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelOrder.swift; sourceTree = "<group>"; };
+		594C89CD239CFDE20022B225 /* TextFieldFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldFactory.swift; sourceTree = "<group>"; };
 		5958DC35238DA03800B75625 /* WalletDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDao.swift; sourceTree = "<group>"; };
 		5958DC38238DBF5200B75625 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		5958DC3B238ED7C000B75625 /* ChartDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDao.swift; sourceTree = "<group>"; };
@@ -250,11 +255,11 @@
 		5958DC4C23903B8F00B75625 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				5958DC942396863900B75625 /* trade */,
 				594C89B8239A87250022B225 /* pairs */,
 				5958DC972396894D00B75625 /* profile */,
 				5958DC962396893E00B75625 /* history */,
 				5958DC952396892A00B75625 /* wallet */,
-				5958DC942396863900B75625 /* trade */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -273,11 +278,11 @@
 			isa = PBXGroup;
 			children = (
 				594C899623978B150022B225 /* TradeViewController.swift */,
+				594C899723978B150022B225 /* TradeInteractor.swift */,
 				594C899223978B150022B225 /* TradePresenter.swift */,
 				594C899323978B150022B225 /* TradeWorker.swift */,
 				594C899423978B150022B225 /* TradeRouter.swift */,
 				594C899523978B150022B225 /* TradeModels.swift */,
-				594C899723978B150022B225 /* TradeInteractor.swift */,
 			);
 			name = trade;
 			sourceTree = "<group>";
@@ -342,6 +347,7 @@
 				594C89AF2398F9810022B225 /* MockNetworkService.swift */,
 				594C89B2239939940022B225 /* NetworkChecker.swift */,
 				594C89B42399409F0022B225 /* WaitSpinner.swift */,
+				594C89CD239CFDE20022B225 /* TextFieldFactory.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -353,6 +359,7 @@
 				5958DC64239053EA00B75625 /* Order.swift */,
 				59A374BE238A979100C873A5 /* Currency.swift */,
 				5958DCC52396B7AE00B75625 /* SimpleOrder.swift */,
+				594C89C8239BA09E0022B225 /* CancelOrder.swift */,
 			);
 			name = dto;
 			sourceTree = "<group>";
@@ -577,6 +584,7 @@
 			files = (
 				594C898E23978AD90022B225 /* ProfileRouter.swift in Sources */,
 				5958DCC62396B7AE00B75625 /* SimpleOrder.swift in Sources */,
+				594C89C9239BA09E0022B225 /* CancelOrder.swift in Sources */,
 				594C89C7239AAD6A0022B225 /* PairCell.swift in Sources */,
 				594C899C23978B150022B225 /* TradeViewController.swift in Sources */,
 				5958DC3C238ED7C000B75625 /* ChartDao.swift in Sources */,
@@ -593,6 +601,7 @@
 				594C89C0239A87E50022B225 /* PairsWorker.swift in Sources */,
 				5958DCD62396C74D00B75625 /* WalletViewController.swift in Sources */,
 				5958DCA823968C8600B75625 /* HistoryWorker.swift in Sources */,
+				594C89CE239CFDE20022B225 /* TextFieldFactory.swift in Sources */,
 				5958DC3F238ED7D500B75625 /* BaseDao.swift in Sources */,
 				594C89B3239939940022B225 /* NetworkChecker.swift in Sources */,
 				5958DCD42396C74D00B75625 /* WalletRouter.swift in Sources */,
@@ -645,6 +654,7 @@
 				5958DC802393F24A00B75625 /* PoloniexApiService.swift in Sources */,
 				5958DC6D2391899100B75625 /* Currency.swift in Sources */,
 				594C89B12398F9810022B225 /* MockNetworkService.swift in Sources */,
+				594C89CA239BA1CB0022B225 /* CancelOrder.swift in Sources */,
 				5958DC8A2393F3E000B75625 /* ApiService.swift in Sources */,
 				5958DC862393F28A00B75625 /* BaseDao.swift in Sources */,
 				5958DCCA2396BC1300B75625 /* SimpleOrderDao.swift in Sources */,

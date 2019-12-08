@@ -14,7 +14,10 @@ import UIKit
 
 protocol TradePresentationLogic
 {
-  func presentSomething(response: Trade.Something.Response)
+    func presentChart(response: Trade.Something.Response)
+    func presentUpdateChart(response: Trade.Something.Response)
+    func presentError(response: Trade.Something.Response)
+    func presentSuccess(response: Trade.Something.Response)
 }
 
 class TradePresenter: TradePresentationLogic
@@ -22,10 +25,25 @@ class TradePresenter: TradePresentationLogic
   weak var viewController: TradeDisplayLogic?
   
   // MARK: Do something
-  
-  func presentSomething(response: Trade.Something.Response)
-  {
-    let viewModel = Trade.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+    
+    func presentChart(response: Trade.Something.Response){
+        let viewModel = Trade.Something.ViewModel(chart: response.chart, errorMessage: response.errorMessage)
+        viewController?.displayChart(viewModel: viewModel)
+    }
+    
+    func presentUpdateChart(response: Trade.Something.Response){
+        let viewModel = Trade.Something.ViewModel(chart: response.chart, errorMessage: response.errorMessage)
+        viewController?.displayUpdatedChart(viewModel: viewModel)
+    }
+    
+    func presentError(response: Trade.Something.Response) {
+        let viewModel = Trade.Something.ViewModel(chart: nil, errorMessage: response.errorMessage)
+        viewController?.displayAllert(viewModel: viewModel)
+    }
+    
+    func presentSuccess(response: Trade.Something.Response){
+        let viewModel = Trade.Something.ViewModel(chart: nil, errorMessage: response.errorMessage)
+        viewController?.displaySuccess(viewModel: viewModel)
+    }
+
 }

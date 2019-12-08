@@ -77,7 +77,7 @@ public class PoloniexApiService: ApiService {
         let currencyPair = URLQueryItem(name: "currencyPair", value: pairName)
         let start = URLQueryItem(name: "start", value: start)
         let end = URLQueryItem(name: "end", value: end)
-        let period = URLQueryItem(name: "period", value: "300")
+        let period = URLQueryItem(name: "period", value: period)
         
         components.queryItems = [command, currencyPair, start, end, period]
         utilsService.getRequest(url: components.url!) { result in
@@ -272,6 +272,45 @@ public class PoloniexApiService: ApiService {
                 }
             }
         }else{
-            completion(.failure(ErrorMessage(error: "No api keys")))        }
+            completion(.failure(ErrorMessage(error: "No api keys")))
+            
+        }
+    }
+    
+    
+    public func cancelOrder(orderNumber: String, completion: @escaping (Result<Bool,ErrorMessage>) -> Void){
+        var components = URLComponents()
+        components.scheme = baseScheme
+        components.host = baseHost
+        components.path = "/tradingApi"
+        
+        let timeNowInt = Int((NSDate().timeIntervalSince1970)*500000)
+        let timeNow = String(timeNowInt)
+        if key != "" && secret != "" {
+            let sign = "command=cancelOrder&orderNumber=\(orderNumber)&nonce=\(timeNow)"
+            let hmacSign = sign.hmac(algorithm: .SHA512, key: secret)
+            let headers = ["key" : key, "sign" : hmacSign]
+            utilsService.postRequest(url: components.url!, header: headers, body: sign) { result in
+                switch result {
+                case .success(let data):
+                    do {
+                        let order = try JSONDecoder().decode(CancelOrder.self, from: data)
+                        completion(.success((order.success == 1) ? true : false))
+                    } catch {
+                        do {
+                            let error = try JSONDecoder().decode(ErrorMessage.self, from: data)
+                            completion(.failure(error))
+                        } catch {
+                            completion(.failure(ErrorMessage(error: "Decode Error")))                        }
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    completion(.failure(ErrorMessage(error: error.localizedDescription)))
+                }
+            }
+        }else{
+            completion(.failure(ErrorMessage(error: "No api keys")))
+            
+        }
     }
 }

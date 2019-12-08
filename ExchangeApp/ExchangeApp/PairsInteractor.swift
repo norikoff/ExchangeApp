@@ -14,7 +14,8 @@ import UIKit
 
 protocol PairsBusinessLogic
 {
-  func doSomething(request: Pairs.Something.Request)
+//  func doSomething(request: Pairs.Something.Request)
+    func getPairs()
 }
 
 protocol PairsDataStore
@@ -26,16 +27,52 @@ class PairsInteractor: PairsBusinessLogic, PairsDataStore
 {
   var presenter: PairsPresentationLogic?
   var worker: PairsWorker?
-  //var name: String = ""
+    let utils: NetworkService?
+    let service: ApiService?
+    let dataBase = PairDao()
+    
+    init() {
+        utils = UtilsService()
+        service = PoloniexApiService(utilService: utils!)
+    }
   
   // MARK: Do something
   
-  func doSomething(request: Pairs.Something.Request)
-  {
-    worker = PairsWorker()
-    worker?.doSomeWork()
-    
-    let response = Pairs.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
+    func getPairs() {
+        if Reachability.isConnectedToNetwork(){
+            service!.getPairs { result in
+                switch result {
+                case .success(let data):
+                    self.dataBase.clear(){_ in}
+                    self.dataBase.saveAll(model: data){_ in}
+                    let response = Pairs.Something.Response.init(pairs: data, errorMessage: nil)
+                    self.presenter?.presentPairs(response: response)
+                    print("")
+                case .failure(let error):
+                    let response = Pairs.Something.Response(pairs: nil, errorMessage: error.error)
+                    self.presenter?.presentError(response: response)
+                }
+            }
+        }else{
+            dataBase.getAll(){
+                result in
+                switch result {
+                case .success(let data):
+                    if let unData = data, unData.count != 0 {
+                        let response = Pairs.Something.Response.init(pairs: unData, errorMessage: nil)
+                        self.presenter?.presentPairs(response: response)
+                    }else{
+                        let response = Pairs.Something.Response(pairs: nil, errorMessage: "Empty pairs")
+                        self.presenter?.presentError(response: response)
+                    }
+                case .failure(let error):
+                    print("")
+                    let response = Pairs.Something.Response(pairs: nil, errorMessage: error.error)
+                    self.presenter?.presentError(response: response)
+                }
+                
+            }
+        }
+    }
+  
 }

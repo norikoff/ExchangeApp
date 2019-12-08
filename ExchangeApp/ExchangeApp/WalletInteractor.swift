@@ -26,7 +26,6 @@ class WalletInteractor: WalletBusinessLogic, WalletDataStore
 {
     
   var presenter: WalletPresentationLogic?
-  var worker: WalletWorker?
     let utils: NetworkService?
     let service: ApiService?
     let dataBase = WalletDao()

@@ -15,6 +15,11 @@ class PairCell: UITableViewCell {
         didSet {
             pairLabel.text = pair?.pairName
             priceLabel.text = (pair?.content.percentChange)!+"%"
+            if (pair?.content.percentChange.starts(with: "-"))!{
+                priceLabel.textColor = .red
+            }else{
+                priceLabel.textColor = .green
+            }
         }
     }
     
@@ -29,7 +34,7 @@ class PairCell: UITableViewCell {
         return lbl
     }()
     
-    private let amountLabel : UILabel = {
+    private let lastLabel : UILabel = {
         let lbl = UILabel()
         lbl.font = UIFont.systemFont(ofSize: 16)
         lbl.textColor = .white
@@ -51,14 +56,14 @@ class PairCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview(pairLabel)
-        addSubview(amountLabel)
+        addSubview(lastLabel)
         addSubview(priceLabel)
         NSLayoutConstraint.activate([
             pairLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
             pairLabel.topAnchor.constraint(equalTo: topAnchor),
             
             priceLabel.topAnchor.constraint(equalTo: topAnchor),
-            priceLabel.leftAnchor.constraint(equalTo: amountLabel.rightAnchor),
+            priceLabel.leftAnchor.constraint(equalTo: lastLabel.rightAnchor),
             priceLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
             
             ])

@@ -14,7 +14,6 @@ import UIKit
 
 protocol HistoryBusinessLogic
 {
-    func doSomething(request: History.Something.Request)
     func getListOfOrders()
 }
 
@@ -27,30 +26,43 @@ class HistoryInteractor: HistoryBusinessLogic, HistoryDataStore
 {
     var presenter: HistoryPresentationLogic?
     var worker: HistoryWorker?
-    //var name: String = ""
+    let dataBase = SimpleOrderDao()
     
     // MARK: Do something
-    
-    func doSomething(request: History.Something.Request)
-    {
-        //    worker = HistoryWorker()
-        //    worker?.doSomeWork()
-        
-        //    let response = History.Something.Response()
-        //    presenter?.presentSomething(response: response)
-    }
     
     func getListOfOrders() {
         let utils = UtilsService()
         let worker = PoloniexApiService(utilService: utils)
+        if Reachability.isConnectedToNetwork(){
         worker.getOrders { result in
             switch result {
             case .success(let data):
                 let response = History.Something.Response.init(orders: data, errorMessage: nil)
+                self.dataBase.clear(){_ in}
+                self.dataBase.saveAll(model: data){_ in}
                 self.presenter?.presentOrders(response: response)
             case .failure(let error):
                 let response = History.Something.Response.init(orders: nil, errorMessage: error.error)
                 self.presenter?.presentError(response: response)
+            }
+        }
+        }else{
+            dataBase.getAll(){
+                result in
+                switch result {
+                case .success(let data):
+                    if let unData = data, unData.count != 0 {
+                        let response = History.Something.Response.init(orders: unData, errorMessage: nil)
+                        self.presenter?.presentOrders(response: response)
+                    }else{
+                        let response = History.Something.Response(orders: nil, errorMessage: "Empty wallet")
+                        self.presenter?.presentError(response: response)
+                    }
+                case .failure(let error):
+                    let response = History.Something.Response(orders: nil, errorMessage: error.error)
+                    self.presenter?.presentError(response: response)
+                }
+                
             }
         }
     }

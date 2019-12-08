@@ -23,9 +23,13 @@ enum Trade
     }
     struct Response
     {
+        let chart: [Chart]?
+        let errorMessage: String?
     }
     struct ViewModel
     {
+        let chart: [Chart]?
+        let errorMessage: String?
     }
   }
 }

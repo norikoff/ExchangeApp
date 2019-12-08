@@ -14,7 +14,6 @@ import UIKit
 
 protocol HistoryPresentationLogic
 {
-    func presentSomething(response: History.Something.Response)
     func presentOrders(response: History.Something.Response)
     func presentError(response: History.Something.Response)
 }
@@ -27,11 +26,6 @@ class HistoryPresenter: HistoryPresentationLogic
     
     // MARK: Do something
     
-    func presentSomething(response: History.Something.Response)
-    {
-//        let viewModel = History.Something.ViewModel()
-//        viewController?.displaySomething(viewModel: viewModel)
-    }
     
     func presentOrders(response: History.Something.Response) {
         let viewModel = History.Something.ViewModel(orders: response.orders, errorMessage: nil)

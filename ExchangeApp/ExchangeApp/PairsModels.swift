@@ -23,9 +23,13 @@ enum Pairs
     }
     struct Response
     {
+        let pairs: [EntryList.Pair]?
+        let errorMessage: String?
     }
     struct ViewModel
     {
+        let pairs: [EntryList.Pair]?
+        let errorMessage: String?
     }
   }
 }

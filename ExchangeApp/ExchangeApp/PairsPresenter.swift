@@ -14,18 +14,25 @@ import UIKit
 
 protocol PairsPresentationLogic
 {
-  func presentSomething(response: Pairs.Something.Response)
+//  func presentSomething(response: Pairs.Something.Response)
+    func presentPairs(response: Pairs.Something.Response)
+    func presentError(response: Pairs.Something.Response)
 }
 
 class PairsPresenter: PairsPresentationLogic
 {
+    
   weak var viewController: PairsDisplayLogic?
   
   // MARK: Do something
   
-  func presentSomething(response: Pairs.Something.Response)
-  {
-    let viewModel = Pairs.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+    func presentPairs(response: Pairs.Something.Response) {
+        let viewModel = Pairs.Something.ViewModel(pairs: response.pairs, errorMessage: nil)
+        viewController?.displayPairs(viewModel: viewModel)
+    }
+    
+    func presentError(response: Pairs.Something.Response) {
+        let viewModel = Pairs.Something.ViewModel(pairs: nil, errorMessage: response.errorMessage)
+        viewController?.displayAllert(viewModel: viewModel)
+    }
 }

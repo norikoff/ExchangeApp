@@ -15,6 +15,7 @@ import UIKit
 @objc protocol PairsRoutingLogic
 {
   //func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToTrade(pairName: String)
 }
 
 protocol PairsDataPassing
@@ -29,6 +30,15 @@ class PairsRouter: NSObject, PairsRoutingLogic, PairsDataPassing
   
   // MARK: Routing
   
+    
+    func routeToTrade(pairName: String){
+        DispatchQueue.main.async {
+            let tradeVC = TradeViewController()
+            tradeVC.title = pairName
+            self.viewController?.navigationController?.pushViewController(tradeVC, animated: true)
+        }
+    }
+
   //func routeToSomewhere(segue: UIStoryboardSegue?)
   //{
   //  if let segue = segue {
