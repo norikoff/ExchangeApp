@@ -23,55 +23,10 @@ protocol ProfileDisplayLogic: class
 class ProfileViewController: UIViewController, ProfileDisplayLogic
 {
     var interactor: ProfileBusinessLogic?
-    var router: (NSObjectProtocol & ProfileRoutingLogic & ProfileDataPassing)?
     
-    let apiKey: UITextField = {
-        let sampleTextField =  UITextField(frame: CGRect.zero)
-        sampleTextField.backgroundColor = .black
-        sampleTextField.textColor = .white
-        sampleTextField.textAlignment = .center
-        sampleTextField.attributedPlaceholder =
-            NSAttributedString(string: "Enter api key", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        sampleTextField.layer.borderWidth = 1.0
-        sampleTextField.layer.borderColor = UIColor.orange.cgColor
-        sampleTextField.layer.cornerRadius = 20
-        sampleTextField.font = UIFont.systemFont(ofSize: 16)
-        sampleTextField.borderStyle = UITextField.BorderStyle.roundedRect
-        sampleTextField.autocorrectionType = UITextAutocorrectionType.no
-        sampleTextField.keyboardType = UIKeyboardType.default
-        sampleTextField.returnKeyType = UIReturnKeyType.done
-        sampleTextField.isSecureTextEntry = true
-        sampleTextField.clearButtonMode = UITextField.ViewMode.whileEditing
-        sampleTextField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
-        sampleTextField.translatesAutoresizingMaskIntoConstraints = false
-        sampleTextField.clipsToBounds = true
-        sampleTextField.sizeToFit()
-        return sampleTextField
-    }()
+    var apiKey: UITextField!
     
-    let secretKey: UITextField = {
-        let sampleTextField =  UITextField(frame: CGRect.zero)
-        sampleTextField.backgroundColor = .black
-        sampleTextField.textColor = .white
-        sampleTextField.textAlignment = .center
-        sampleTextField.attributedPlaceholder =
-            NSAttributedString(string: "Enter secret key", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        sampleTextField.layer.borderWidth = 1.0
-        sampleTextField.layer.borderColor = UIColor.orange.cgColor
-        sampleTextField.layer.cornerRadius = 20
-        sampleTextField.font = UIFont.systemFont(ofSize: 16)
-        sampleTextField.borderStyle = UITextField.BorderStyle.roundedRect
-        sampleTextField.autocorrectionType = UITextAutocorrectionType.no
-        sampleTextField.keyboardType = UIKeyboardType.default
-        sampleTextField.returnKeyType = UIReturnKeyType.done
-        sampleTextField.isSecureTextEntry = true
-        sampleTextField.clearButtonMode = UITextField.ViewMode.whileEditing
-        sampleTextField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
-        sampleTextField.translatesAutoresizingMaskIntoConstraints = false
-        sampleTextField.clipsToBounds = true
-        sampleTextField.sizeToFit()
-        return sampleTextField
-    }()
+    var secretKey: UITextField!
     
     let acceptButton: UIButton = {
         let button = UIButton(frame: CGRect.zero)
@@ -106,13 +61,9 @@ class ProfileViewController: UIViewController, ProfileDisplayLogic
         let viewController = self
         let interactor = ProfileInteractor()
         let presenter = ProfilePresenter()
-        let router = ProfileRouter()
         viewController.interactor = interactor
-        viewController.router = router
         interactor.presenter = presenter
         presenter.viewController = viewController
-        router.viewController = viewController
-        router.dataStore = interactor
     }
     
     // MARK: View lifecycle
@@ -122,6 +73,11 @@ class ProfileViewController: UIViewController, ProfileDisplayLogic
         super.viewDidLoad()
         self.title = "Profile"
         self.view.backgroundColor = UIColor.black
+        secretKey = TextFieldFactory.createTextField(title: "Enter secret key")
+        apiKey = TextFieldFactory.createTextField(title: "Enter api key")
+        secretKey.isSecureTextEntry = true
+        apiKey.isSecureTextEntry = true
+        
         let label = UILabel(frame: CGRect.zero)
         label.text = "Contacts View Controller"
         label.font = UIFont.systemFont(ofSize: 16)
@@ -129,11 +85,10 @@ class ProfileViewController: UIViewController, ProfileDisplayLogic
         label.clipsToBounds = true
         label.sizeToFit()
         label.textColor = .white
-        apiKey.delegate = self
-        secretKey.delegate = self
         view.addSubview(apiKey)
         view.addSubview(secretKey)
         view.addSubview(acceptButton)
+        
         acceptButton.addTarget(self, action: #selector(acceptKeys), for: .touchUpInside)
         NSLayoutConstraint.activate([
             apiKey.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
@@ -213,12 +168,4 @@ class ProfileViewController: UIViewController, ProfileDisplayLogic
         alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
-}
-
-
-
-
-
-extension ProfileViewController: UITextFieldDelegate{
-    
 }

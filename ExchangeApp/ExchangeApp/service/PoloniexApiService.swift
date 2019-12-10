@@ -171,7 +171,7 @@ public class PoloniexApiService: ApiService {
             completion(.failure(ErrorMessage(error: "No api keys")))        }
     }
     
-    public func getOrders(completion: @escaping (Result<[SimpleOrder], ErrorMessage>) -> Void) {
+    public func getOrders(completion: @escaping (Result<[EntryList.SimpleOrder.Content], ErrorMessage>) -> Void) {
         var components = URLComponents()
         components.scheme = baseScheme
         components.host = baseHost
@@ -180,15 +180,15 @@ public class PoloniexApiService: ApiService {
         let timeNowInt = Int((NSDate().timeIntervalSince1970)*500000)
         let timeNow = String(timeNowInt)
         if key != "" && secret != "" {
-            let sign = "command=returnTradeHistory&currencyPair=all&nonce=\(timeNow)"
+            let sign = "command=returnOpenOrders&currencyPair=all&nonce=\(timeNow)"
             let hmacSign = sign.hmac(algorithm: .SHA512, key: secret)
             let headers = ["key" : key, "sign" : hmacSign]
             utilsService.postRequest(url: components.url!, header: headers, body: sign) { result in
                 switch result {
                 case .success(let data):
                     do {
-                        let entryList = try JSONDecoder().decode([SimpleOrder].self, from: data)
-                        completion(.success(entryList))
+                        let entryList = try JSONDecoder().decode(EntryList.self, from: data)
+                        completion(.success(entryList.orders.flatMap({ $0.content })))
                     } catch {
                         do {
                             let error = try JSONDecoder().decode(ErrorMessage.self, from: data)

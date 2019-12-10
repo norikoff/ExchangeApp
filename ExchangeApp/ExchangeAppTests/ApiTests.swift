@@ -13,14 +13,6 @@ class ExchangeAppTests: XCTestCase {
     
     var poloniexService: ApiService?
     let utilsService = MockNetworkService()
-
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
     
     func testPairsRequest() {
         utilsService.data = """
@@ -158,32 +150,25 @@ class ExchangeAppTests: XCTestCase {
     func testSimpleOrderRequest() {
         
         utilsService.data = """
-        [ {"globalTradeID": 394700861,
-        "tradeID": 45210354,
-        "date": "2018-10-23 18:01:58",
+        {"BTC_ARDR":[{"orderNumber": "514514894224",
         "type": "buy",
-        "rate": "0.03117266",
-        "amount": "0.00000652",
-        "total": "0.00000020",
-        "orderNumber": "104768235093" },
-        {"globalTradeID": 394700815,
-        "tradeID": 45210353,
-        "date": "2018-10-23 18:01:08",
-        "type": "buy",
-        "rate": "0.03116000",
-        "amount": "5.93292717",
-        "total": "0.18487001",
-        "orderNumber": "104768235092" }]
+        "rate": "0.00001000",
+        "startingAmount": "100.00000000",
+        "amount": "100.00000000",
+        "total": "0.00100000",
+        "date": "2018-10-23 17:38:53",
+        "margin": 0 }]
+        }
         """
         poloniexService = PoloniexApiService(utilService: utilsService)
         
         let group = DispatchGroup()
         group.enter()
-        var wallet:[SimpleOrder] = []
+        var orders: [EntryList.SimpleOrder.Content] = []
         poloniexService!.getOrders { result in
             switch result {
             case .success(let cur):
-                wallet = cur
+                orders = cur
                 group.leave()
             case .failure:
                 print("FAILED")
@@ -191,7 +176,7 @@ class ExchangeAppTests: XCTestCase {
             }
         }
         group.wait()
-        XCTAssert(wallet.count>0)
+        XCTAssert((orders.filter{ $0.orderNumber.elementsEqual("514514894224") }.first != nil))
     }
     
     func testBuyRequest() {
@@ -259,12 +244,5 @@ class ExchangeAppTests: XCTestCase {
         group.wait()
         XCTAssert(orderData?.orderNumber == "514845991795")
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            
-        }
-    }
-    
+
 }

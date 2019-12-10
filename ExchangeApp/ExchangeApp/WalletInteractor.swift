@@ -19,7 +19,6 @@ protocol WalletBusinessLogic
 
 protocol WalletDataStore
 {
-  //var name: String { get set }
 }
 
 class WalletInteractor: WalletBusinessLogic, WalletDataStore
@@ -29,14 +28,13 @@ class WalletInteractor: WalletBusinessLogic, WalletDataStore
     let utils: NetworkService?
     let service: ApiService?
     let dataBase = WalletDao()
-  //var name: String = ""
   
     init() {
         utils = UtilsService()
         service = PoloniexApiService(utilService: utils!)
     }
     
-  // MARK: Do something
+  // MARK: Action
     
     func getWallet() {
         if Reachability.isConnectedToNetwork(){

@@ -49,7 +49,7 @@ public protocol ApiService {
     ///
     /// - Parameter completion: nil
     /// - Returns: array of orders or error
-    func getOrders(completion: @escaping (Result<[SimpleOrder], ErrorMessage>) -> Void)
+    func getOrders(completion: @escaping (Result<[EntryList.SimpleOrder.Content], ErrorMessage>) -> Void)
     
     /// Get info about trade orders
     ///

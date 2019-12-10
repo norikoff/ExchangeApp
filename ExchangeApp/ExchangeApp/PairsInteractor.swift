@@ -26,7 +26,6 @@ protocol PairsDataStore
 class PairsInteractor: PairsBusinessLogic, PairsDataStore
 {
   var presenter: PairsPresentationLogic?
-  var worker: PairsWorker?
     let utils: NetworkService?
     let service: ApiService?
     let dataBase = PairDao()

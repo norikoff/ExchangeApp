@@ -24,7 +24,6 @@ protocol TradeDisplayLogic: class
 class TradeViewController: UIViewController, TradeDisplayLogic, ChartViewDelegate
 {
     var interactor: TradeBusinessLogic?
-    var router: (NSObjectProtocol & TradeRoutingLogic & TradeDataPassing)?
     
     let buyButton: UIButton = {
         let buyButton = UIButton(frame: CGRect.zero)
@@ -35,7 +34,6 @@ class TradeViewController: UIViewController, TradeDisplayLogic, ChartViewDelegat
         return buyButton
     }()
     
-    var timer: Timer?
     var charts: [Chart]?
     
     var buyAmount: UITextField!
@@ -107,13 +105,9 @@ class TradeViewController: UIViewController, TradeDisplayLogic, ChartViewDelegat
         let viewController = self
         let interactor = TradeInteractor()
         let presenter = TradePresenter()
-        let router = TradeRouter()
         viewController.interactor = interactor
-        viewController.router = router
         interactor.presenter = presenter
         presenter.viewController = viewController
-        router.viewController = viewController
-        router.dataStore = interactor
     }
     
     // MARK: View lifecycle
@@ -129,10 +123,10 @@ class TradeViewController: UIViewController, TradeDisplayLogic, ChartViewDelegat
         sellAmount = TextFieldFactory.createTextField(title: "Amount")
         buyPrice = TextFieldFactory.createTextField(title: "Price")
         sellPrice = TextFieldFactory.createTextField(title: "Price")
-         buyAmount.delegate = self
-         sellAmount.delegate = self
-         buyPrice.delegate = self
-         sellPrice.delegate = self
+        buyAmount.delegate = self
+        sellAmount.delegate = self
+        buyPrice.delegate = self
+        sellPrice.delegate = self
         self.view.addSubview(buyButton)
         self.view.addSubview(sellButton)
         self.view.addSubview(candleChartView)
@@ -145,16 +139,12 @@ class TradeViewController: UIViewController, TradeDisplayLogic, ChartViewDelegat
         
         
         NSLayoutConstraint.activate([
-            candleChartView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            candleChartView.bottomAnchor.constraint(equalTo: view.centerYAnchor),
-            candleChartView.rightAnchor.constraint(equalTo:view.rightAnchor),
-            candleChartView.leftAnchor.constraint(equalTo:view.leftAnchor),
             
-            buyAmount.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            buyAmount.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 8),
             buyAmount.rightAnchor.constraint(equalTo: view.centerXAnchor),
             buyAmount.leftAnchor.constraint(equalTo: view.leftAnchor),
             
-            sellAmount.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            sellAmount.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
             sellAmount.rightAnchor.constraint(equalTo: view.rightAnchor),
             sellAmount.leftAnchor.constraint(equalTo: view.centerXAnchor),
             
@@ -165,6 +155,11 @@ class TradeViewController: UIViewController, TradeDisplayLogic, ChartViewDelegat
             sellPrice.topAnchor.constraint(equalTo: sellAmount.bottomAnchor, constant: 8),
             sellPrice.rightAnchor.constraint(equalTo: view.rightAnchor),
             sellPrice.leftAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            candleChartView.topAnchor.constraint(equalTo: buyPrice.bottomAnchor,constant: 8),
+            candleChartView.bottomAnchor.constraint(equalTo: view.centerYAnchor),
+            candleChartView.rightAnchor.constraint(equalTo:view.rightAnchor),
+            candleChartView.leftAnchor.constraint(equalTo:view.leftAnchor),
             
             
             buyButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -self.tabBarController!.tabBar.frame.size.height),
@@ -245,7 +240,7 @@ class TradeViewController: UIViewController, TradeDisplayLogic, ChartViewDelegat
     
     @objc func buyPush(){
         self.showSpinner(onView: self.view)
-        interactor?.buy(pairName: self.title!, rate: buyPrice.text!, amount: buyPrice.text!)
+        interactor?.buy(pairName: self.title!, rate: buyPrice.text!, amount: buyAmount.text!)
     }
     
     @objc func sellPush(){
@@ -280,9 +275,6 @@ class TradeViewController: UIViewController, TradeDisplayLogic, ChartViewDelegat
             self.removeSpinner()
         }
     }
-    
-    
-    
 }
 
 
@@ -293,22 +285,5 @@ extension TradeViewController: UITextFieldDelegate {
             return false
         }
         return true
-    }
-    
-    func createTimer() {
-        // 1
-        if timer == nil {
-            // 2
-            timer = Timer.scheduledTimer(timeInterval: 2.0,
-                                         target: self,
-                                         selector: #selector(updateChart),
-                                         userInfo: nil,
-                                         repeats: true)
-        }
-    }
-    
-    @objc func updateChart() {
-        
-        self.interactor?.updateChart(pairName: self.title!, start: String(NSDate().timeIntervalSince1970-43200), end: String(NSDate().timeIntervalSince1970))
     }
 }

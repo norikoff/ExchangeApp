@@ -22,27 +22,10 @@ protocol WalletDisplayLogic: class
 class WalletViewController: UIViewController, WalletDisplayLogic
 {
     var interactor: WalletBusinessLogic?
-    var router: (NSObjectProtocol & WalletRoutingLogic & WalletDataPassing)?
     
     private let refreshControl = UIRefreshControl()
     
-    let searchField: UITextField = {
-        let textField = UITextField()
-        
-        textField.backgroundColor = .black
-        textField.textColor = .white
-        textField.textAlignment = .center
-        textField.attributedPlaceholder =
-            NSAttributedString(string: "Enter currency name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        textField.layer.borderWidth = 1.0
-        textField.layer.borderColor = UIColor.orange.cgColor
-        textField.layer.cornerRadius = 20
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        
-        textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
-        
-        return textField
-    }()
+    var searchField: UITextField!
     
     let tableView: UITableView = {
         let  tableView = UITableView()
@@ -90,26 +73,11 @@ class WalletViewController: UIViewController, WalletDisplayLogic
         let viewController = self
         let interactor = WalletInteractor()
         let presenter = WalletPresenter()
-        let router = WalletRouter()
         viewController.interactor = interactor
-        viewController.router = router
         interactor.presenter = presenter
         presenter.viewController = viewController
-        router.viewController = viewController
-        router.dataStore = interactor
     }
     
-    // MARK: Routing
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
-        if let scene = segue.identifier {
-            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-            if let router = router, router.responds(to: selector) {
-                router.perform(selector, with: segue)
-            }
-        }
-    }
     
     // MARK: View lifecycle
     
@@ -125,6 +93,10 @@ class WalletViewController: UIViewController, WalletDisplayLogic
         tableView.register(WalletCell.self, forCellReuseIdentifier: reuseId)
         tableView.addSubview(refreshControl)
         refreshControl.addTarget(self, action: #selector(refreshWalletData(_:)), for: .valueChanged)
+        
+        searchField = TextFieldFactory.createTextField(title: "Enter currency name")
+        searchField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
+        
         let label = UILabel(frame: CGRect.zero)
         label.text = "Currency"
         label.font = UIFont.systemFont(ofSize: 16)

@@ -23,13 +23,15 @@ enum History
     }
     struct Response
     {
-        let orders: [SimpleOrder]?
+        let orders: [EntryList.SimpleOrder.Content]?
         let errorMessage: String?
+        let successMessage: String?
     }
     struct ViewModel
     {
-        let orders: [SimpleOrder]?
+        let orders: [EntryList.SimpleOrder.Content]?
         let errorMessage: String?
+        let successMessage: String?
     }
   }
 }

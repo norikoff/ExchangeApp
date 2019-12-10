@@ -11,11 +11,16 @@ import UIKit
 class HistoryCell: UITableViewCell {
     let minValue = 0
     
-    var order : SimpleOrder? {
+    var order : EntryList.SimpleOrder.Content? {
         didSet {
             currencyLabel.text = order?.orderNumber
             amountLabel.text = order?.amount
             priceLabel.text = order?.type
+            if "buy".elementsEqual(priceLabel.text ?? ""){
+                priceLabel.textColor = .green
+            }else{
+                priceLabel.textColor = .red
+            }
         }
     }
     

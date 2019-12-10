@@ -10,8 +10,8 @@ import Foundation
 
 public struct CancelOrder: Codable {
     
-   let success: Int
-   let amount: String
-   let clientOrderId: String
-   let message: String
+    let success: Int
+    let amount: String
+    let message: String
+    
 }

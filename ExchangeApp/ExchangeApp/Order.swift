@@ -13,7 +13,6 @@ public struct Order: Codable {
     let orderNumber: String
     let resultingTrades: [TradeResult]?
     let fee: String
-    let clientOrderId: String
     let currencyPair: String
     
     struct TradeResult: Codable {

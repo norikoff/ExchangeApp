@@ -18,6 +18,21 @@ public struct EntryList: Decodable {
         init?(intValue: Int) {return nil}
     }
     
+    public struct SimpleOrder: Decodable {
+       public struct Content: Decodable {
+            let date: String
+            let type: String
+            let rate: String
+            let amount: String
+            let startingAmount: String
+            let total: String
+            let orderNumber: String
+            let margin: Int16
+        }
+        let pairName: String
+        let content: [Content]
+    }
+    
     public struct Pair: Decodable {
         struct Content: Decodable {
             let id:Int64
@@ -58,9 +73,18 @@ public struct EntryList: Decodable {
     let pairs: [Pair]
     var wallet: [Currency]
     var addresses: [Address]
+    let orders: [SimpleOrder]
     
     public init(from decoder: Decoder) throws {
         let entriesContainer = try decoder.container(keyedBy: DynamicCodingKey.self)
+        do{
+            orders = try entriesContainer.allKeys.map { key in
+                let content = try entriesContainer.decode([SimpleOrder.Content].self, forKey: key)
+                return SimpleOrder(pairName: key.stringValue, content: content)
+            }
+        }catch{
+            orders = []
+        }
         do{
             pairs = try entriesContainer.allKeys.map { key in
                 let content = try entriesContainer.decode(Pair.Content.self, forKey: key)
@@ -85,7 +109,7 @@ public struct EntryList: Decodable {
         }catch{
             addresses = []
         }
-        if wallet.count > 0 || (addresses.count > 0 && addresses.first?.name != "error") || pairs.count > 0{
+        if orders.count > 0 || wallet.count > 0 || (addresses.count > 0 && addresses.first?.name != "error") || pairs.count > 0{
             return
         }
         throw ErrorMessage(error: "Bad decode")

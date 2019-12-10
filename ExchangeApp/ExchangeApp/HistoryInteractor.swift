@@ -15,55 +15,61 @@ import UIKit
 protocol HistoryBusinessLogic
 {
     func getListOfOrders()
+    func cancelOrder(orderNumber: String)
 }
 
 protocol HistoryDataStore
 {
-    //var name: String { get set }
+    
 }
 
 class HistoryInteractor: HistoryBusinessLogic, HistoryDataStore
 {
     var presenter: HistoryPresentationLogic?
-    var worker: HistoryWorker?
-    let dataBase = SimpleOrderDao()
+    let utils: NetworkService?
+    let service: ApiService?
+    
+    init() {
+        utils = UtilsService()
+        service = PoloniexApiService(utilService: utils!)
+    }
     
     // MARK: Do something
     
     func getListOfOrders() {
-        let utils = UtilsService()
-        let worker = PoloniexApiService(utilService: utils)
         if Reachability.isConnectedToNetwork(){
-        worker.getOrders { result in
-            switch result {
-            case .success(let data):
-                let response = History.Something.Response.init(orders: data, errorMessage: nil)
-                self.dataBase.clear(){_ in}
-                self.dataBase.saveAll(model: data){_ in}
-                self.presenter?.presentOrders(response: response)
-            case .failure(let error):
-                let response = History.Something.Response.init(orders: nil, errorMessage: error.error)
-                self.presenter?.presentError(response: response)
-            }
-        }
-        }else{
-            dataBase.getAll(){
-                result in
+            service!.getOrders { result in
                 switch result {
                 case .success(let data):
-                    if let unData = data, unData.count != 0 {
-                        let response = History.Something.Response.init(orders: unData, errorMessage: nil)
-                        self.presenter?.presentOrders(response: response)
-                    }else{
-                        let response = History.Something.Response(orders: nil, errorMessage: "Empty wallet")
-                        self.presenter?.presentError(response: response)
-                    }
+                    let response = History.Something.Response.init(orders: data, errorMessage: nil, successMessage: nil)
+                    self.presenter?.presentOrders(response: response)
                 case .failure(let error):
-                    let response = History.Something.Response(orders: nil, errorMessage: error.error)
+                    let response = History.Something.Response.init(orders: nil, errorMessage: error.error, successMessage: nil)
                     self.presenter?.presentError(response: response)
                 }
-                
             }
+        }else{
+            let response = History.Something.Response.init(orders: nil, errorMessage: "Check enternet connection", successMessage: nil)
+            self.presenter?.presentError(response: response)
         }
     }
+    
+    func cancelOrder(orderNumber: String){
+        service?.cancelOrder(orderNumber: orderNumber){ result in
+            switch result {
+            case .success(let data):
+                if data{
+                    let response = History.Something.Response(orders: nil, errorMessage: nil, successMessage: "Done")
+                    self.presenter?.presentSuccess(response: response)
+                }else{
+                    
+                }
+            case .failure(let error):
+                let response = History.Something.Response.init(orders: nil, errorMessage: error.error, successMessage: nil)
+                self.presenter?.presentError(response: response)
+            }
+            
+        }
+    }
+    
 }

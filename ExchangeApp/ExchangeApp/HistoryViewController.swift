@@ -12,15 +12,17 @@ protocol HistoryDisplayLogic: class
 {
     func displayOrders(viewModel: History.Something.ViewModel)
     func displayAllert(viewModel: History.Something.ViewModel)
+    func displaySuccess(viewModel: History.Something.ViewModel)
+    
 }
 
 class HistoryViewController: UIViewController, HistoryDisplayLogic
 {
     
     var interactor: HistoryBusinessLogic?
-    var router: (NSObjectProtocol & HistoryRoutingLogic & HistoryDataPassing)?
-    var orders: [SimpleOrder]?
-    var currentOrders: [SimpleOrder]?
+    
+    var orders: [EntryList.SimpleOrder.Content]?
+    var currentOrders: [EntryList.SimpleOrder.Content]?
     private let refreshControl = UIRefreshControl()
     let tableView: UITableView = {
         let  tableView = UITableView()
@@ -31,23 +33,7 @@ class HistoryViewController: UIViewController, HistoryDisplayLogic
     }()
     
     
-    let searchField: UITextField = {
-        let textField = UITextField()
-        
-        textField.backgroundColor = .black
-        textField.textColor = .white
-        textField.textAlignment = .center
-        textField.attributedPlaceholder =
-            NSAttributedString(string: "Enter order number", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        textField.layer.borderWidth = 1.0
-        textField.layer.borderColor = UIColor.orange.cgColor
-        textField.layer.cornerRadius = 20
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        
-        textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
-        
-        return textField
-    }()
+    var searchField: UITextField!
     
     let reuseId = "UITableViewCellreuseId"
     
@@ -59,6 +45,10 @@ class HistoryViewController: UIViewController, HistoryDisplayLogic
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(HistoryCell.self, forCellReuseIdentifier: reuseId)
+        
+        searchField = TextFieldFactory.createTextField(title: "Enter order number")
+        searchField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
+        
         let label = UILabel(frame: CGRect.zero)
         label.text = "Number"
         label.font = UIFont.systemFont(ofSize: 16)
@@ -142,25 +132,9 @@ class HistoryViewController: UIViewController, HistoryDisplayLogic
         let viewController = self
         let interactor = HistoryInteractor()
         let presenter = HistoryPresenter()
-        let router = HistoryRouter()
         viewController.interactor = interactor
-        viewController.router = router
         interactor.presenter = presenter
         presenter.viewController = viewController
-        router.viewController = viewController
-        router.dataStore = interactor
-    }
-    
-    // MARK: Routing
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
-        if let scene = segue.identifier {
-            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-            if let router = router, router.responds(to: selector) {
-                router.perform(selector, with: segue)
-            }
-        }
     }
     
     // MARK: Action
@@ -168,6 +142,8 @@ class HistoryViewController: UIViewController, HistoryDisplayLogic
     func displayOrders(viewModel: History.Something.ViewModel){
         DispatchQueue.main.async {
             guard let data = viewModel.orders, data.count > 0 else{
+                self.currentOrders = []
+                self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
                 self.removeSpinner()
                 return
@@ -217,9 +193,39 @@ class HistoryViewController: UIViewController, HistoryDisplayLogic
         }
     }
     
+    func displayCancelOrder(orderNumber: String){
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Cancel", message: "Do you want cancel order?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Don't cancel", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { action in
+                self.interactor?.cancelOrder(orderNumber: orderNumber)
+            }))
+            self.present(alert, animated: true)
+        }
+    }
+    
+    func displaySuccess(viewModel: History.Something.ViewModel){
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Success", message: viewModel.successMessage!, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        }
+        self.showSpinner(onView: self.view)
+        interactor!.getListOfOrders()
+    }
+    
 }
 
 extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let num = currentOrders?[indexPath.row].orderNumber {
+            displayCancelOrder(orderNumber: num)
+        }else{
+            displayAllert(viewModel: History.Something.ViewModel(orders: nil, errorMessage: "Cant cancel order", successMessage: nil))
+        }
+        
+    }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
