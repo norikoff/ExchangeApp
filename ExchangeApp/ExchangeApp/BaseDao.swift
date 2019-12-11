@@ -17,7 +17,7 @@ protocol BaseDao {
     ///
     /// - Parameter completionHandler: return array of data or error
     /// - Returns: error
-    func getAll(completion: @escaping (Result<[T]?, ErrorMessage>) -> Void)
+    func getAll(param: Any?, completion: @escaping (Result<[T]?, ErrorMessage>) -> Void)
     
     /// Fetch data from table by id
     ///

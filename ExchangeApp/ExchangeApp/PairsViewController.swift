@@ -37,23 +37,7 @@ class PairsViewController: UIViewController, PairsDisplayLogic
     }()
     
     
-    let searchField: UITextField = {
-        let textField = UITextField()
-        
-        textField.backgroundColor = .black
-        textField.textColor = .white
-        textField.textAlignment = .center
-        textField.attributedPlaceholder =
-            NSAttributedString(string: "Enter pair name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        textField.layer.borderWidth = 1.0
-        textField.layer.borderColor = UIColor.orange.cgColor
-        textField.layer.cornerRadius = 20
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        
-        textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
-        
-        return textField
-    }()
+    var searchField: UITextField!
     
     let reuseId = "UITableViewCellreuseId"
 
@@ -106,14 +90,8 @@ class PairsViewController: UIViewController, PairsDisplayLogic
     label.sizeToFit()
     label.textColor = .orange
     
-//    let amountLable = UILabel(frame: CGRect.zero)
-//    amountLable.text = "Amount"
-//    amountLable.font = UIFont.systemFont(ofSize: 16)
-//    amountLable.translatesAutoresizingMaskIntoConstraints = false
-//    amountLable.clipsToBounds = true
-//    amountLable.sizeToFit()
-//    amountLable.textColor = .orange
-//    amountLable.textAlignment = .center
+    searchField = TextFieldFactory.createTextField(title: "Enter pair name")
+    searchField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
     
     let priceLable = UILabel(frame: CGRect.zero)
     priceLable.text = "24h Change"
@@ -128,7 +106,6 @@ class PairsViewController: UIViewController, PairsDisplayLogic
     self.view.addSubview(tableView)
     self.view.addSubview(label)
     self.view.addSubview(priceLable)
-//    self.view.addSubview(amountLable)
     self.view.addSubview(searchField)
     
     NSLayoutConstraint.activate([
@@ -154,9 +131,7 @@ class PairsViewController: UIViewController, PairsDisplayLogic
         interactor!.getPairs()
     }
     
-  // MARK: Do something
-  
-  //@IBOutlet weak var nameTextField: UITextField!
+  // MARK: Action
   
   
     @objc func refreshOrderData(_ sender: Any){

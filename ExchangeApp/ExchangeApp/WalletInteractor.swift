@@ -38,6 +38,7 @@ class WalletInteractor: WalletBusinessLogic, WalletDataStore
     
     func getWallet() {
         if Reachability.isConnectedToNetwork(){
+
             service!.getWallet { result in
                 switch result {
                 case .success(let dataW):
@@ -65,7 +66,7 @@ class WalletInteractor: WalletBusinessLogic, WalletDataStore
                 }
             }
         }else{
-            dataBase.getAll(){
+            dataBase.getAll(param: nil){
                 result in
                 switch result {
                 case .success(let data):

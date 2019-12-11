@@ -21,9 +21,7 @@ protocol TradeBusinessLogic
     func sell(pairName: String, rate: String, amount: String)
 }
 
-protocol TradeDataStore
-{
-    //var name: String { get set }
+protocol TradeDataStore{
 }
 
 class TradeInteractor: TradeBusinessLogic, TradeDataStore
@@ -32,47 +30,29 @@ class TradeInteractor: TradeBusinessLogic, TradeDataStore
     let utils: NetworkService?
     let service: ApiService?
     let dataBase = ChartDao()
-    //var name: String = ""
     
     init() {
         utils = UtilsService()
         service = PoloniexApiService(utilService: utils!)
     }
-    // MARK: Do something
+    // MARK: Action
     
     func updateChart(pairName: String, start: String, end: String){
-        func getChart(pairName: String, start: String, end: String) {
             if Reachability.isConnectedToNetwork(){
                 service!.getChart(pairName: pairName, start: start, end: end, period: String(7200)) { result in
                     switch result {
                     case .success(let data):
-                        let response = Trade.Something.Response.init(chart: data, errorMessage: nil)
+                        let response = Trade.Something.Response.init(chart: data.first?.date == 0 ? [] : data, errorMessage: nil)
                         self.presenter?.presentUpdateChart(response: response)
-                    case .failure(let error):break
-                        //                    let response = Wallet.Something.Response(wallet: nil, errorMessage: error.error)
-                        //                    self.presenter?.presentError(response: response)
+                    case .failure(let error):
+                    let response = Trade.Something.Response(chart: nil, errorMessage: error.error)
+                    self.presenter?.presentError(response: response)
                     }
                 }
             }else{
-                //            dataBase.getAll(){
-                //                result in
-                //                switch result {
-                //                case .success(let data):
-                //                    if let unData = data, unData.count != 0 {
-                //                        let response = Wallet.Something.Response.init(wallet: unData, errorMessage: nil)
-                //                        self.presenter?.presentWallet(response: response)
-                //                    }else{
-                //                        let response = Wallet.Something.Response(wallet: nil, errorMessage: "Empty wallet")
-                //                        self.presenter?.presentError(response: response)
-                //                    }
-                //                case .failure(let error):
-                //                    let response = Wallet.Something.Response(wallet: nil, errorMessage: error.error)
-                //                    self.presenter?.presentError(response: response)
-                //                }
-                
-                //            }
+                let response = Trade.Something.Response(chart: nil, errorMessage: "No enternet")
+                self.presenter?.presentError(response: response)
             }
-        }
     }
     
     func getChart(pairName: String, start: String, end: String) {
@@ -88,23 +68,8 @@ class TradeInteractor: TradeBusinessLogic, TradeDataStore
                 }
             }
         }else{
-            dataBase.getAll(){
-                result in
-                switch result {
-                case .success(let data):
-                    if let unData = data, unData.count != 0 {
-                        let response = Trade.Something.Response.init(chart: data, errorMessage: nil)
-                        self.presenter?.presentChart(response: response)
-                    }else{
-                        let response = Trade.Something.Response(chart: nil, errorMessage: "Empty chart")
-                        self.presenter?.presentError(response: response)
-                    }
-                case .failure(let error):
-                    let response = Trade.Something.Response(chart: nil, errorMessage: error.error)
-                    self.presenter?.presentError(response: response)
-                }
-                
-            }
+            let response = Trade.Something.Response(chart: nil, errorMessage: "No enternet")
+            self.presenter?.presentError(response: response)
         }
     }
     

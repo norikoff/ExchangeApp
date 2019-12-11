@@ -36,6 +36,8 @@ class TradeViewController: UIViewController, TradeDisplayLogic, ChartViewDelegat
     
     var charts: [Chart]?
     
+    var timer: Timer?
+    
     var buyAmount: UITextField!
     var sellAmount: UITextField!
     var buyPrice: UITextField!
@@ -170,14 +172,16 @@ class TradeViewController: UIViewController, TradeDisplayLogic, ChartViewDelegat
             sellButton.rightAnchor.constraint(equalTo: self.view.rightAnchor),
             sellButton.leftAnchor.constraint(equalTo: self.view.centerXAnchor),
             ])
-        //604800 1 week
-        //2592000 1month
-        //86400 1day
-        //43200 12h
     }
     
     override func viewWillAppear(_ animated: Bool) {
         interactor?.getChart(pairName: self.title!, start: String(NSDate().timeIntervalSince1970-2592000), end: String(NSDate().timeIntervalSince1970))
+        createTimer()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        timer?.invalidate()
+        timer = nil
     }
     
     func setDataCount(chart: [Chart]) {
@@ -213,7 +217,7 @@ class TradeViewController: UIViewController, TradeDisplayLogic, ChartViewDelegat
         candleChartView.moveViewToX(Double(chart.count-1))
     }
     
-    // MARK: Do something
+    // MARK: Action
     
     func displayChart(viewModel: Trade.Something.ViewModel){
         DispatchQueue.main.async {
@@ -223,17 +227,17 @@ class TradeViewController: UIViewController, TradeDisplayLogic, ChartViewDelegat
     
     func displayUpdatedChart(viewModel: Trade.Something.ViewModel){
         DispatchQueue.main.async {
-            var i = self.candleChartView.data?.entryCount ?? 0
-            for data in viewModel.chart ?? []{
-                let high = Double(data.high)
-                let low = Double(data.low)
-                let open = Double(data.open)
-                let close = Double(data.close)
-                i = i+1
-                let upD =  CandleChartDataEntry(x: Double(i), shadowH: high, shadowL: low, open: open, close: close)
-                self.candleChartView.data!.addEntry(upD, dataSetIndex: i)
-                self.candleChartView.data!.notifyDataChanged(); // let the data know a dataSet changed
-                self.candleChartView.notifyDataSetChanged(); // let the chart know it's data changed
+                var i = self.candleChartView.data?.entryCount ?? 0
+                for data in viewModel.chart ?? []{
+                    let high = Double(data.high)
+                    let low = Double(data.low)
+                    let open = Double(data.open)
+                    let close = Double(data.close)
+                    i = i+1
+                    let upD =  CandleChartDataEntry(x: Double(i), shadowH: high, shadowL: low, open: open, close: close)
+                    self.candleChartView.data!.addEntry(upD, dataSetIndex: i)
+                    self.candleChartView.data!.notifyDataChanged(); // let the data know a dataSet changed
+                    self.candleChartView.notifyDataSetChanged(); // let the chart know it's data changed
             }
         }
     }
@@ -285,5 +289,23 @@ extension TradeViewController: UITextFieldDelegate {
             return false
         }
         return true
+    }
+}
+
+
+extension TradeViewController{
+    
+    func createTimer() {
+        if timer == nil {
+            timer = Timer.scheduledTimer(timeInterval: 1.0,
+                                         target: self,
+                                         selector: #selector(updateTimer),
+                                         userInfo: nil,
+                                         repeats: true)
+        }
+    }
+    
+    @objc func updateTimer() {
+        interactor?.updateChart(pairName: self.title!, start: String(charts!.max { $0.date < $1.date }!.date+1) , end: String(NSDate().timeIntervalSince1970))
     }
 }

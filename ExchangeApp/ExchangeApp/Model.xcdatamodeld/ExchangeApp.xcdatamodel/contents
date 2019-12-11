@@ -2,13 +2,18 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14492.1" systemVersion="19B88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ChartModel" representedClassName="ChartModel" syncable="YES" codeGenerationType="class">
         <attribute name="close" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="date" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="date" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="high" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="low" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="open" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="quoteVolume" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="volume" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="weightedAverage" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="date"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="OrderData" representedClassName="OrderData" syncable="YES" codeGenerationType="class">
         <attribute name="clientOrderId" optional="YES" attributeType="String" syncable="YES"/>
@@ -22,6 +27,11 @@
         <attribute name="isFrozen" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="percentChange" optional="YES" attributeType="String" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="name"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="TradeResult" representedClassName="TradeResult" syncable="YES" codeGenerationType="class">
         <attribute name="amount" optional="YES" attributeType="String" syncable="YES"/>
@@ -38,12 +48,17 @@
         <attribute name="btcValue" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="onOrders" optional="YES" attributeType="String" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="name"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="ChartModel" positionX="-230.49609375" positionY="-215.26171875" width="128" height="163"/>
+        <element name="ChartModel" positionX="-230.49609375" positionY="-215.26171875" width="128" height="165"/>
         <element name="OrderData" positionX="126.87109375" positionY="35.0859375" width="128" height="120"/>
-        <element name="Pair" positionX="48.72265625" positionY="-189.41796875" width="128" height="103"/>
+        <element name="Pair" positionX="48.72265625" positionY="-189.41796875" width="128" height="105"/>
         <element name="TradeResult" positionX="349.078125" positionY="90" width="128" height="148"/>
-        <element name="WalletCurrency" positionX="-174.83984375" positionY="28.34765625" width="128" height="118"/>
+        <element name="WalletCurrency" positionX="-174.83984375" positionY="28.34765625" width="128" height="120"/>
     </elements>
 </model>

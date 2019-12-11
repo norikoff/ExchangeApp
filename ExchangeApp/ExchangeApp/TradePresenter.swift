@@ -24,7 +24,7 @@ class TradePresenter: TradePresentationLogic
 {
   weak var viewController: TradeDisplayLogic?
   
-  // MARK: Do something
+  // MARK: Action
     
     func presentChart(response: Trade.Something.Response){
         let viewModel = Trade.Something.ViewModel(chart: response.chart, errorMessage: response.errorMessage)

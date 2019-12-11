@@ -32,7 +32,7 @@ class ChartDao: BaseDao {
         }
     }
     
-    func getAll(completion: @escaping (Result<[T]?, ErrorMessage>) -> Void) {
+    func getAll(param: Any?, completion: @escaping (Result<[T]?, ErrorMessage>) -> Void) {
         let stack = CoreDataStack.shared
         
         stack.persistentContainer.performBackgroundTask { (context) in
@@ -57,9 +57,9 @@ class ChartDao: BaseDao {
         
         stack.persistentContainer.performBackgroundTask { (context) in
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "ChartModel")
-            let predicate = NSPredicate(format: "date == %@", "\(identifier)")
-            fetchRequest.predicate = predicate
-            fetchRequest.returnsObjectsAsFaults = false
+            fetchRequest.fetchLimit = 1
+            let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
+            fetchRequest.sortDescriptors = [sortDescriptor]
             do{
                 let results = try context.fetch(fetchRequest) as! [NSManagedObject]
                 guard let dto = results.first else {

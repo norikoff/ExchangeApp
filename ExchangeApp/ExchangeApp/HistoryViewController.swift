@@ -209,9 +209,10 @@ class HistoryViewController: UIViewController, HistoryDisplayLogic
             let alert = UIAlertController(title: "Success", message: viewModel.successMessage!, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
             self.present(alert, animated: true)
+            self.showSpinner(onView: self.view)
+            self.interactor!.getListOfOrders()
         }
-        self.showSpinner(onView: self.view)
-        interactor!.getListOfOrders()
+        
     }
     
 }

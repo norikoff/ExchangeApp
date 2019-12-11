@@ -18,9 +18,8 @@ protocol PairsBusinessLogic
     func getPairs()
 }
 
-protocol PairsDataStore
-{
-  //var name: String { get set }
+protocol PairsDataStore{
+    
 }
 
 class PairsInteractor: PairsBusinessLogic, PairsDataStore
@@ -35,25 +34,23 @@ class PairsInteractor: PairsBusinessLogic, PairsDataStore
         service = PoloniexApiService(utilService: utils!)
     }
   
-  // MARK: Do something
+  // MARK: Action
   
     func getPairs() {
         if Reachability.isConnectedToNetwork(){
             service!.getPairs { result in
                 switch result {
                 case .success(let data):
-                    self.dataBase.clear(){_ in}
                     self.dataBase.saveAll(model: data){_ in}
                     let response = Pairs.Something.Response.init(pairs: data, errorMessage: nil)
                     self.presenter?.presentPairs(response: response)
-                    print("")
                 case .failure(let error):
                     let response = Pairs.Something.Response(pairs: nil, errorMessage: error.error)
                     self.presenter?.presentError(response: response)
                 }
             }
         }else{
-            dataBase.getAll(){
+            dataBase.getAll(param: nil){
                 result in
                 switch result {
                 case .success(let data):

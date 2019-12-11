@@ -226,7 +226,7 @@
 			name = impl;
 			sourceTree = "<group>";
 		};
-		5958DC4C23903B8F00B75625 /* Scenes */ = {
+		5958DC4C23903B8F00B75625 /* scenes */ = {
 			isa = PBXGroup;
 			children = (
 				5958DC942396863900B75625 /* trade */,
@@ -235,7 +235,7 @@
 				5958DC962396893E00B75625 /* history */,
 				5958DC952396892A00B75625 /* wallet */,
 			);
-			name = Scenes;
+			name = scenes;
 			sourceTree = "<group>";
 		};
 		5958DC5A23903C7500B75625 /* navigation */ = {
@@ -363,7 +363,7 @@
 			isa = PBXGroup;
 			children = (
 				5958DC5A23903C7500B75625 /* navigation */,
-				5958DC4C23903B8F00B75625 /* Scenes */,
+				5958DC4C23903B8F00B75625 /* scenes */,
 				5958DC34238DA00200B75625 /* repository */,
 				59A374B9238A970D00C873A5 /* utils */,
 				59A374AD238A958900C873A5 /* service */,

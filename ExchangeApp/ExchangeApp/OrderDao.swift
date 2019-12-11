@@ -32,7 +32,7 @@ class OrderDao: BaseDao {
         }
     }
     
-    func getAll(completion: @escaping (Result<[T]?, ErrorMessage>) -> Void) {
+    func getAll(param: Any?, completion: @escaping (Result<[T]?, ErrorMessage>) -> Void) {
         let stack = CoreDataStack.shared
         
         stack.persistentContainer.performBackgroundTask { (context) in

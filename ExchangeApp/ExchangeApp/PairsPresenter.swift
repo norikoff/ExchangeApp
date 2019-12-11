@@ -24,7 +24,7 @@ class PairsPresenter: PairsPresentationLogic
     
   weak var viewController: PairsDisplayLogic?
   
-  // MARK: Do something
+  // MARK: Action
   
     func presentPairs(response: Pairs.Something.Response) {
         let viewModel = Pairs.Something.ViewModel(pairs: response.pairs, errorMessage: nil)

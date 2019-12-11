@@ -30,6 +30,7 @@ class DaoTest: XCTestCase {
 """
         let wall = try! JSONDecoder().decode(EntryList.self, from: wallet.data(using: .utf8)!)
         var testWallet: EntryList.Currency?
+        testDao.clear{_ in}
         let group = DispatchGroup()
         group.enter()
         testDao.save(model: wall.wallet.first! ){ result in
@@ -76,6 +77,7 @@ class DaoTest: XCTestCase {
 """
         let char = try! JSONDecoder().decode([Chart].self, from: chart.data(using: .utf8)!)
         var testWallet: Chart?
+        testDao.clear{_ in}
         let group = DispatchGroup()
         group.enter()
         testDao.save(model: char.first!){ result in
@@ -117,6 +119,7 @@ class DaoTest: XCTestCase {
 """
         let pairs = try! JSONDecoder().decode(EntryList.self, from: pair.data(using: .utf8)!)
         var testWallet: EntryList.Pair?
+        testDao.clear{_ in}
         let group = DispatchGroup()
         group.enter()
         testDao.save(model: pairs.pairs.first!){ result in
