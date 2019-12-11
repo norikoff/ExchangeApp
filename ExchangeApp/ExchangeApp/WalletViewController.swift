@@ -172,19 +172,10 @@ class WalletViewController: UIViewController, WalletDisplayLogic
     // MARK: Do something
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-        
-//        searchDelayQueue.isSuspended = true
-//        searchDelayQueue.cancelAllOperations()
-        
         if let text = textField.text {
-//            searchDelayQueue.addOperation {
                 self.search(by: text)
-//            }
         }
         
-//        DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
-//            self.searchDelayQueue.isSuspended = false
-//        }
     }
     
     private func search(by searchText: String) {
